@@ -16,14 +16,10 @@ public class Test08 {
 		int outHour = 16, outMinute = 10;
 		
 		//계산 - 가장 작은 단위로 변경해서 계산 후 원래 형태로 복원
-		//int time1 = 60 * hour1 + minute1;
-		//System.out.println(time1);
-		//int time2 = 60 * hour2 + minute2;
+		int inTime = inHour * 60 + inMinute;//int time1 = 60 * hour1 + minute1;
+		//System.outprintln(inTime);//System.out.println(time1);
+		int outTime = outHour * 60 + outMinute;//int time2 = 60 * hour2 + minute2;
 		//System.out.println(time2);
-		
-		int inTime = inHour * 60 + inMinute;
-		//System.outprintln(inTime);
-		int outTime = outHour * 60 + outMinute;
 		
 		int time = outTime - inTime;
 		System.out.println(time);
