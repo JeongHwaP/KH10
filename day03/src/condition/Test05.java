@@ -10,7 +10,6 @@ public class Test05 {
 		//준비 - 자장면 금액 / 수량, 짬뽕 금액 / 수량
 		int jjajang = 5000, champon = 6000;
 		int jjajangCount = 2, champonCount = 6;
-		int discount = 10;//할인율
 		
 		//계산
 		int jjajangTotal = jjajang * jjajangCount;
@@ -19,7 +18,6 @@ public class Test05 {
 		
 		int total = jjajangTotal + champonTotal;
 		
-		boolean 할인 = jjajangCount + champonCount >= 3;
 		int 할인금액 = total * 90/100;
 		
 		//출력
