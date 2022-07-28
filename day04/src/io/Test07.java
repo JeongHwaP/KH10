@@ -3,7 +3,7 @@ import java.lang.*;
 import java.util.Scanner;
 public class Test07 {
 	public static void main(String[] args) {
-		//문자열 입력
+		//문자열 입력 - .next()
 		
 		Scanner sc = new Scanner(System.in);
 		
