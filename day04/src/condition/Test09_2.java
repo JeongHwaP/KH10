@@ -19,17 +19,17 @@ public class Test09_2 {
 		int age = now - year + 1;
 		
 		//출력
-		if(age >= 20 && age <=64) {
+		if(age < 8 || age >= 65) {
+			System.out.println("요금 : 0원 입니다.");
+		}
+		else if(age >= 20) {
 			System.out.println("요금 1250원 입니다.");
 		}
-		else if(age >= 14 && age <= 19) {
+		else if(age >= 14) {
 			System.out.println("요금 720원 입니다.");
 		}
-		else if(age >= 8 && age <= 13) {
-			System.out.println("요금 450원 입니다.");
-		}
 		else {
-			System.out.println("무료입니다.");
+			System.out.println("요금 450원 입니다.");
 		}
 	}
 }
