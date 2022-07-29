@@ -24,9 +24,9 @@ public class Test07_4 {
 					System.out.println("짝");					
 				}
 			}
-				else {
-					System.out.println(i);
-				}
+			else {
+				System.out.println(i);
 			}
+		}
 	}
 }
