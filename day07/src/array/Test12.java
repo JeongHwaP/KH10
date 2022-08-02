@@ -14,7 +14,7 @@ public class Test12 {
 		int[] data = new int[] {30, 10, 20, 50, 40};
 		
 		//최소값 찾기
-		for(int i=0; i<data.length; i++) {
+		for(int i=0; i<data.length; i++) { //0위치에서 시작해 4번째 위치까지 정방향
 			
 		int min = i; //처음 발견한 위치를 i로 설정
 		
