@@ -13,21 +13,26 @@ public class Test12 {
 		
 		int[] data = new int[] {30, 10, 20, 50, 40};
 		
-		for(int i = 0; i < data.length - 1; i++) {
-			int index = i;
+		//최소값 찾기
+		for(int i=0; i<data.length; i++) {
 			
-			//최소값
-			for(int j = i + 1; j < data.length; j++) {
-				//if(index 위치의 값보다 j 위치의 값이 더 작다면){
-				if(data[index] > data[j]) {
-					//index를 i로 변경
-					index = j;
+		int min = i; //처음 발견한 위치를 i로 설정
+		
+		for(int j=i+1; j<data.length-1; j++) { //새 위치를 j로 설정 했을때 i+1부터 시작
+			if(data[min] > data[j]) { //처음 발견한 위치가 새로 발견한 보다 큰 경우 = 새로 발견한 위치가 더 작음
+				min = j; //새 위치 j로 지정
 				}
 			}
-			int backup = data[index];
-			data[index] = data[i];
-			data[i] = backup;
+		
+		//System.out.println("min = " + min);
+		
+		//교체
+		int backup = data[i]; // 처음 발견한 위치를 백업설정
+		data[i] = data[min]; // 처음 발견한 위치와 새로 발견한 위치를 교환
+		data[min] = backup; // 교환후 뒤에 백업설정한 위치
+		
+		//출력
+		System.out.println(data[i]);
 		}
-		System.out.println(Arrays.toString(data));
 	}
 }
