@@ -32,7 +32,7 @@ public class Test03_1 {
 		// - 1부터 row * col까지 반복하도록 반복문을 구성
 		int x = 0, y = 0;
 		for(int i=1; i<=row*col; i++) {
-			System.out.println(i+"를 ("+x+", "+y+")에 대입합니다.");
+			//System.out.println(i+"를 ("+x+", "+y+")에 대입합니다.");
 			arr[x][y]=i;
 			if(y<col-1) {
 				y++; //다음칸
