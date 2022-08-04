@@ -10,6 +10,10 @@ public class Test01 {
 		b.setting("라이츄", 80, 90, 85);
 		c.setting("꼬부기", 100, 90, 90);
 		
+		a.k = 0;
+		a.total = a.k + a.e + a.m;
+		a.avg = a.total / 3.0;
+		
 		a.print();
 		b.print();
 		c.print();
