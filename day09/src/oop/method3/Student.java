@@ -1,6 +1,6 @@
 package oop.method3;
 
-public class Exam {
+public class Student {
 	String name;
 	int k;
 	int e;
