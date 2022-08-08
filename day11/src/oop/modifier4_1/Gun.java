@@ -1,33 +1,34 @@
 package oop.modifier4_1;
 
 public class Gun {
-	public int bullet = 2; //총알 2발부터 시작
-
-	public int getBullet() {
-		return bullet;
-	}
+	//field
+	public int bullet;
+	
+	//setter & getter
 
 	public void setBullet(int bullet) {
-		this.bullet = bullet;
-	}
-	
-	//사격
-	public void fire() {
 		if(bullet > 0) {
-			System.out.println("빵야!");
-			bullet--;
+			this.bullet = bullet;
+		}
+	}
+	public int getBullet() {
+		return this.bullet;
+	}
+	public void print() {
+		System.out.println("권총에 남은 총알 수 : " + this.bullet + "발");
+	}
+	public void fire() {
+		if(this.bullet > 0) {
+			this.bullet--;
+			System.out.println("빵야!");			
 		}
 		else {
 			System.out.println("딸깍!");
 		}
 	}
+	//constructor(생성자)
+	public Gun() {
+		this.setBullet(2);
+	}
 	
-	//남은 총알
-	public void print() {
-		System.out.println("남은 총알 : " + this.bullet + "발");
-	}
-
-	public Gun(int bullet) {
-		this.setBullet(bullet);
-	}
 }
