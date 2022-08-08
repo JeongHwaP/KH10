@@ -4,7 +4,7 @@ public class Galaxy22s {
 	//field
 	// - 객체별로 관리되지 말아야 할 데이터에 static 키워드를 붙인다.
 	// - 해당 static field의 getter/setter도 static 키워드를 붙인다.
-	// = this를 
+	// - this를 통한 static field의 접근은 권장하지 않는다.(경고)
 	
 	private static String company; //제조사 정보
 	private String color; //생상
