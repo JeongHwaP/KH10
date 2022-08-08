@@ -4,6 +4,9 @@ import oop.keyword3.Calculator;
 
 public class Test01 {
 	public static void main(String[] args) {
+		//외부에서 실행시켜야 하니까 public
+		
+		
 		System.out.println(11*11); //11곱하기 11
 		System.out.println(Robot.squared(11)); //11의 제곱
 		
