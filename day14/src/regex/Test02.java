@@ -29,15 +29,16 @@ public class Test02 {
 		//계산
 		//아이디 규칙
 		String regex = "^[a-z][a-z0-9]{7,19}$";
-		boolean test = Pattern.matches(regex, id);
+		boolean test = Pattern.matches(regex, id); //왼쪽이 검사식, 오른쪽이 검사값 -> 순서 조심!
 		//System.out.println("글자규칙 = " + test);
 		
 		//8글자 이상 20글자 이하
-		boolean first = id.length() >= 8 && id.length() <= 20;
+//		boolean first = id.length() >= 8 && id.length() <= 20; //위 계산식에 표기 되어있어서 없어도됨
 		//System.out.println("글자수 = " + first);
 		
 		//출력
-		if(test && first) {
+		//if(test && first) {
+		if(test) {
 			System.out.println("사용하실 수 있는 아이디입니다.");
 		}
 		else {

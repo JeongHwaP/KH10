@@ -27,16 +27,17 @@ public class Test03 {
 		
 		//계산
 		//2글자 이상 10글자 이하
-		boolean first = nickname.length() >= 2 && nickname.length() <= 10;
+//		boolean first = nickname.length() >= 2 && nickname.length() <= 10; //위 계산식에 표기 되어있어서 없어도됨
 		//System.out.println("글자 수 = " + first);
 		
 		//닉네임 규칙
 		String regex = "^[가-힣0-9]{2,10}$";
-		boolean test = Pattern.matches(regex, nickname);
+		boolean test = Pattern.matches(regex, nickname); //왼쪽이 검사식, 오른쪽이 검사값 -> 순서 조심!
 		//System.out.println("글자 규칙 = " + test);
 		
 		//출력
-		if(first && test) {
+		//if(first && test) {
+		if(test) {
 			System.out.println("사용하실 수 있는 닉네임입니다.");
 		}
 		else {
