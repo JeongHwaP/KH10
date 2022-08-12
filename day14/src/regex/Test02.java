@@ -28,7 +28,7 @@ public class Test02 {
 		
 		//계산
 		//아이디 규칙
-		String regex = "^[a-z][a-z,0-9]{7,19}$";
+		String regex = "^[a-z][a-z0-9]{7,19}$";
 		boolean test = Pattern.matches(regex, id);
 		//System.out.println("글자규칙 = " + test);
 		

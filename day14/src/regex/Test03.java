@@ -23,7 +23,7 @@ public class Test03 {
 		//System.out.println("글자 수 = " + first);
 		
 		//닉네임 규칙
-		String regex = "^[가-힣,0-9]{2,10}$";
+		String regex = "^[가-힣0-9]{2,10}$";
 		boolean test = Pattern.matches(regex, nickname);
 		//System.out.println("글자 규칙 = " + test);
 		
