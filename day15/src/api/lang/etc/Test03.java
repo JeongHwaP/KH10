@@ -17,7 +17,8 @@ public class Test03 {
 			run.exec("calc"); //계산기
 			run.exec("mapaint"); //그림판
 		}
-		
-		//run.exec("open -a TextEdit.app"); //mac
+		else if(System.getProperty("is.name").startsWith("Mac")){
+			run.exec("open -a TextEdit.app"); //mac
+		}
 	}
 }
