@@ -10,6 +10,14 @@ public class Test03 {
 		//닉네임은 2글자 이상 10글자 이하로 작성되어야 한다.
 		//'ㅋㅋㅋ', 'ㅡㅡ'와 같은 자음 모음만 있는 경우는 불가능하다.
 		
+//		//유니코드표 안보고 한글 번호 맞추기
+//		System.out.println((int)'가');
+//		System.out.println((int)'힣');
+//		System.out.println((int)'ㄱ');
+//		System.out.println((int)'ㄲ');
+//		System.out.println((int)'ㅡ');
+//		-> 자음(ㄱ-ㅎ), 모음(ㅏ-ㅣ), 글자(가-힣) 따로 설정해야함
+		
 		//준비
 		//String nickname = "정화1";
 		Scanner sc = new Scanner(System.in);
