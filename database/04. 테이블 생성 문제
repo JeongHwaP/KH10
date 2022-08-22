@@ -44,3 +44,30 @@ commit;
 select*from plan;
 
 drop table plan;
+
+
+/*
+    과거에 풀었던 객체지향 문제 중 성적 정보를 테이블로 구현하세요.
+    
+    (참고)
+    - 오라클은 &&대신 and, ||대신 or을 사용한다.
+    - 구간을 처리할 수 있는 between 연산을 따로 지원한다.
+    - unique 키워드를 추가하면 중복 데이터의 추가가 불가능해진다.
+*/
+
+create table exam(
+name varchar2(21) unique check(regexp_like(name, '^[가-힣]{2,7}$')),-- (regexp_like(문자열, 정규표현식)),
+-- korean number(3) check(korean >= 0 and korean <= 100),
+korean number(3) check(korean between 0 and 100),
+english number(3) check(english between 0 and 100),
+math number(3) check(math between 0 and 100)
+);
+
+insert into exam(name, korean, english, math) values('피카츄', 90, 90, 85);
+insert into exam(name, korean, english, math) values('라이츄', 80, 90, 85);
+insert into exam(name, korean, english, math) values('꼬부기', 100, 90, 90);
+commit;
+
+select*from exam;
+
+drop table exam;
