@@ -51,7 +51,3 @@ select*from product where made = (select max(made) from product);
 select customer_id from customer where customer_mileage = (
     select min(customer_mileage) from customer
     );
-
-
-
-
