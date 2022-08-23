@@ -57,6 +57,7 @@ Commit과 Rollback이 가능하다.(트랜잭션 관리가 이루어진다.)
 
 테이블에 원하는 데이터만 들어가도록 설정하는 조건
 
+- primary key - 테이블을 대표하는 컬럼(not null + unique 포함)
 - not null - 비어있는 값을 허용하지 않는 조건
 - unique - 중복되는 값을 허용하지 않는 조건
 - check - 원치 않는 값을 허용하지 않는 조건
