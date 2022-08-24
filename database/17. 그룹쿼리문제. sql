@@ -51,20 +51,16 @@ select type, max(score) 최고점, min(score) 최저점 from exam2
 group by type order by type asc;
 
 -- 7. 과목별 평균 60점 미만 학생의 수를 구하여 출력
---select subhect, avg(score) 평균, count(*) 인원수 from exam
---group by subject having avg(score) < 60;
-
-select subject, count(*) 인원수 from (
-    select*from exam2 where score < 60
-)
-group by subject;
+select subject, count(*) 인원수 from(
+    select student, subject, avg(score) 평균 from exam2
+    group by student, subject having avg(score) < 60
+) group by subject;
 
 -- 8. 과목별 평균 90점 이상 학생의 수를 구하여 출력
-select subject, count(*) 인원수 from (
-    select*from exam2 where score >= 90
-)
-group by subject;
-
+select subject, count(*) 인원수 from(
+    select student, subject, avg(score) 평균 from exam2
+    group by student, subject having avg(score) >= 90
+) group by subject;
 
 -- 9. 평균이 높은 학생을 3등까지만 출력
 select * from (
