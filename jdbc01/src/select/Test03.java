@@ -37,7 +37,10 @@ public class Test03 {
 		
 		List<Country> list = template.query(sql, mapper);
 		for(Country c : list) {
-			System.out.println(c);
+			//System.out.println(c);
+			System.out.println(c.getRank());
+			System.out.println(c.getNation());
+			System.out.println(c.getScore());
 		}
 	}
 }
