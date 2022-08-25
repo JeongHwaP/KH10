@@ -18,7 +18,7 @@ public class Test04 {
 		
 		JdbcTemplate template = JdbcUtil.getTemplate();
 		
-		String sql = "select * from soccer_ranking";
+		String sql = "select * from FIFA";
 		
 		//변경 방법이 작성된 객체를 구현 - RowMapper 클래스 사용
 		RowMapper<Country> mapper = (rs, idx)-> {

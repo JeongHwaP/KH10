@@ -11,7 +11,7 @@ public class Test02 {
 		
 		JdbcTemplate template = JdbcUtil.getTemplate();
 		
-		String sql = "select * from soccer_ranking";
+		String sql = "select * from FIFA";
 		
 		int result = template.update(sql);
 		
