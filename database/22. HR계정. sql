@@ -19,17 +19,20 @@ select * from countries;
 -- 1. country_id 별 지역 개수를 구하여 출력하세요
 select country_id, count(*) 개수 from countries group by country_id;
 
+select country_id, count(*) 개수 from locations
+group by country_id order by 개수 desc, country_id asc;
+
 -- 2. 작업자 중에서 급여를 가장 많이 받는 사람을 5명 출력하세요.
 select * from(
     select TMP.*, rownum rn from(
-        select * from employees order by salary desc
+        select * from employees order by salary desc, employee_id asc
     )TMP
 ) where rn between 1 and 5;
 
 -- 3. 작업자 중에서 가장 오래 근무한 사람 3명 출력하세요.
 select * from(
     select TMP.*, rownum rn from(
-        select * from employees order by hire_date asc
+        select * from employees order by hire_date asc, employee_id asc
     )TMP
 ) where rn between 1 and 3;
 
@@ -39,6 +42,8 @@ select * from(
         select * from job_history order by end_date - start_date desc
     )TMP
 ) where rn = 1;
+
+select JH.*, (end_date - start_date + 1) 근무일수 from job_history JH;
 
 -- 5. JOB_ID별 평균, 최대, 최소 급여를 출력하세요.
 select
