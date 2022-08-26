@@ -55,6 +55,5 @@ public class Test09 {
 		else {
 			System.out.println(musicDto);
 		}
-		System.out.println(musicDto);
 	}
 }
