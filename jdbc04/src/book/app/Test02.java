@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import book.dto.BookDto;
 import book.util.JdbcUtil;
-import dto.BookDto;
 
 public class Test02 {
 	public static void main(String[] args) {
