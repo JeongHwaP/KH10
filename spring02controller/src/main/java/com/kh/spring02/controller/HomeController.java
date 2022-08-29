@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller//접속 처리 도구 등록 annotation
 public class HomeController {
-
+	
 	@RequestMapping("/test")//매핑 생성 annotation(주소가 유일해야함)
 	@ResponseBody//화면을 쓰지 않겠다.
 	public String test() {
