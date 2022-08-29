@@ -1,4 +1,4 @@
-package util;
+package book.util;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
