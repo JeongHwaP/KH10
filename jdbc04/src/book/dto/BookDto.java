@@ -2,6 +2,7 @@ package book.dto;
 
 import java.sql.Date;
 
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 public class BookDto {
@@ -80,6 +81,7 @@ public class BookDto {
 		this.bookPrice = bookPrice;
 	}
 
+	// 자주 사용하는 도구(ex : RowMapper, ResultSetExtractor)를 생성
 	private static RowMapper<BookDto> mapper = (rs, idx) -> {
 		BookDto bookDto = new BookDto();
 		bookDto.setBookSerial(rs.getInt("book_serial"));
@@ -95,4 +97,25 @@ public class BookDto {
 	public static RowMapper<BookDto> getMapper() {
 		return mapper;
 	}
+
+	private static ResultSetExtractor<BookDto> extractor = (rs) -> {
+		if (rs.next()) {// 데이터가 있으면 목록때처럼 복사
+			BookDto bookDto = new BookDto();
+			bookDto.setBookSerial(rs.getInt("book_serial"));
+			bookDto.setBookName(rs.getString("book_name"));
+			bookDto.setBookWriter(rs.getString("book_writer"));
+			bookDto.setBookPublisher(rs.getString("book_publisher"));
+			bookDto.setBookPrice(rs.getInt("book_price"));
+			bookDto.setBookGenre(rs.getString("book_genre"));
+			bookDto.setCreationTime(rs.getDate("creation_time"));
+			return bookDto;
+		} else {// 데이터가 없으면 null을 반환
+			return null;
+		}
+	};
+
+	public static ResultSetExtractor<BookDto> getExtractor() {
+		return extractor;
+	}
+
 }
