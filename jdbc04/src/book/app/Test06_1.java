@@ -7,7 +7,7 @@ import book.util.JdbcUtil;
 public class Test06_1 {
 	public static void main(String[] args) {
 		// 사용자가 원하는 번호에 해당하는 도서의 정보(이름, 출판사, 저자, 장르)를 변경
-
+		
 		// 준비
 		int bookSerial = 1;
 		String bookName = "바꿀이름";
