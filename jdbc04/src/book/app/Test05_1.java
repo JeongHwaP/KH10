@@ -9,7 +9,7 @@ public class Test05_1 {
 	public static void main(String[] args) {
 		// 사용자가 입력한 번호에 해당하는 도서의 정보를 출력
 		// - 단일 조회
-
+		
 		// 준비
 		int bookSerial = 1;
 
