@@ -1,4 +1,4 @@
-package app;
+package book.app;
 
 import java.util.List;
 import java.util.Scanner;
@@ -6,26 +6,24 @@ import java.util.Scanner;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import book.util.JdbcUtil;
 import dto.BookDto;
-import util.JdbcUtil;
 
-public class Test04 {
+public class Test03 {
 	public static void main(String[] args) {
-		// 사용자가 입력한 검색어에 해당하는 도서명/저자/출판사의 도서를 출력(셋 중 하나)
+		// 사용자가 입력한 검색어에 해당하는 장르의 도서를 출력
 		// 준비
 		Scanner sc = new Scanner(System.in);
-		System.out.println("도서명이나 저자, 출판사를 입력하세요.");
+		System.out.print("장르 : ");
 		String keyword = sc.next();
 		sc.close();
-
+		
 		// DB
 		JdbcTemplate template = JdbcUtil.getTemplate();
 
-		String sql = "select * from book where instr(upper(book_name), upper(?)) > 0"
-				+ "or instr(upper(book_writer), upper(?)) > 0"
-				+ "or instr(upper(book_publisher), upper(?)) > 0";
-		Object[] param = {keyword, keyword, keyword};
-
+		String sql = "select * from book where instr(upper(book_genre), upper(?)) > 0";
+		Object[] param = {keyword};
+		
 		RowMapper<BookDto> mapper = (rs, idx) -> {
 			BookDto bookDto = new BookDto();
 			bookDto.setBookSerial(rs.getInt("book_serial"));

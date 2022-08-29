@@ -1,10 +1,10 @@
-package app;
+package book.app;
 
 import java.util.Scanner;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import util.JdbcUtil;
+import book.util.JdbcUtil;
 
 public class Test08 {
 	public static void main(String[] args) {

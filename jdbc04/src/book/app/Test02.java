@@ -1,28 +1,19 @@
-package app;
+package book.app;
 
 import java.util.List;
-import java.util.Scanner;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import book.util.JdbcUtil;
 import dto.BookDto;
-import util.JdbcUtil;
 
-public class Test05 {
+public class Test02 {
 	public static void main(String[] args) {
-		// 사용자가 입력한 번호에 해당하는 도서의 정보를 출력
-		// 준비
-		Scanner sc = new Scanner(System.in);
-		System.out.print("도서 시리얼 번호 : ");
-		int serial = sc.nextInt();
-		sc.close();
-
-		// DB
+		// 사용자에게 등록된 모든 도서 목록을 출력
 		JdbcTemplate template = JdbcUtil.getTemplate();
 
-		String sql = "select * from book where instr(upper(book_serial), upper(?)) > 0";
-		Object[] param = {serial};
+		String sql = "select * from book";
 
 		RowMapper<BookDto> mapper = (rs, idx) -> {
 			BookDto bookDto = new BookDto();
@@ -35,7 +26,7 @@ public class Test05 {
 			bookDto.setCreationTime(rs.getDate("creation_time"));
 			return bookDto;
 		};
-		List<BookDto> list = template.query(sql, mapper, param);
+		List<BookDto> list = template.query(sql, mapper);
 		for (BookDto bookDto : list) {
 			System.out.println(bookDto);
 		}

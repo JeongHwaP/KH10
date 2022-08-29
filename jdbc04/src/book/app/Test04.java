@@ -1,19 +1,30 @@
-package app;
+package book.app;
 
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import book.util.JdbcUtil;
 import dto.BookDto;
-import util.JdbcUtil;
 
-public class Test02 {
+public class Test04 {
 	public static void main(String[] args) {
-		// 사용자에게 등록된 모든 도서 목록을 출력
+		// 사용자가 입력한 검색어에 해당하는 도서명/저자/출판사의 도서를 출력(셋 중 하나)
+		// 준비
+		Scanner sc = new Scanner(System.in);
+		System.out.println("도서명이나 저자, 출판사를 입력하세요.");
+		String keyword = sc.next();
+		sc.close();
+
+		// DB
 		JdbcTemplate template = JdbcUtil.getTemplate();
 
-		String sql = "select * from book";
+		String sql = "select * from book where instr(upper(book_name), upper(?)) > 0"
+				+ "or instr(upper(book_writer), upper(?)) > 0"
+				+ "or instr(upper(book_publisher), upper(?)) > 0";
+		Object[] param = {keyword, keyword, keyword};
 
 		RowMapper<BookDto> mapper = (rs, idx) -> {
 			BookDto bookDto = new BookDto();
@@ -26,7 +37,7 @@ public class Test02 {
 			bookDto.setCreationTime(rs.getDate("creation_time"));
 			return bookDto;
 		};
-		List<BookDto> list = template.query(sql, mapper);
+		List<BookDto> list = template.query(sql, mapper, param);
 		for (BookDto bookDto : list) {
 			System.out.println(bookDto);
 		}
