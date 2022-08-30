@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kh.spring06.entitiy.PocketMonsterDto;
+import com.kh.spring06.entity.PocketMonsterDto;
 
 //pocket_monster 테이블에 대한 CRUD 처리를 위한 컨트롤러
 @Controller
