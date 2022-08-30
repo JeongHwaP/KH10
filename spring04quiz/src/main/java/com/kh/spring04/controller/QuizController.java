@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/quiz")//공용주소
 public class QuizController {
-
+	
 	//http://localhost:8765/quiz/sum
 	//시작(begin)과 종료(end)값을 정수로 입력받아 해당 구간의 숫자 합계 출력
 	@RequestMapping("/sum")
