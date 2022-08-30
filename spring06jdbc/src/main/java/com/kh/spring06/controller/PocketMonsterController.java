@@ -83,6 +83,18 @@ public class PocketMonsterController {
 	}
 	
 	//상세 -> ResultSetExtractor<PocketMonsterDto>
-	
+	@RequestMapping("/detail")
+	@ResponseBody
+	public String detail(@RequestParam int no) {
+		String sql = "select*from pocket_monster where no = ?";
+		Object[]param = {no};
+		PocketMonsterDto dto = jdbcTemplate.query(sql, PocketMonsterDto.getExtractor(), param);
+		if(dto == null) {
+			return "없는 번호";
+		}
+		else {
+			return dto.toString();
+		}
+	}
 	
 }
