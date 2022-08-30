@@ -23,7 +23,7 @@ public class PocketMonsterController {
 			@RequestParam int no,
 			@RequestParam String name,
 			@RequestParam String type) {
-		String sql = "inset into pocket_monster(no,name,type)"
+		String sql = "insert into pocket_monster(no,name,type) "
 					+"values(?,?,?)";
 		Object[]param= {no, name, type};
 		jdbcTemplate.update(sql, param);
@@ -37,7 +37,7 @@ public class PocketMonsterController {
 			@RequestParam int no,
 			@RequestParam String name,
 			@RequestParam String type) {
-		String sql = "uadate pocket_monster set name=?, type=? where no=?";
+		String sql = "update pocket_monster set name=?, type=? where no=?";
 		Object[]param = {name, type, no};
 		int result = jdbcTemplate.update(sql, param);
 		if(result > 0) {
@@ -48,4 +48,21 @@ public class PocketMonsterController {
 		}
 	}
 	
+	//삭제
+	@RequestMapping("/delete")
+	@ResponseBody
+	public String delete(@RequestParam int no) {
+		String sql = "delete pocket_monster where no = ?";
+		Object[]param = {no};
+		int result = jdbcTemplate.update(sql, param);
+		if(result > 0) {
+			return "삭제 완료";			
+		}
+		else {
+			return "없는 번호";
+		}
+	}
+	
+	//목록 or 검색
+	//상세
 }
