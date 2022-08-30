@@ -1,4 +1,4 @@
-package com.kh.spring06.entitiy;
+package com.kh.spring06.entity;
 
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
