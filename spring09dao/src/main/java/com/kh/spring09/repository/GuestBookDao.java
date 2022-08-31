@@ -8,6 +8,9 @@ public interface GuestBookDao {
 	//insert into guest_book(no, name, memo) values(시퀀스, ?, ?)
 	//void insert(String name, String memo);
 	void insert(GuestBookDto dto);//등록기능
+	
 	boolean update(GuestBookDto dto);//수정 기능
 	
+//	반환형 이름(매개변수);//삭제 기능
+	boolean delete(int no);
 }

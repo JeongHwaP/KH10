@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.spring09.entity.GuestBookDto;
@@ -28,6 +29,18 @@ public class GuestBookController {
 		boolean result = guestBookDao.update(dto);
 		if(result) {
 			return "변경 성공";
+		}
+		else {
+			return "없는 번호";
+		}
+	}
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public String delete(@RequestParam int no) {
+//		boolean result = guestBookDao.delete(no);
+		if(guestBookDao.delete(no)) {
+			return "삭제 완료";
 		}
 		else {
 			return "없는 번호";

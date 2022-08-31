@@ -35,5 +35,12 @@ public class GuestBookDaoImpl implements GuestBookDao {
 //		} //rssult가 0보다 크면 true를 반환하고 아니면 false를 반환해라
 		return result>0; //result가 0보다 큰지 파악해서 반환해라
 	}
+
+	@Override
+	public boolean delete(int no) {
+		String sql = "delete guest_book where no = ?";
+		Object[]param= {no};
+		return jdbcTemplate.update(sql, param)>0;
+	}
 	
 }
