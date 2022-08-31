@@ -1,5 +1,7 @@
 package com.kh.spring09.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -46,4 +48,35 @@ public class GuestBookController {
 			return "없는 번호";
 		}
 	}
+	
+	//목록 및 검색
+	@RequestMapping("/list")
+	@ResponseBody
+	public String list(
+			@RequestParam(required=false) String type,
+			@RequestParam(required=false) String keyword
+		) {
+		boolean search = type != null&&keyword !=null;
+		List<GuestBookDto> data;
+		if(search) {
+			data = guestBookDao.selectList(type, keyword);
+		}
+		else {
+			data = guestBookDao.selectList();
+		}
+		return data.toString();
+	}
+	
+	@RequestMapping("/detail")
+	@ResponseBody
+	public String detail(@RequestParam int no) {
+		GuestBookDto dto = guestBookDao.selectOne(no);
+		if(dto == null) {
+			return "없는 번호";
+		}
+		else {
+			return dto.toString();
+		}
+	}
+	
 }
