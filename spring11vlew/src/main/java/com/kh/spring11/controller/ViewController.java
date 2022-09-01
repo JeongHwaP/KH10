@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/tag")
 public class ViewController {
-
+	
 	@RequestMapping("/test01")
 	public String test01() {
 //		return "/WEB-INF/views/tag/test01.jsp";
