@@ -43,4 +43,16 @@ public class ViewController {
 		return "tag/test06";
 	}
 	
+	@RequestMapping("/test07")
+	public String test07() {
+//		return"/WEB-INF/views/tag/test07.jsp";
+		return "tag/test07";
+	}
+	
+	@RequestMapping("/test08")
+	public String test08() {
+//		return "WEB-INF/views/tag/test08.jsp";
+		return "tag/test08";
+	}
+	
 }
