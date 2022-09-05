@@ -61,4 +61,13 @@ public class ViewController {
 		return "tag/test09";
 	}
 	
+	@GetMapping("/table01")
+	public String table01() {
+		return "tag/table01";
+	}
+	
+	@GetMapping("/table02")
+	public String table02() {
+		return "tag/table02";
+	}
 }
