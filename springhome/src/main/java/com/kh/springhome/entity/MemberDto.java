@@ -1,22 +1,24 @@
 package com.kh.springhome.entity;
 
+import java.sql.Date;
+
 public class MemberDto {
-	private String memberId, memberPw, memberNick, memberBirth;
-	private int memberTel;
-	private String memberEmail, memberPost, memberBaseAddress;
-	private String memberDetailAddress;
+	private String memberId, memberPw;
+	private String memberNick, memberTel, memberEmail;
+	private String memberPost, memberBaseAddress, memberDetailAddress;
 	private int memberPoint;
-	private int memberGrade, memberJoin, memberLogin;
-	public MemberDto() {
-		super();
-	}
+	private String memberGrade;
+	private Date memberBirth, memberJoin, memberLogin;
 	@Override
 	public String toString() {
-		return "MemberDto [memberId=" + memberId + ", memberPw=" + memberPw + ", memberNick=" + memberNick
-				+ ", memberBirth=" + memberBirth + ", memberTel=" + memberTel + ", memberEmail=" + memberEmail
-				+ ", memberPost=" + memberPost + ", memberBaseAddress=" + memberBaseAddress + ", memberDetailAddress="
-				+ memberDetailAddress + ", memberPoint=" + memberPoint + ", memberGrade=" + memberGrade
-				+ ", memberJoin=" + memberJoin + ", memberLogin=" + memberLogin + "]";
+		return "MemberDto [memberId=" + memberId + ", memberNick=" + memberNick + ", memberTel=" + memberTel
+				+ ", memberEmail=" + memberEmail + ", memberPost=" + memberPost + ", memberBaseAddress="
+				+ memberBaseAddress + ", memberDetailAddress=" + memberDetailAddress + ", memberPoint=" + memberPoint
+				+ ", memberGrade=" + memberGrade + ", memberBirth=" + memberBirth + ", memberJoin=" + memberJoin
+				+ ", memberLogin=" + memberLogin + "]";
+	}
+	public MemberDto() {
+		super();
 	}
 	public String getMemberId() {
 		return memberId;
@@ -36,16 +38,16 @@ public class MemberDto {
 	public void setMemberNick(String memberNick) {
 		this.memberNick = memberNick;
 	}
-	public String getMemberBirth() {
+	public Date getMemberBirth() {
 		return memberBirth;
 	}
-	public void setMemberBirth(String memberBirth) {
+	public void setMemberBirth(Date memberBirth) {
 		this.memberBirth = memberBirth;
 	}
-	public int getMemberTel() {
+	public String getMemberTel() {
 		return memberTel;
 	}
-	public void setMemberTel(int memberTel) {
+	public void setMemberTel(String memberTel) {
 		this.memberTel = memberTel;
 	}
 	public String getMemberEmail() {
@@ -78,23 +80,22 @@ public class MemberDto {
 	public void setMemberPoint(int memberPoint) {
 		this.memberPoint = memberPoint;
 	}
-	public int getMemberGrade() {
+	public String getMemberGrade() {
 		return memberGrade;
 	}
-	public void setMemberGrade(int memberGrade) {
+	public void setMemberGrade(String memberGrade) {
 		this.memberGrade = memberGrade;
 	}
-	public int getMemberJoin() {
+	public Date getMemberJoin() {
 		return memberJoin;
 	}
-	public void setMemberJoin(int memberJoin) {
+	public void setMemberJoin(Date memberJoin) {
 		this.memberJoin = memberJoin;
 	}
-	public int getMemberLogin() {
+	public Date getMemberLogin() {
 		return memberLogin;
 	}
-	public void setMemberLogin(int memberLogin) {
+	public void setMemberLogin(Date memberLogin) {
 		this.memberLogin = memberLogin;
 	}
-	
 }
