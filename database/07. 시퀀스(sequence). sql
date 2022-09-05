@@ -5,7 +5,7 @@
 */
 
 -- 시퀀스 생성
-create sequence test_seq; -- 이름;
+create sequence guest_book_seq; -- 이름;
 
 -- 방명록 테이블 생성
 create table guest_book(
