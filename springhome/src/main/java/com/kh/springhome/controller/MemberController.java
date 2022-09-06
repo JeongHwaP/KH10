@@ -1,7 +1,10 @@
 package com.kh.springhome.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +16,7 @@ import com.kh.springhome.repository.MemberDao;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-
+	
 	@Autowired
 	private MemberDao memberDao;
 	
@@ -31,7 +34,14 @@ public class MemberController {
 	
 	@GetMapping("/join_finish")
 	public String joinFinish() {
-//		return "/WEB-INF/views/member/hoinFinish.jsp";
-		return "member/hoinFinish";
+//		return "/WEB-INF/views/member/joinFinish.jsp";
+		return "member/joinFinish";
+	}
+	
+	@GetMapping("/list")
+	public String list(Model model) {
+		List<MemberDto> list = memberDao.selectList();
+		model.addAttribute("list", list);
+		return "member/list";
 	}
 }

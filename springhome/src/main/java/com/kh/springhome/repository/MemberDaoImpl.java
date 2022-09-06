@@ -1,7 +1,12 @@
 package com.kh.springhome.repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.kh.springhome.entity.MemberDto;
@@ -11,6 +16,27 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	private RowMapper<MemberDto> mapper = new RowMapper<MemberDto>() {
+		@Override
+		public MemberDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			MemberDto dto = new MemberDto();
+			dto.setMemberId(rs.getString("member_id"));
+			dto.setMemberPw(rs.getString("member_pw"));
+			dto.setMemberNick(rs.getString("member_nick"));
+			dto.setMemberBirth(rs.getDate("member_birth"));
+			dto.setMemberTel(rs.getString("member_tel"));
+			dto.setMemberEmail(rs.getString("member_email"));
+			dto.setMemberPost(rs.getString("member_post"));
+			dto.setMemberBaseAddress(rs.getString("member_base_address"));
+			dto.setMemberDetailAddress(rs.getString("member_detail_address"));
+			dto.setMemberPoint(rs.getInt("member_point"));
+			dto.setMemberGrade(rs.getString("member_grade"));
+			dto.setMemberJoin(rs.getDate("member_join"));
+			dto.setMemberLogin(rs.getDate("member_login"));
+			return dto;
+		}
+	};
 	
 //	방법 1
 //	insert into member(
@@ -42,6 +68,12 @@ public class MemberDaoImpl implements MemberDao{
 			memberDto.getMemberDetailAddress()
 		};
 		jdbcTemplate.update(sql, param);
+	}
+
+	@Override
+	public List<MemberDto> selectList() {
+		String sql = "select * from member order by member_id asc";
+		return jdbcTemplate.query(sql, mapper);
 	}
 	
 }
