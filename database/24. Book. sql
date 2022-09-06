@@ -15,3 +15,6 @@ select*from book;
 drop table book;
 
 rollback;
+
+select dbms_xdb.getHttpport() from dual;
+exec dbms_xdb.setHttpport(9090);
