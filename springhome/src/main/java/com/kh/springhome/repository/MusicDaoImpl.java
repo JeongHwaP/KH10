@@ -1,7 +1,12 @@
 package com.kh.springhome.repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.kh.springhome.entity.MusicDto;
@@ -10,6 +15,20 @@ import com.kh.springhome.entity.MusicDto;
 public class MusicDaoImpl implements MusicDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	private RowMapper<MusicDto> mapper = new RowMapper<MusicDto>() {
+		@Override
+		public MusicDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			MusicDto dto = new MusicDto();
+			dto.setMusicNo(rs.getInt("music_no"));
+			dto.setMusicTitle(rs.getString("music_title"));
+			dto.setMusicArtist(rs.getString("music_artist"));
+			dto.setMusicAlbum(rs.getString("music_album"));
+			dto.setMusicPlay(rs.getInt("music_play"));
+			dto.setReleaseTime(rs.getDate("release_time"));
+			return dto;
+		}
+	};
 	
 	@Override
 	public void insert(MusicDto musicDto) {
@@ -24,5 +43,19 @@ public class MusicDaoImpl implements MusicDao{
 			musicDto.getMusicAlbum(), musicDto.getReleaseTime()
 		};
 		jdbcTemplate.update(sql, param);
+	}
+
+	@Override
+	public List<MusicDto> selectList() {
+		String sql = "select * from music order by music_no asc";
+		return jdbcTemplate.query(sql, mapper);
+	}
+
+	@Override
+	public List<MusicDto> selectList(String type, String keyword) {
+		String sql = "select * from music where instr(#1, ?) > 0 order by #1 asc"; //#1은 의미가 없지만 ?는 의미가 있다.(+type+로 바꿔 쓸 수 있음)
+		sql = sql.replace("#1", type);
+		Object[] param = {keyword};
+		return jdbcTemplate.query(sql, mapper, param);
 	}
 }
