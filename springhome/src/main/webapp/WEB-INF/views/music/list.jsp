@@ -55,7 +55,13 @@
 				<tr>
 					<td>${dto.musicNo}</td>
 					<td>
-						${dto.musicTitle}
+						<a href="detail?musicNo=${dto.musicNo}">
+							${dto.musicTitle}
+						</a>
+						
+						<c:if test="${dto.musicPlay >= 5}">
+							<img src="/image/hot.png" width="20" height="20">
+						</c:if>
 					</td>
 					<td>${dto.musicArtist}</td>
 					<td>${dto.musicAlbum}</td>

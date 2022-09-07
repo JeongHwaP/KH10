@@ -48,4 +48,12 @@ public class MusicController {
 		}
 		return "music/list";
 	}
+	
+	@GetMapping("/detail")
+	public String detail(Model model, @RequestParam int musicNo) {
+		MusicDto musicDto = musicDao.selectOne(musicNo);
+		model.addAttribute("musicDto", musicDto);
+//		return "/WEB-INF/views/music/detail.jsp";
+		return "music/detail";
+	}
 }
