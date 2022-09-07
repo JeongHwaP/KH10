@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springhome.entity.MusicDto;
 import com.kh.springhome.repository.MusicDao;
@@ -35,11 +36,11 @@ public class MusicController {
 		return "music/insertSuccess";
 	}
 	
-	@GetMapping("/list")
+	@RequestMapping("/list")
 	public String list(Model model,
-			@RequestParam(required = false) String type,
+			@RequestParam(required = false) String type, 
 			@RequestParam(required = false) String keyword) {
-		boolean isSearch = type != null && keyword != null;
+		boolean isSearch = type != null && keyword  != null;
 		if(isSearch) {
 			model.addAttribute("list", musicDao.selectList(type, keyword));
 		}
@@ -56,4 +57,32 @@ public class MusicController {
 //		return "/WEB-INF/views/music/detail.jsp";
 		return "music/detail";
 	}
+	
+//	수정 기능
+	@GetMapping("/edit")
+	public String edit(Model model, @RequestParam int musicNo) {
+		model.addAttribute("musicDto", musicDao.selectOne(musicNo));
+		return "music/edit";
+	}
+	
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute MusicDto musicDto,
+									RedirectAttributes attr) {
+		boolean result = musicDao.update(musicDto);
+		if(result) {
+//			return "redirect:detail?musicNo="+musicDto.getMusicNo();
+			attr.addAttribute("musicNo", musicDto.getMusicNo());
+			return "redirect:detail";
+		}
+		else {
+			return "redirect:edit_fail";
+		}
+	}
+	
+	@GetMapping("/edit_fail")
+	public String editFail() {
+//		return "/WEB-INF/views/guestbook/editFail.jsp";
+		return "guestbook/editFail";
+	}
+	
 }

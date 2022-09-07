@@ -9,4 +9,5 @@ public interface MusicDao {
 	List<MusicDto> selectList();
 	List<MusicDto> selectList(String type, String keyword);
 	MusicDto selectOne(int musicNo);
+	boolean update(MusicDto musicDto);
 }

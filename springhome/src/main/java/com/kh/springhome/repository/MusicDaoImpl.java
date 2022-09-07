@@ -46,17 +46,18 @@ public class MusicDaoImpl implements MusicDao{
 		};
 		jdbcTemplate.update(sql, param);
 	}
-
+	
 	@Override
 	public List<MusicDto> selectList() {
 		String sql = "select * from music order by music_no asc";
 		return jdbcTemplate.query(sql, mapper);
 	}
-
+	
 	@Override
 	public List<MusicDto> selectList(String type, String keyword) {
-		String sql = "select * from music where instr(#1, ?) > 0 order by #1 asc"; //#1은 의미가 없지만 ?는 의미가 있다.(+type+로 바꿔 쓸 수 있음)
-		sql = sql.replace("#1", type);
+		String sql = "select * from music "
+								+ "where instr("+type+", ?) > 0 "
+								+ "order by "+type+" asc";
 		Object[] param = {keyword};
 		return jdbcTemplate.query(sql, mapper, param);
 	}
@@ -79,11 +80,29 @@ public class MusicDaoImpl implements MusicDao{
 			}
 		}
 	};
-
+	
 	@Override
 	public MusicDto selectOne(int musicNo) {
 		String sql = "select * from music where music_no = ?";
 		Object[] param = {musicNo};
 		return jdbcTemplate.query(sql, extractor, param);
+	}
+	
+	@Override
+	public boolean update(MusicDto musicDto) {
+		String sql = "update music "
+							+ "set "
+								+ "music_title = ?, "
+								+ "music_artist = ?, "
+								+ "music_album = ?,"
+								+ "release_time = ? "
+							+ "where "
+								+ "music_no = ?";
+		Object[] param = {
+			musicDto.getMusicTitle(), musicDto.getMusicArtist(),
+			musicDto.getMusicAlbum(), musicDto.getReleaseTime(),
+			musicDto.getMusicNo()
+		};
+		return jdbcTemplate.update(sql, param) > 0;
 	}
 }
