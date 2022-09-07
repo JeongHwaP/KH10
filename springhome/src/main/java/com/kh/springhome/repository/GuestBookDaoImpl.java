@@ -78,8 +78,12 @@ public class GuestBookDaoImpl implements GuestBookDao{
 
 	@Override
 	public boolean update(GuestBookDto dto) {
-		String sql = "update guest_book set name=?, memo=? where no=?";
-		Object[] param = {dto.getName(), dto.getMemo(), dto.getNo()};
+		String sql = "update guest_book "
+				+ "set name=?, memo=? "
+				+ "where no=?";
+		Object[] param = {
+				dto.getName(), dto.getMemo(), dto.getNo()
+				};
 		return jdbcTemplate.update(sql, param)>0;
 	}
 }

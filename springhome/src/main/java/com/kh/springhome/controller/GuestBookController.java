@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springhome.entity.GuestBookDto;
 import com.kh.springhome.repository.GuestBookDao;
@@ -59,28 +60,32 @@ public class GuestBookController {
 		return "guestbook/detail";
 	}
 	
+	//수정
 	@GetMapping("/edit")
 	public String edit(Model model, @RequestParam int no) {
-		GuestBookDto dto = guestBookDao.selectOne(no);
-		model.addAttribute("dto", dto);
+		model.addAttribute("dto", guestBookDao.selectOne(no));
 //		return "/WEB-INF/views/guestbook/edit.jsp";
-		return "guestbook/edit";
+		return "guestbook/edit"; //수정입력페이지
 	}
 	
 	@PostMapping("/edit")
-	public String edit(@ModelAttribute GuestBookDto dto) {
+	public String edit(@ModelAttribute GuestBookDto dto,
+			//redirect 전용 저장소(Model의 자식클래스)
+			RedirectAttributes attr) {
 		boolean result = guestBookDao.update(dto);
 		if(result) {
-			return "redirect:detail?no="+dto.getNo();
+//			return "redirect:detail?no="+dto.getNo(); //비추천(직접작성)
+			attr.addAttribute("no", dto.getNo()); //추천(Spring 도구 활용)
+			return "redirect:detail";
 		}
 		else {
-			return "redirect:edit?no="+dto.getNo();
+			return "redirect:edit_fail";
 		}
 	}
 	
 	@GetMapping("/edit_fail")
 	public String editFail() {
 //		return "/WEB-INF/views/guestbook/editFail.jsp";
-		return "guestbook/editFail";
+		return "guestbook/editFail"; //실패안내페이지
 	}
 }
