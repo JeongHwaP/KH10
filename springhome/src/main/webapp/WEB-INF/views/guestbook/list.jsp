@@ -39,10 +39,16 @@
 				<tr>
 					<th>${dto.no}</th>
 					<td>${dto.name}</td>
+					<td>
+<!-- 						<a href="/guestbook/detail?no=번호"> -->
+						<a href="detail?no=${dto.no}">
+							<img src="/image/go.png" width="20" height="20">
+						</a>
+					</td>
 				</tr>
-				<tr height="80" valign="top">
-					<td colspan="2">${dto.memo}</td>		
-				</tr>
+<!-- 				<tr height="80" valign="top"> -->
+<%-- 					<td colspan="2">${dto.memo}</td>		 --%>
+<!-- 				</tr> -->
 				</c:forEach>
 			</tbody>
 		</table>

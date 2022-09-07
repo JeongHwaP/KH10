@@ -48,7 +48,15 @@ public class GuestBookController {
 		else {//목록
 			model.addAttribute("list", guestBookDao.selectList());
 		}
+		
 		return "guestbook/list";
+	}
+	
+	@GetMapping("/detail")
+	public String detail(Model model, @RequestParam int no) {
+		model.addAttribute("dto", guestBookDao.selectOne(no));
+//		return "/WEB-INF/views/guestbook/detail.jsp";
+		return "guestbook/detail";
 	}
 	
 }
