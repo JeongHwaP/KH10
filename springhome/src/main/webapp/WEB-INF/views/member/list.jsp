@@ -91,6 +91,7 @@
 					<th>전화번호</th>
 					<th>이메일</th>
 					<th>등급</th>
+					<th>메뉴</th>
 				</tr>
 			</thead>
 			<tbody align="center">
@@ -102,12 +103,15 @@
 					<td>${memberDto.memberTel}</td>
 					<td>${memberDto.memberEmail}</td>
 					<td>${memberDto.memberGrade}</td>
+					<td>
+						<a href="detail?memberId=${memberDto.memberId}">상세</a>
+					</td>
 				</tr>
 				</c:forEach>
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="6" align="right">
+					<td colspan="7" align="right">
 						총 ${list.size()}개의 결과
 					</td>				
 				</tr>

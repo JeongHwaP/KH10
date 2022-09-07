@@ -51,4 +51,13 @@ public class MemberController {
 		return "member/list";
 	}
 	
+	@GetMapping("/detail")
+	public String detail(Model model, 
+					@RequestParam String memberId) {
+		MemberDto memberDto = memberDao.selectOne(memberId);
+		model.addAttribute("memberDto", memberDto);
+//		return "/WEB-INF/views/member/detail.jsp";
+		return "member/detail";
+	}
+	
 }
