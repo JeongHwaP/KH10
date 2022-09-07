@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springhome.entity.MemberDto;
 import com.kh.springhome.repository.MemberDao;
@@ -60,4 +61,26 @@ public class MemberController {
 		return "member/detail";
 	}
 	
+	@GetMapping("/edit")
+	public String edit(Model model, @RequestParam String memberId) {
+		model.addAttribute("memberDto", memberDao.selectOne(memberId));
+		return "member/edit";
+	}
+	
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute MemberDto memberDto, RedirectAttributes attr) {
+		boolean result = memberDao.update(memberDto);
+		if(result) {
+			attr.addAttribute("memberId", memberDto.getMemberId());
+			return "redirect:detail";
+		}
+		else {
+			return "redirect:edit_fail";
+		}
+	}
+	
+	@GetMapping("/edit_fail")
+	public String editFail() {
+		return "member/editFail";
+	}
 }
