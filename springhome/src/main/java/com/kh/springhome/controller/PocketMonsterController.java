@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.springhome.entity.PocketMonsterDto;
 import com.kh.springhome.repository.PocketMonsterDao;
@@ -54,6 +55,13 @@ public class PocketMonsterController {
 		return "pocketmon/list";
 	}
 	
-	
+	//상세 기능
+	@GetMapping("/detail")
+	public String detail(Model model, @RequestParam int no) {
+		PocketMonsterDto dto = pocketMonsterDao.selectOne(no);
+		model.addAttribute("dto", dto);
+//		return "/WEB-INF/views/pocketmon/detail.jsp";
+		return "pocketmon/detail";
+	}
 }
 

@@ -7,4 +7,5 @@ import com.kh.springhome.entity.PocketMonsterDto;
 public interface PocketMonsterDao {
 	void insert(PocketMonsterDto pocketMonsterDto);
 	List<PocketMonsterDto> selectList();
+	PocketMonsterDto selectOne(int no);
 }

@@ -21,10 +21,13 @@
 				</tr>
 			</thead>
 			<tbody align="center">
+				<%-- for(PocketMonsterDto dto : list){} --%>
 				<c:forEach var="dto" items="${list}">
 				<tr>
 					<td>${dto.no}</td>
-					<td>${dto.name}</td>
+					<td>
+						<a href="detail?no=${dto.no}">${dto.name}</a>
+					</td>
 					<td>${dto.type}</td>
 				</tr>
 				</c:forEach>
