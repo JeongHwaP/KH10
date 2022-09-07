@@ -59,4 +59,28 @@ public class GuestBookController {
 		return "guestbook/detail";
 	}
 	
+	@GetMapping("/edit")
+	public String edit(Model model, @RequestParam int no) {
+		GuestBookDto dto = guestBookDao.selectOne(no);
+		model.addAttribute("dto", dto);
+//		return "/WEB-INF/views/guestbook/edit.jsp";
+		return "guestbook/edit";
+	}
+	
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute GuestBookDto dto) {
+		boolean result = guestBookDao.update(dto);
+		if(result) {
+			return "redirect:detail?no="+dto.getNo();
+		}
+		else {
+			return "redirect:edit?no="+dto.getNo();
+		}
+	}
+	
+	@GetMapping("/edit_fail")
+	public String editFail() {
+//		return "/WEB-INF/views/guestbook/editFail.jsp";
+		return "guestbook/editFail";
+	}
 }
