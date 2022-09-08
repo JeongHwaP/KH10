@@ -61,26 +61,30 @@ public class MemberController {
 		return "member/detail";
 	}
 	
-	@GetMapping("/edit")
-	public String edit(Model model, @RequestParam String memberId) {
+	@GetMapping("/change")
+	public String change(Model model, @RequestParam String memberId) {
 		model.addAttribute("memberDto", memberDao.selectOne(memberId));
-		return "member/edit";
+//		return "/WEB-INF/views/member/change.jsp";
+		return "member/change";
 	}
 	
-	@PostMapping("/edit")
-	public String edit(@ModelAttribute MemberDto memberDto, RedirectAttributes attr) {
+	@PostMapping("/change")
+	public String change(@ModelAttribute MemberDto memberDto,
+								RedirectAttributes attr) {
 		boolean result = memberDao.update(memberDto);
 		if(result) {
 			attr.addAttribute("memberId", memberDto.getMemberId());
 			return "redirect:detail";
 		}
 		else {
-			return "redirect:edit_fail";
+			return "redirect:change_fail";
 		}
 	}
 	
-	@GetMapping("/edit_fail")
-	public String editFail() {
-		return "member/editFail";
+	@GetMapping("/change_fail")
+	public String changeFail() {
+//		return "/WEB-INF/views/member/changeFail.jsp";
+		return "member/changeFail";
 	}
+	
 }

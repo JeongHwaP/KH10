@@ -73,8 +73,7 @@
 		</table>
 		
 		<h2><a href="list">목록 보기</a></h2>
-		<h2><a href="edit?memberId=${memberDto.memberId}">수정하기</a></h2>
-		
+		<h2><a href="change?memberId=${memberDto.memberId}">정보 변경</a></h2>
 	</div>
 </body>
 </html>

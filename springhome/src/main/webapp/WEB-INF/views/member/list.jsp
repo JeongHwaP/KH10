@@ -105,6 +105,7 @@
 					<td>${memberDto.memberGrade}</td>
 					<td>
 						<a href="detail?memberId=${memberDto.memberId}">상세</a>
+						<a href="change?memberId=${memberDto.memberId}">수정</a>
 					</td>
 				</tr>
 				</c:forEach>
