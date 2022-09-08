@@ -99,7 +99,7 @@ public class PocketMonsterController {
 			return "redirect:list";
 		}
 		else {
-			return "pocketmon/editFail.jsp";
+			return "pocketmon/editFail";
 		}
 	}
 }
