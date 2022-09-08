@@ -55,7 +55,7 @@ public class PocketMonsterController {
 		return "pocketmon/list";
 	}
 	
-	//상세 기능
+//	상세 기능
 	@GetMapping("/detail")
 	public String detail(Model model, @RequestParam int no) {
 		PocketMonsterDto dto = pocketMonsterDao.selectOne(no);
@@ -64,24 +64,24 @@ public class PocketMonsterController {
 		return "pocketmon/detail";
 	}
 	
-	//수정 기능
+//	수정 기능
 	@GetMapping("/edit")
 	public String edit(Model model, @RequestParam int no) {
 		PocketMonsterDto dto = pocketMonsterDao.selectOne(no);
 		model.addAttribute("dto", dto);
 //		return "/WEB-INF/views/pocketmon/edit.jsp";
-		return "pocketmon/edit";//"수정 입력 페이지";
+		return "pocketmon/edit";
 	}
 	
 	@PostMapping("/edit")
 	public String edit(@ModelAttribute PocketMonsterDto dto) {
-		//DB수정 처리
+//		DB 수정 처리
 		boolean result = pocketMonsterDao.update(dto);
-		if(result) {//성공했다면
+		if(result) {
 			return "redirect:detail?no="+dto.getNo();
 		}
 		else {
-			return "redirect:edit?no="+dto.getNo();
+			return "redirect:edit_fail";
 		}
 	}
 	
@@ -90,5 +90,16 @@ public class PocketMonsterController {
 //		return "/WEB-INF/views/pocketmon/editFail.jsp";
 		return "pocketmon/editFail";
 	}
+	
+//	삭제 기능
+	@GetMapping("/delete")
+	public String delete(@RequestParam int no) {
+		boolean result = pocketMonsterDao.delete(no);
+		if(result) {
+			return "redirect:list";
+		}
+		else {
+			return "pocketmon/editFail.jsp";
+		}
+	}
 }
-
