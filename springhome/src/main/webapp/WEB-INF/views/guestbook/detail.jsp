@@ -27,6 +27,7 @@
 		<h2><a href="list">목록 보기</a></h2>
 		<h2><a href="insert">새로 작성하기</a></h2>
 		<h2><a href="edit?no=${dto.no}">수정하기</a></h2>
+		<h2><a href="delete?no=${dto.no}">삭제</a></h2>
 		
 	</div>
 

@@ -88,4 +88,15 @@ public class GuestBookController {
 //		return "/WEB-INF/views/guestbook/editFail.jsp";
 		return "guestbook/editFail"; //실패안내페이지
 	}
+	
+	@GetMapping("/delete")
+	public String delete(@RequestParam int no) {
+		boolean result = guestBookDao.delete(no);
+		if(result) {
+			return "redirect:list";
+		}
+		else {
+			return "guestbook/editFail";
+		}
+	}
 }

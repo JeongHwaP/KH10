@@ -10,4 +10,5 @@ public interface GuestBookDao {
 	List<GuestBookDto> selectList(String type, String keyword);
 	GuestBookDto selectOne(int no);
 	boolean update(GuestBookDto dto);
+	boolean delete(int no);
 }
