@@ -87,4 +87,14 @@ public class MemberController {
 		return "member/changeFail";
 	}
 	
+	@GetMapping("/exit")
+	public String exit(@RequestParam String memberId) {
+		boolean result = memberDao.delete(memberId);
+		if(result) {
+			return "redirect:list";
+		}
+		else {
+			return "member/changeFail";
+		}
+	}
 }

@@ -106,6 +106,7 @@
 					<td>
 						<a href="detail?memberId=${memberDto.memberId}">상세</a>
 						<a href="change?memberId=${memberDto.memberId}">수정</a>
+						<a href="exit?memberId=${memberDto.memberId}">탈퇴</a>
 					</td>
 				</tr>
 				</c:forEach>
