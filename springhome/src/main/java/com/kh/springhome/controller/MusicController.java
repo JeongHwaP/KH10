@@ -85,4 +85,13 @@ public class MusicController {
 		return "guestbook/editFail";
 	}
 	
+	@GetMapping("/delete")
+	public String delete (@RequestParam int musicNo) {
+		boolean result = musicDao.delete(musicNo);
+		if(result) {
+			return "redirect:list";
+		}
+		else
+			return "music/editFail";
+	}
 }

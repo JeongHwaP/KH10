@@ -105,4 +105,11 @@ public class MusicDaoImpl implements MusicDao{
 		};
 		return jdbcTemplate.update(sql, param) > 0;
 	}
+
+	@Override
+	public boolean delete(int musicNo) {
+		String sql = "delete music where music_no = ?";
+		Object[] param = {musicNo};
+		return jdbcTemplate.update(sql, param)>0;
+	}
 }
