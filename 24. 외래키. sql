@@ -1,0 +1,65 @@
+-------------------------------------------------------------------------------------
+-- 외래키 (Foreign key)
+-- - 특정 테이블간의 종속관계를 설정하기 위한 항목
+-- - (ex) 회원과 배송지, 회원과 상품과 구매이력
+-- 컬럼명 references 참조테이블(참조컬럼) [삭제옵션]
+-- 삭제옵션
+-- 1. 미설정 시 상위 테이블 데이터 삭제 불가
+-- 2. on delete set 데이터 - 상위 테이블 삭제 시 하위 테이블을 지정한 값으로 설정 (일반적으로 null 사용)
+-- 3. no delete cascade - 상위 테이블 삭제 시 연결된 데이터 모두 삭제
+-------------------------------------------------------------------------------------
+
+-- 회원과 관심분야
+create table client(
+client_id varchar2(20) primary key,
+client_pw varchar2(16) not null,
+client_point number,
+client_join date
+);
+drop table interest;
+create table interest(
+-- 컬럼명 references 참조테이블(참조컬럼) [삭제옵션]
+-- client_id client테이블의 client_id를 쳐다보겠습니다!.
+client_id references client(client_id) on delete cascade,
+keyword varchar2(60) not null,
+primary key(client_id, keyword)
+);
+
+-- 외래키 설정 시 상위 테이블에 없는 데이터는 추가가 안된다.
+insert into client(client_id, client_pw, client_point, client_join)
+values('aaa', 'aaa', 0, sysdate);
+insert into interest(client_id, keyword) values('aaa', '전자제품');
+
+select * from interest;
+
+delete client where client_id='aaa';
+
+
+-- 회원이 상품을 구매할 경우의 구매 테이블
+-- (회원이 탈퇴하면 null로 변경, 상품은 구매이력이 있으면 삭제 불가)
+-- 회원이 상품을 장바구니에 담을 경우의 장바구니 테이블
+-- (회원 탈퇴 혹은 상품 삭제 시 연관된 내역을 모두 삭제)
+
+create table buy(
+client_id references client(client_id) on delete set null,
+product_no references product(no),
+cnt number default 1 not null,
+when date default sysdate not null
+);
+insert into buy(client_id, product_no) values('aaa', 3);
+select * from buy;
+
+delete product where no = 3;
+
+-- 장바구니 테이블
+create table basket(
+client_id references client(client_id) on delete cascade not null,
+product_no references product(no) on delete cascade not null,
+cnt number default 1 not null,
+when date default sysdate not null
+);
+insert into client(client_id, client_pw, client_point, client_join)
+values('bbb', 'bbb', 0, sysdate);
+insert into basket(client_id, product_no) values('bbb', 4);
+select*from basket;
+delete client where client_id='bbb';

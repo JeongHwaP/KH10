@@ -1,0 +1,63 @@
+create table member(
+member_id varchar2(20) primary key
+check(regexp_like(member_id, '^[a-z0-9-_]{5,20}$')),
+member_pw varchar2(16) not null
+--check(regexp_like(member_pw, '^[a-zA-Z0-9!@#$]{8,16}$')),
+check(
+    regexp_like(member_pw, '^[a-zA-Z0-9!@#$]{8,16}$')
+    and
+    regexp_like(member_pw, '[a-z]')
+    and
+    regexp_like(member_pw, '[A-Z]')
+    and
+    regexp_like(member_pw, '[0-9]')
+    and
+    regexp_like(member_pw, '[!@#$]')
+),
+member_nick varchar2(30) not null unique
+check(regexp_like(member_nick, '^[가-힣][가-힣0-9]{0,9}$')),
+member_birth date not null,
+member_tel char(11)
+check(regexp_like(member_tel, '^010[0-9]{8}$')),
+member_email varchar2(100)
+check(regexp_like(member_email, '@')),
+member_post varchar2(6)
+check(regexp_like(member_post, '^[0-9]{5,6}$')),
+member_base_address varchar2(150),
+member_detail_address varchar2(150),
+member_point number default 0 not null
+check(member_point >= 0),
+member_grade varchar2(9) default '일반' not null
+check(member_grade in ('일반', 'VIP', '관리자')),
+member_join date default sysdate not null,
+member_login date
+);
+
+select*from member;
+
+drop table member;
+
+rollback;
+
+/*
+    테이블 제약조건(table constraint)
+    - 데이터 저장, 수정 등에 반영할 특이사항에 대한 조건
+    - Not Null : 필수 데이터를 지정하는 조건
+    - Unique : 중복을 금지하는 조건
+    - Check : 원하는 값의 형태를 지정하는 조건
+*/
+
+-- 기본키 (primary key)
+-- 테이블 대표하는 항목
+-- not null + unique 항목 중에서만 설정 가능
+-- 테이블 당 하나만 존재
+
+/*
+    날짜(Date)
+    - 데이터에 시간을 설정할 때 사용하는 형태
+    - 연월일시분초.0까지 저장 가능
+    - 더 자세한 형태로는 timestamp가 있음
+    - 문자열과 변환이 가능(to_char(), to_date() 함수)
+    - 현재 시각을 자동 계산해주는 객체가 존재한다.(sysdate)
+    - date는 계산이 가능하다.(+1은 하루를 더한다.)
+*/
