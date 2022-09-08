@@ -89,6 +89,7 @@ public class GuestBookController {
 		return "guestbook/editFail"; //실패안내페이지
 	}
 	
+	//삭제
 	@GetMapping("/delete")
 	public String delete(@RequestParam int no) {
 		boolean result = guestBookDao.delete(no);
