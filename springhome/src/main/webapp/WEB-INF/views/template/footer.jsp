@@ -13,10 +13,13 @@
 				- 신규 세션은 세션이 생성될 경우(신규 접속)만 true로 출력
 				
 				(참고) pageContext는 페이지 내에서 사용 가능한 도구를 제공
-				
 				세션ID : ${pageContext.session.getId()} <br>
 				신규세션 : ${pageContext.session.isNew()} <br>
 			--%>
+			loginId : ${sessionScope.loginId} <br>
+			로그인 : ${sessionScope.loginId != null} <br>
+			mg : ${sessionScope.mg} <br>
+			관리자 : ${sessionScope.mg == '관리자'} <br>
 		</div>
     </body>
 </html>
