@@ -149,4 +149,24 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+//	마이페이지 - 현재 로그인한 회원의 정보를 화면에 출력
+//	- 준비물 : HttpSession, Model
+	@GetMapping("/mypage")
+	public String mypage(HttpSession session, Model model) {
+		//1. 세션에 들어있는 아이디를 꺼낸다
+		//(참고) 세션에 데이터는 Object 형태로 저장되므로 꺼내려면 다운캐스팅 필요
+		String loginId = (String) session.getAttribute("loginId");
+		
+		//2. 아이디를 이용하여 회원 정보를 불러온다
+		MemberDto memberDto = memberDao.selectOne(loginId);
+		
+		//3. 불러온 회원 정보를 모델에 첨부한다
+		model.addAttribute("memberDto", memberDto);
+		
+		//4. 화면(View)으로 전달(Forward)한다
+		//(참고) 기존에 사용하던 회원상세(detail.jsp) 뷰와 같이 사용
+		//return "/WEB-INF/views/member/detail.jsp";
+		return "member/detail";
+	}
+	
 }
