@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.kh.springhome.interceptor.AdminInterceptor;
 import com.kh.springhome.interceptor.MemberInterceptor;
+import com.kh.springhome.interceptor.TestInterceptor;
 
 //스프링 설정파일
 //- application.properties에서 설정하기 어려운 복잡한 설정을 구현
@@ -21,9 +22,17 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 	@Autowired
 	private AdminInterceptor adminInterceptor;
 	
+	@Autowired
+	private TestInterceptor testInterceptor;
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		//registry에 추가하여 인터셉터가 작동하도록 설정
+		//(참고) 등록 코드 작성 순으로 실행됨
+		
+		registry.addInterceptor(testInterceptor)
+				.addPathPatterns("/**"); //모든 주소를 의미
+		
 		registry.addInterceptor(memberInterceptor)
 					.addPathPatterns(//인터셉터가 감시할 주소
 							"/pocketmon/**",//포켓몬스터 전부
