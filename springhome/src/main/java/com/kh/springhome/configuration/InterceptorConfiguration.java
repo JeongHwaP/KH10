@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.kh.springhome.interceptor.AdminInterceptor;
 import com.kh.springhome.interceptor.MemberInterceptor;
 
 //스프링 설정파일
@@ -16,6 +17,9 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 	
 	@Autowired
 	private MemberInterceptor memberInterceptor;
+	
+	@Autowired
+	private AdminInterceptor adminInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -30,5 +34,20 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 							"/member/join",//회원가입
 							"/member/login"//로그인
 					);
+		
+		registry.addInterceptor(adminInterceptor)
+		.addPathPatterns(//인터셉터가 감시할 주소
+					"/guestbook/edit*", //edit로 시작하는 주소, 방명록 수정페이지
+					"/guestbook/delete", //방명록 삭제페이지
+					"/music/**", //음원 전체
+					"/member/list", //회원 목록
+					"/member/detail", //회원 상세
+					"/member/change*", //회원 수정
+					"/member/exit" //회원 삭제
+				)
+		.excludePathPatterns(//위의 주소에서 제외할 주소
+					"/music/list", //음원 목록
+					"/music/detail" //음원 상세
+				);
 	}
 }
