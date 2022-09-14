@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.springhome.constant.SessionConstant;
 import com.kh.springhome.entity.MemberDto;
 import com.kh.springhome.repository.MemberDao;
 
@@ -132,8 +133,8 @@ public class MemberController {
 			//- session.setAttribute("이름", 값);
 			//- session.getAttribute("이름");
 			//- session.removeAttribute("이름");
-			session.setAttribute("loginId", inputDto.getMemberId());
-			session.setAttribute("mg", findDto.getMemberGrade());
+			session.setAttribute(SessionConstant.ID, inputDto.getMemberId());
+			session.setAttribute(SessionConstant.GRADE, findDto.getMemberGrade());
 			
 			return "redirect:/";
 		}
@@ -146,8 +147,8 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		//1. 세션의 loginId라는 이름의 데이터를 삭제
 		//2. 메인 페이지로 강제 이동
-		session.removeAttribute("loginId");
-		session.removeAttribute("mg");
+		session.removeAttribute(SessionConstant.ID);
+		session.removeAttribute(SessionConstant.GRADE);
 		//session.invalidate();//세션 파괴(비추천, 사용자 측정 시 문제)
 		return "redirect:/";
 	}
@@ -158,7 +159,7 @@ public class MemberController {
 	public String mypage(HttpSession session, Model model) {
 		//1. 세션에 들어있는 아이디를 꺼낸다
 		//(참고) 세션에 데이터는 Object 형태로 저장되므로 꺼내려면 다운캐스팅 필요
-		String loginId = (String) session.getAttribute("loginId");
+		String loginId = (String) session.getAttribute(SessionConstant.ID);
 		
 		//2. 아이디를 이용하여 회원 정보를 불러온다
 		MemberDto memberDto = memberDao.selectOne(loginId);
@@ -184,7 +185,7 @@ public class MemberController {
 			HttpSession session, 
 			@RequestParam String beforePw,//사용자가 입력한 기존비밀번호
 			@RequestParam String afterPw) {//사용자가 입력한 바꿀비밀번호
-		String memberId = (String) session.getAttribute("loginId");
+		String memberId = (String) session.getAttribute(SessionConstant.ID);
 		try {
 			//비밀번호 검사
 			MemberDto memberDto = memberDao.selectOne(memberId);
@@ -215,7 +216,7 @@ public class MemberController {
 	@GetMapping("/information")
 	public String information(HttpSession session, Model model) {
 		//(1) 자신의 아이디를 획득(HttpSession)
-		String memberId = (String)session.getAttribute("loginId");
+		String memberId = (String)session.getAttribute(SessionConstant.ID);
 		
 		//(2) 아이디로 정보를 조회
 		MemberDto memberDto = memberDao.selectOne(memberId);
@@ -233,7 +234,7 @@ public class MemberController {
 			HttpSession session, 
 			@ModelAttribute MemberDto inputDto) {
 		//memberDto에 memberId가 없으므로 세션에서 구해서 추가 설정해야함
-		String memberId = (String)session.getAttribute("loginId");
+		String memberId = (String)session.getAttribute(SessionConstant.ID);
 		inputDto.setMemberId(memberId);
 		
 		//(1) 비밀번호를 검사
@@ -251,5 +252,36 @@ public class MemberController {
 		}
 	}
 	
+	@GetMapping("/goodbye")
+	public String goodbye() {
+//		return "/WEB-INF/views/member/goodbye.jsp";
+		return "member/goodbye";
+	}
+	
+	@PostMapping("/goodbye")
+	public String goodbye(HttpSession session, 
+						@RequestParam String memberPw) {
+		String memberId = (String)session.getAttribute(SessionConstant.ID);
+		MemberDto memberDto = memberDao.selectOne(memberId);
+		boolean passwordMatch = 
+				memberPw.equals(memberDto.getMemberPw());
+		if(passwordMatch) {
+			//회원 탈퇴
+			memberDao.delete(memberId);
+			//로그 아웃
+			session.removeAttribute(SessionConstant.ID);
+			session.removeAttribute(SessionConstant.GRADE);
+			return "redirect:goodbye_result";
+		}
+		else {
+			return "redirect:goodbye?error";
+		}
+	}
+	
+	@GetMapping("/goodbye_result")
+	public String goodbyeResult() {
+//		return "/WEB-INF/views/member/goodbyeResult.jsp";
+		return "member/goodbyeResult";
+	}
 	
 }

@@ -31,7 +31,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 		//(참고) 등록 코드 작성 순으로 실행됨
 		
 		registry.addInterceptor(testInterceptor)
-				.addPathPatterns("/**"); //모든 주소를 의미
+					.addPathPatterns("/**");
 		
 		registry.addInterceptor(memberInterceptor)
 					.addPathPatterns(//인터셉터가 감시할 주소
@@ -40,23 +40,24 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 							"/member/**"//회원 전체
 					)
 					.excludePathPatterns(//위의 주소에서 제외할 주소
-							"/member/join",//회원가입
-							"/member/login"//로그인
+							"/member/join*",//회원가입
+							"/member/login",//로그인
+							"/member/goodbye_result"//탈퇴완료
 					);
 		
 		registry.addInterceptor(adminInterceptor)
-		.addPathPatterns(//인터셉터가 감시할 주소
-					"/guestbook/edit*", //edit로 시작하는 주소, 방명록 수정페이지
-					"/guestbook/delete", //방명록 삭제페이지
-					"/music/**", //음원 전체
-					"/member/list", //회원 목록
-					"/member/detail", //회원 상세
-					"/member/change*", //회원 수정
-					"/member/exit" //회원 삭제
-				)
-		.excludePathPatterns(//위의 주소에서 제외할 주소
-					"/music/list", //음원 목록
-					"/music/detail" //음원 상세
-				);
+					.addPathPatterns(//인터셉터가 감시할 주소
+						"/guestbook/edit*",//방명록 수정페이지
+						"/guestbook/delete",//방명록 삭제페이지
+						"/music/**",//음원 전체
+						"/member/list",//회원목록
+						"/member/detail",//회원상세
+						"/member/change*",//회원수정
+						"/member/exit"//회원삭제
+					)
+					.excludePathPatterns(//위의 주소에서 제외할 주소
+						"/music/list",//음원 목록
+						"/music/detail"//음원 상세
+					);
 	}
 }

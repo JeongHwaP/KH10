@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import com.kh.springhome.constant.SessionConstant;
+
 //인터셉터(Interceptor)
 //- 서버의 처리 과정에 개입해서 원하는 방향의 작업을 추가하는 도구
 //- 간섭 객체
@@ -25,8 +27,8 @@ public class MemberInterceptor implements HandlerInterceptor{
 	public boolean preHandle(
 			HttpServletRequest request, //요청 정보가 담긴 객체
 			HttpServletResponse response, //응답 정보가 담긴 객체
-			Object handler //이 요청을 실행할 매핑(메소드) 정보
-			)
+			Object handler//이 요청을 실행할 매핑(메소드) 정보
+		)
 			throws Exception {
 		
 		//시나리오
@@ -39,21 +41,21 @@ public class MemberInterceptor implements HandlerInterceptor{
 		
 		//1. 세션이 없을 때는 HttpServletRequest에서 획득 가능
 		HttpSession session = request.getSession();
-		String loginId = (String) session.getAttribute("loginId");
-		if(loginId == null) { //비회원. 2-(2)
-			//선택지는 2가지가 있다.
+		String loginId = (String) session.getAttribute(SessionConstant.ID);
+		if(loginId == null) {//비회원. 2-(2)
+			//선택지는 2가지가 있다
 			
 			//[1] 로그인 페이지로 리다이렉트
 			response.sendRedirect("/member/login");
 			
 			//[2] HTTP 상태 코드 중에서 미인증(401)을 반환
-			// - 추가로 상태번호에 따른 처리가 필요하다.
+			//- 추가로 상태번호에 따른 처리가 필요하다
 			//response.sendError(401);
 			
-			return false; //차단
+			return false;//차단
 		}
-		else { //회원. 2-(1)
-			return true; //통과
+		else {//회원. 2-(1)
+			return true;//통과
 		}
 	}
 	
