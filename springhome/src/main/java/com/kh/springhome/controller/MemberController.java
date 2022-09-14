@@ -172,7 +172,7 @@ public class MemberController {
 		return "member/detail";
 	}
 	
-	//비밀번호 변경 기능
+//	비밀번호 변경 기능
 	@GetMapping("/password")
 	public String password() {
 //		return "/WEB-INF/views/member/password.jsp";
@@ -207,5 +207,49 @@ public class MemberController {
 	public String passwordResult() {
 		return "member/passwordResult";
 	}
+	
+	
+//	개인정보 변경 기능(자신)
+//	1. 자신의 현재 정보를 조회하여 화면에 출력
+//	2. 바꾸고 싶은 정보를 입력하여 전송하면 해당 정보를 변경
+	@GetMapping("/information")
+	public String information(HttpSession session, Model model) {
+		//(1) 자신의 아이디를 획득(HttpSession)
+		String memberId = (String)session.getAttribute("loginId");
+		
+		//(2) 아이디로 정보를 조회
+		MemberDto memberDto = memberDao.selectOne(memberId);
+		
+		//(3) 조회한 정보를 화면으로 전달
+		model.addAttribute("memberDto", memberDto);
+		
+		//(4) 연결될 화면 주소를 반환
+		//return "/WEB-INF/views/member/information.jsp";
+		return "member/information";
+	}
+	
+	@PostMapping("/information")
+	public String information(
+			HttpSession session, 
+			@ModelAttribute MemberDto inputDto) {
+		//memberDto에 memberId가 없으므로 세션에서 구해서 추가 설정해야함
+		String memberId = (String)session.getAttribute("loginId");
+		inputDto.setMemberId(memberId);
+		
+		//(1) 비밀번호를 검사
+		MemberDto findDto = memberDao.selectOne(memberId);
+		boolean passwordMatch = 
+				inputDto.getMemberPw().equals(findDto.getMemberPw());
+		
+		if(passwordMatch) {
+			//(2) 비밀번호 검사를 통과했다면 정보를 변경하도록 처리
+			memberDao.changeInformation(inputDto);
+			return "redirect:mypage";
+		}
+		else {//비밀번호가 틀린 경우
+			return "redirect:information?error";
+		}
+	}
+	
 	
 }

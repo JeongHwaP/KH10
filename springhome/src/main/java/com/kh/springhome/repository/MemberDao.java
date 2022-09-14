@@ -13,6 +13,7 @@ public interface MemberDao {
 	
 	boolean update(MemberDto memberDto);
 	boolean changePassword(String memberId, String memberPw);
+	boolean changeInformation(MemberDto memberDto);
 	
 	boolean delete(String memberId);
 }
