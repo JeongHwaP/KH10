@@ -180,10 +180,22 @@ public class MemberController {
 	}
 	
 	@PostMapping("/password")
-	public String password(HttpSession session, @RequestParam String memberPw) {
-		String memberId = (String)session.getAttribute("loginId");
+	public String password(
+			HttpSession session, 
+			@RequestParam String beforePw,//사용자가 입력한 기존비밀번호
+			@RequestParam String afterPw) {//사용자가 입력한 바꿀비밀번호
+		String memberId = (String) session.getAttribute("loginId");
 		try {
-			memberDao.changePassword(memberId, memberPw);
+			//비밀번호 검사
+			MemberDto memberDto = memberDao.selectOne(memberId);
+			boolean passwordMatch = beforePw.equals(memberDto.getMemberPw());
+			if(!passwordMatch) {
+				//return "redirect:password?error";
+				throw new Exception();
+			}
+			
+			//비밀번호 변경
+			memberDao.changePassword(memberId, afterPw);
 			return "redirect:password_result";
 		}
 		catch(Exception e) {
