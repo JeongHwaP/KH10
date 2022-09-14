@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-09-14T02:02:14.706Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" etag="_hfsvFd32zk8_hFB261O" version="20.3.0" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2022-09-14T04:40:45.626Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" etag="SaW3kZdQdC_W8Jsh7WHS" version="20.3.0" type="github" pages="3">
   <diagram id="O57XJA18-S0DsmIZMTSG" name="Flow">
-    <mxGraphModel dx="766" dy="1651" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="703" dy="1634" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -450,7 +450,7 @@
         <mxCell id="xfxCMn-exnxIlFrXd_NS-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="xfxCMn-exnxIlFrXd_NS-1" target="xfxCMn-exnxIlFrXd_NS-4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;fontSize=11;" edge="1" parent="1" source="xfxCMn-exnxIlFrXd_NS-1" target="fyBXjDQ53O8Vk_kKT9iX-1">
+        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;fontSize=11;" parent="1" source="xfxCMn-exnxIlFrXd_NS-1" target="fyBXjDQ53O8Vk_kKT9iX-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="483" y="2730" />
@@ -480,25 +480,35 @@
         <mxCell id="xfxCMn-exnxIlFrXd_NS-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;" parent="1" source="xfxCMn-exnxIlFrXd_NS-10" target="xfxCMn-exnxIlFrXd_NS-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="xfxCMn-exnxIlFrXd_NS-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;" parent="1" source="xfxCMn-exnxIlFrXd_NS-10" target="WBeluj5auW7oqrWTnOyP-70" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="xfxCMn-exnxIlFrXd_NS-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#000000;" parent="1" source="xfxCMn-exnxIlFrXd_NS-10" target="WBeluj5auW7oqrWTnOyP-70" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1120" y="2680" />
+              <mxPoint x="996" y="2680" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="xfxCMn-exnxIlFrXd_NS-10" value="/password_result[GET]&lt;br&gt;비밀번호 변경 완료 알림" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
           <mxGeometry x="1010" y="2750" width="220" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-3" value="비밀번호 포함한&lt;br&gt;개인정보" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=17;" edge="1" parent="1" source="fyBXjDQ53O8Vk_kKT9iX-1" target="fyBXjDQ53O8Vk_kKT9iX-2">
+        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-3" value="비밀번호 포함한&lt;br style=&quot;font-size: 13px;&quot;&gt;개인정보(총 7개)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=13;" parent="1" source="fyBXjDQ53O8Vk_kKT9iX-1" target="fyBXjDQ53O8Vk_kKT9iX-2" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-1" value="/information[GET]&lt;br style=&quot;font-size: 17px;&quot;&gt;개인정보 변경 입력" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" vertex="1" parent="1">
+        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-1" value="/information[GET]&lt;br style=&quot;font-size: 17px;&quot;&gt;개인정보 변경 입력" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="1" vertex="1">
           <mxGeometry x="440" y="2860" width="170" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;fontSize=17;strokeColor=#0000FF;" edge="1" parent="1" source="fyBXjDQ53O8Vk_kKT9iX-2" target="xfxCMn-exnxIlFrXd_NS-1">
+        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-4" value="redirect" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;fontSize=12;strokeColor=#0000FF;" parent="1" source="fyBXjDQ53O8Vk_kKT9iX-2" target="xfxCMn-exnxIlFrXd_NS-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="2890" />
+              <mxPoint x="950" y="2695" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-5" value="redirect" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;strokeColor=#FF0000;fontSize=11;fillColor=#f8cecc;" parent="1" source="fyBXjDQ53O8Vk_kKT9iX-2" target="fyBXjDQ53O8Vk_kKT9iX-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-5" value="redirect" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;strokeColor=#FF0000;fontSize=11;fillColor=#f8cecc;" edge="1" parent="1" source="fyBXjDQ53O8Vk_kKT9iX-2" target="fyBXjDQ53O8Vk_kKT9iX-1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-2" value="/information[POST]&lt;br style=&quot;font-size: 17px;&quot;&gt;개인정보 변경 처리" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" vertex="1" parent="1">
+        <mxCell id="fyBXjDQ53O8Vk_kKT9iX-2" value="/information[POST]&lt;br style=&quot;font-size: 17px;&quot;&gt;개인정보 변경 처리" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="1" vertex="1">
           <mxGeometry x="770" y="2860" width="170" height="60" as="geometry" />
         </mxCell>
       </root>
