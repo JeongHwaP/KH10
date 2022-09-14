@@ -172,4 +172,28 @@ public class MemberController {
 		return "member/detail";
 	}
 	
+	//비밀번호 변경 기능
+	@GetMapping("/password")
+	public String password() {
+//		return "/WEB-INF/views/member/password.jsp";
+		return "member/password";
+	}
+	
+	@PostMapping("/password")
+	public String password(HttpSession session, @RequestParam String memberPw) {
+		String memberId = (String)session.getAttribute("loginId");
+		try {
+			memberDao.changePassword(memberId, memberPw);
+			return "redirect:password_result";
+		}
+		catch(Exception e) {
+			return "redirect:password?error";
+		}
+	}
+	
+	@GetMapping("/password_result")
+	public String passwordResult() {
+		return "member/passwordResult";
+	}
+	
 }
