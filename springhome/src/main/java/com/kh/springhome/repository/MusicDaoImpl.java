@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.kh.springhome.entity.MusicDto;
+import com.kh.springhome.vo.MusicYearCountVO;
 
 @Repository
 public class MusicDaoImpl implements MusicDao{
@@ -110,6 +111,55 @@ public class MusicDaoImpl implements MusicDao{
 	public boolean delete(int musicNo) {
 		String sql = "delete music where music_no = ?";
 		Object[] param = {musicNo};
-		return jdbcTemplate.update(sql, param)>0;
+		return jdbcTemplate.update(sql, param) > 0;
 	}
+	
+	@Override
+	public List<MusicDto> top10() {
+		String sql = "select * from ("
+							+ "select TMP.*, rownum rn from ("
+								+ "select * from music order by music_play desc, music_no asc"
+							+ ")TMP"
+						+ ") where rn between 1 and 10";
+		return jdbcTemplate.query(sql, mapper);
+	}
+	
+	@Override
+	public List<MusicDto> topN(int limit) {
+		String sql = "select * from ("
+							+ "select TMP.*, rownum rn from ("
+								+ "select * from music order by music_play desc, music_no asc"
+							+ ")TMP"
+						+ ") where rn between 1 and ?";
+		Object[] param = {limit};
+		return jdbcTemplate.query(sql, mapper, param);
+	}
+	
+	@Override
+	public List<MusicDto> topNtoM(int begin, int end) {
+		String sql = "select * from ("
+							+ "select TMP.*, rownum rn from ("
+								+ "select * from music order by music_play desc, music_no asc"
+							+ ")TMP"
+						+ ") where rn between ? and ?";
+		Object[] param = {begin, end};
+		return jdbcTemplate.query(sql, mapper, param);
+	}
+
+	private RowMapper<MusicYearCountVO> countMapper = new RowMapper<MusicYearCountVO>() {
+		@Override
+		public MusicYearCountVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+			MusicYearCountVO vo = new MusicYearCountVO();
+			vo.setReleaseTime(rs.getString("releaseTime"));
+			vo.setCnt(rs.getInt("cnt"));
+			return vo;
+		}
+	};
+	
+	@Override
+	public List<MusicYearCountVO> selectCountList() {
+		String sql = "select to_char(release_time, 'yyyy') releaseTime, count(*) cnt from music group by to_char(release_time, 'yyyy') order by to_char(release_time, 'yyyy') desc";
+		return jdbcTemplate.query(sql, countMapper);
+	}
+
 }

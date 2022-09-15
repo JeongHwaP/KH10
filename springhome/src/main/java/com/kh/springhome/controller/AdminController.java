@@ -4,17 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.springhome.repository.MusicDao;
 import com.kh.springhome.repository.PocketMonsterDao;
 
 @Controller
-@RequestMapping("/admin")//공용주소
+@RequestMapping("/admin")
 public class AdminController {
 	
 	@Autowired
 	private PocketMonsterDao pocketMonsterDao;
-
+	
 	@GetMapping("/home")
 	public String home() {
 //		return "/WEB-INF/views/admin/home.jsp";
@@ -28,4 +31,44 @@ public class AdminController {
 		return "admin/pocketmon";
 	}
 	
+	@Autowired
+	private MusicDao musicDao;
+	
+	@GetMapping("/music/play")
+	public String musicPlay(Model model) {
+		model.addAttribute("list", musicDao.top10());
+//		return "/WEB-INF/views/admin/music/play.jsp";
+		return "admin/music/play";
+	}
+	
+	@GetMapping("/music/play/{limit}")
+	public String musicPlay(Model model, @PathVariable int limit) {
+		model.addAttribute("list", musicDao.topN(limit));
+		return "admin/music/play";
+	}
+	
+	@GetMapping("/music/play2")
+	public String musicPlay2(Model model,
+			@RequestParam(required = false, defaultValue = "1") int begin, 
+			@RequestParam(required = false, defaultValue = "10") int end) {
+		model.addAttribute("list", musicDao.topNtoM(begin, end));
+		return "admin/music/play";
+	}
+	
+	@GetMapping("/music/play3")
+	public String musicPlay3(Model model,
+			@RequestParam(required = false, defaultValue = "1") int page, 
+			@RequestParam(required = false, defaultValue = "10") int size) {
+		int end = page * size;
+		int begin = end - (size-1);
+		model.addAttribute("list", musicDao.topNtoM(begin, end));
+		return "admin/music/play";
+	}
+	
+	@GetMapping("/music/release")
+	public String release(Model model) {
+		model.addAttribute("list", musicDao.selectCountList());
+//		return "/WEB-INF/views/admin/music/release.jsp";
+		return "admin/music/release";
+	}
 }

@@ -9,8 +9,8 @@
 <div>
 	<a href="/member/list">회원목록</a>
 	<a href="/admin/pocketmon">포켓몬 현황</a>
-	<a href="#">메뉴2</a>
-	<a href="#">메뉴3</a>
+	<a href="/admin/music/play">음원 재생순위</a>
+	<a href="/admin/music/release">연도별 발매현황</a>
 	<a href="#">메뉴4</a>
 </div>
 <hr>
