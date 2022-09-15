@@ -66,9 +66,10 @@ public class AdminController {
 	}
 	
 	@GetMapping("/music/release")
-	public String release(Model model) {
-		model.addAttribute("list", musicDao.selectCountList());
-//		return "/WEB-INF/views/admin/music/release.jsp";
+	public String musicRelease(Model model) {
+//		model.addAttribute("list", musicDao.releaseByYear());
+		model.addAttribute("list", musicDao.releaseByYearWithRank());
 		return "admin/music/release";
 	}
+	
 }

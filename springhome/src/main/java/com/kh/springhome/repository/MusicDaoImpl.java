@@ -145,21 +145,39 @@ public class MusicDaoImpl implements MusicDao{
 		Object[] param = {begin, end};
 		return jdbcTemplate.query(sql, mapper, param);
 	}
-
+	
 	private RowMapper<MusicYearCountVO> countMapper = new RowMapper<MusicYearCountVO>() {
 		@Override
 		public MusicYearCountVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 			MusicYearCountVO vo = new MusicYearCountVO();
-			vo.setReleaseTime(rs.getString("releaseTime"));
+			vo.setRank(rs.getInt("rank"));
+			vo.setYear(rs.getInt("year"));
 			vo.setCnt(rs.getInt("cnt"));
 			return vo;
 		}
-	};
+	}; 
 	
 	@Override
-	public List<MusicYearCountVO> selectCountList() {
-		String sql = "select to_char(release_time, 'yyyy') releaseTime, count(*) cnt from music group by to_char(release_time, 'yyyy') order by to_char(release_time, 'yyyy') desc";
+	public List<MusicYearCountVO> releaseByYear() {
+		String sql = "select "
+							+ "extract(year from release_time) year, "
+							+ "count(*) cnt "
+						+ "from music "
+						+ "group by extract(year from release_time) "
+						+ "order by year desc";
 		return jdbcTemplate.query(sql, countMapper);
 	}
-
+	
+	@Override
+	public List<MusicYearCountVO> releaseByYearWithRank() {
+		String sql = "select TMP.*, rank() over(order by cnt desc) rank from ("
+							+ "select "
+								+ "extract(year from release_time) year, "
+								+ "count(*) cnt "
+							+ "from music "
+							+ "group by extract(year from release_time) "
+							+ "order by year desc "
+						+ ")TMP";
+		return jdbcTemplate.query(sql, countMapper);
+	}
 }
