@@ -1,4 +1,4 @@
-package com.kh.spring12test;
+package com.kh.spring12;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
