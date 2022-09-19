@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.kh.springhome.interceptor.AdminInterceptor;
+import com.kh.springhome.interceptor.MemberBoardPermissionCheckInterceptor;
 import com.kh.springhome.interceptor.MemberInterceptor;
 import com.kh.springhome.interceptor.TestInterceptor;
 
@@ -24,6 +25,9 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 	
 	@Autowired
 	private TestInterceptor testInterceptor;
+	
+	@Autowired
+	private MemberBoardPermissionCheckInterceptor permissionCheckInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -64,6 +68,13 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 					.excludePathPatterns(//위의 주소에서 제외할 주소
 						"/music/list",//음원 목록
 						"/music/detail"//음원 상세
+					);
+		
+		//관리자만 공지사항을 등록할 수 있도록 검사하는 인터셉터
+		registry.addInterceptor(permissionCheckInterceptor)
+					.addPathPatterns(
+							"/board/edit", 
+							"/board/write"
 					);
 	}
 }
