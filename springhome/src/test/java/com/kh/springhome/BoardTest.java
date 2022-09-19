@@ -34,8 +34,8 @@ public class BoardTest {
 	@Test
 	public void test() {
 //		조회
-//		List<BoardDto> list = boardDao.selectList();
-		List<BoardDto> list = boardDao.selectList("board_title", "테스트");
+		List<BoardDto> list = boardDao.selectList();
+//		List<BoardDto> list = boardDao.selectList("board_title", "테스트");
 		for(BoardDto boardDto : list) {
 			System.out.println(boardDto);
 		}

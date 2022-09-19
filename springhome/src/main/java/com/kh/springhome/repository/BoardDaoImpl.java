@@ -5,11 +5,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.kh.springhome.entity.BoardDto;
+import com.kh.springhome.vo.BoardListSearchVO;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -60,12 +63,42 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<BoardDto> selectList(String type, String keyword) {
+	public List<BoardDto> selectList(BoardListSearchVO vo) {
 		String sql = "select * from board "
 						+ "where instr(#1, ?) > 0 "
 						+ "order by board_no desc";
-		sql = sql.replace("#1", type);
-		Object[] param = {keyword};
+		sql = sql.replace("#1", vo.getType());
+		Object[] param = {vo.getKeyword()};
 		return jdbcTemplate.query(sql, mapper, param);
 	}
+	
+	private ResultSetExtractor<BoardDto> extractor = new ResultSetExtractor<BoardDto>() {
+		@Override
+		public BoardDto extractData(ResultSet rs) throws SQLException, DataAccessException {
+			if(rs.next()) {
+				return BoardDto.builder()
+						.boardNo(rs.getInt("board_no"))
+						.boardTitle(rs.getString("board_title"))
+						.boardContent(rs.getString("board_content"))
+						.boardWriter(rs.getString("board_writer"))
+						.boardHead(rs.getString("board_head"))
+						.boardRead(rs.getInt("board_read"))
+						.boardLike(rs.getInt("board_like"))
+						.boardWritetime(rs.getDate("board_writetime"))
+						.boardUpdatetime(rs.getDate("board_updatetime"))
+					.build();
+			}
+			else {
+				return null;
+			}
+		}
+	};
+	
+	@Override
+	public BoardDto selectOne(int boardNo) {
+		String sql = "select * from board where board_no = ?";
+		Object[] param = {boardNo};
+		return jdbcTemplate.query(sql, extractor, param);
+	}
 }
+
