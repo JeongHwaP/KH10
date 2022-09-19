@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.kh.springhome.interceptor.AdminInterceptor;
+import com.kh.springhome.interceptor.MemberBoardOwnerCheckInterceptor;
 import com.kh.springhome.interceptor.MemberBoardPermissionCheckInterceptor;
 import com.kh.springhome.interceptor.MemberInterceptor;
 import com.kh.springhome.interceptor.TestInterceptor;
@@ -28,6 +29,9 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 	
 	@Autowired
 	private MemberBoardPermissionCheckInterceptor permissionCheckInterceptor;
+	
+	@Autowired
+	private MemberBoardOwnerCheckInterceptor ownerCheckInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -75,6 +79,13 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 					.addPathPatterns(
 							"/board/edit", 
 							"/board/write"
+					);
+		
+		//소유자 또는 관리자만 수정/삭제를 할 수 있도록 검사하는 인터셉터
+		registry.addInterceptor(ownerCheckInterceptor)
+					.addPathPatterns(
+							"/board/edit",
+							"/board/delete"
 					);
 	}
 }
