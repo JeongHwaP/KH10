@@ -29,7 +29,10 @@
 		</tr>
 		<tr height="200" valign="top">
 			<th>내용</th>
-			<td>${boardDto.boardContent}</td>
+			<td>
+				<!-- pre 태그는 엔터, 띄어쓰기, 탭키 등을 있는 그대로 표시하는 영역 -->
+				<pre>${boardDto.boardContent}</pre>
+			</td>
 		</tr>
 		<tr>
 			<th>조회수</th>
@@ -37,12 +40,18 @@
 		</tr>
 		<tr>
 			<th>작성일</th>
-			<td>${boardDto.boardWritetime}</td>
+			<td>
+				<fmt:formatDate value="${boardDto.boardWritetime}" pattern="y년 M월 d일 E요일 a h시 m분 s초"/>
+			</td>
 		</tr>
+		<c:if test="${boardDto.boardUpdatetime != null}">
 		<tr>
 			<th>수정일</th>
-			<td>${boardDto.boardUpdatetime}</td>
+			<td>
+				<fmt:formatDate value="${boardDto.boardUpdatetime}" pattern="y년 M월 d일 E요일 a h시 m분 s초"/>
+			</td>
 		</tr>
+		</c:if>
 	</tbody>
 	<tfoot>
 		<tr>
