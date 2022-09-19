@@ -135,5 +135,12 @@ public class BoardDaoImpl implements BoardDao {
 		
 		return boardNo;
 	}
+	
+	@Override
+	public boolean delete(int boardNo) {
+		String sql = "delete board where board_no = ?";
+		Object[] param = {boardNo};
+		return jdbcTemplate.update(sql, param) > 0;
+	}
 }
 

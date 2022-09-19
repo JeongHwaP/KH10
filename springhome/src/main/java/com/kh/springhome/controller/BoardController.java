@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springhome.constant.SessionConstant;
 import com.kh.springhome.entity.BoardDto;
+import com.kh.springhome.error.TargetNotFoundException;
 import com.kh.springhome.repository.BoardDao;
 import com.kh.springhome.vo.BoardListSearchVO;
 
@@ -74,5 +75,15 @@ public class BoardController {
 		return "redirect:detail";
 	}
 	
+	@GetMapping("/delete")
+	public String delete(@RequestParam int boardNo) {
+		boolean result = boardDao.delete(boardNo);
+		if(result) {//성공
+			return "redirect:list";
+		}
+		else {//구문은 실행되었지만 바뀐 게 없는 경우(강제 예외 처리)
+			throw new TargetNotFoundException();
+		}
+	}
+	
 }
-
