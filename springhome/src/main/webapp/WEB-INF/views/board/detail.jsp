@@ -57,7 +57,7 @@
 		<tr>
 			<td colspan="2" align="right">
 				<a href="write">글쓰기</a>
-				<a href="#">수정하기</a>
+				<a href="edit?boardNo=${boardDto.boardNo}">수정하기</a>
 				<a href="delete?boardNo=${boardDto.boardNo}">삭제하기</a>
 				<a href="list">목록으로</a>
 			</td>

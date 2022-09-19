@@ -15,7 +15,7 @@ public interface BoardDao {
 	BoardDto read(int boardNo);//조회수 증가까지
 	
 	boolean updateReadcount(int boardNo);
-//	boolean update(DTO);
+	boolean update(BoardDto boardDto);
 	
 	void clear();
 	boolean delete(int boardNo);
