@@ -100,5 +100,40 @@ public class BoardDaoImpl implements BoardDao {
 		Object[] param = {boardNo};
 		return jdbcTemplate.query(sql, extractor, param);
 	}
+	
+	@Override
+	public boolean updateReadcount(int boardNo) {
+		String sql = "update board "
+						+ "set board_read = board_read + 1 "
+						+ "where board_no = ?";
+		Object[] param = {boardNo};
+		return jdbcTemplate.update(sql, param) > 0;
+	}
+	
+	@Override
+	public BoardDto read(int boardNo) {
+		this.updateReadcount(boardNo);
+		return this.selectOne(boardNo);
+	}
+	
+	@Override
+	public int insert2(BoardDto boardDto) {
+		//번호를 미리 생성한 뒤 등록하는 기능
+		String sql = "select board_seq.nextval from dual";
+		int boardNo = jdbcTemplate.queryForObject(sql, int.class);
+		
+		sql = "insert into board("
+					+ "board_no, board_title, board_content,"
+					+ "board_writer, board_head"
+				+ ") values(?, ?, ?, ?, ?)";
+		Object[] param = {
+			boardNo, boardDto.getBoardTitle(),
+			boardDto.getBoardContent(), boardDto.getBoardWriter(),
+			boardDto.getBoardHead()
+		};
+		jdbcTemplate.update(sql, param);
+		
+		return boardNo;
+	}
 }
 

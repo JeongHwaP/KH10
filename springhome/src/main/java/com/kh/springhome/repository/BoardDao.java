@@ -7,10 +7,13 @@ import com.kh.springhome.vo.BoardListSearchVO;
 
 public interface BoardDao {
 	void insert(BoardDto boardDto);
+	int insert2(BoardDto boardDto);
 	List<BoardDto> selectList();
 	List<BoardDto> selectList(BoardListSearchVO vo);
 	BoardDto selectOne(int boardNo);
+	BoardDto read(int boardNo);//조회수 증가까지
 //	boolean update(DTO);
 //	boolean delete(PK);
 	void clear();
+	boolean updateReadcount(int boardNo);
 }
