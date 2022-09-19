@@ -30,21 +30,27 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 		//registry에 추가하여 인터셉터가 작동하도록 설정
 		//(참고) 등록 코드 작성 순으로 실행됨
 		
+		//테스트 확인용 인터셉터
 		registry.addInterceptor(testInterceptor)
 					.addPathPatterns("/**");
 		
+		//회원용 인터셉터
 		registry.addInterceptor(memberInterceptor)
 					.addPathPatterns(//인터셉터가 감시할 주소
 							"/pocketmon/**",//포켓몬스터 전부
 							"/music/detail",//음원 상세
-							"/member/**"//회원 전체
+							"/member/**",//회원 전체
+							"/board/**"//게시판 전체
 					)
 					.excludePathPatterns(//위의 주소에서 제외할 주소
 							"/member/join*",//회원가입
 							"/member/login",//로그인
-							"/member/goodbye_result"//탈퇴완료
+							"/member/goodbye_result",//탈퇴완료
+							"/board/list",//게시판 목록
+							"/board/detail"//게시판 상세보기
 					);
 		
+		//관리자용 인터셉터
 		registry.addInterceptor(adminInterceptor)
 					.addPathPatterns(//인터셉터가 감시할 주소
 						"/guestbook/edit*",//방명록 수정페이지
