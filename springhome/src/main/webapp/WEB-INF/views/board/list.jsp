@@ -9,6 +9,9 @@
 	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>
 </c:set>
 
+<!-- 테스트용 데이터 출력 -->
+<h3>${vo}</h3>
+
 <jsp:include page="/WEB-INF/views/template/header.jsp">
 	<jsp:param value="자유 게시판" name="title"/>
 </jsp:include>
