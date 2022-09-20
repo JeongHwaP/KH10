@@ -16,6 +16,11 @@ public interface BoardDao {
 	List<BoardDto> list(BoardListSearchVO vo);
 	List<BoardDto> search(BoardListSearchVO vo);
 	
+	//검색과 목록의 총 데이터 개수를 구하는 메소드
+	int count(BoardListSearchVO vo);
+	int searchCount(BoardListSearchVO vo);
+	int listCount(BoardListSearchVO vo);
+	
 	BoardDto selectOne(int boardNo);
 	BoardDto read(int boardNo);//조회수 증가까지
 	

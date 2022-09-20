@@ -185,4 +185,28 @@ public class BoardDaoImpl implements BoardDao {
 		Object[] param = {vo.startRow(), vo.endRow()};
 		return jdbcTemplate.query(sql, mapper, param);
 	}
+	
+	@Override
+	public int count(BoardListSearchVO vo) {
+		if(vo.isSearch()) {//검색이라면
+			return searchCount(vo);//검색카운트 구하는 메소드
+		}
+		else {
+			return listCount(vo);//목록카운트 구하는 메소드
+		}
+	}
+	
+	@Override
+	public int listCount(BoardListSearchVO vo) {
+		String sql = "select count(*) from board";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
+	
+	@Override
+	public int searchCount(BoardListSearchVO vo) {
+		String sql = "select count(*) from board where instr(#1, ?) > 0";
+		sql = sql.replace("#1", vo.getType());
+		Object[] param = {vo.getKeyword()};
+		return jdbcTemplate.queryForObject(sql, int.class, param);
+	}
 }
