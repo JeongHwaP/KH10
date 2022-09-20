@@ -10,7 +10,7 @@
 </c:set>
 
 <!-- 테스트용 데이터 출력 -->
-<h3>${vo}</h3>
+<%-- <h3>${vo}</h3> --%>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp">
 	<jsp:param value="자유 게시판" name="title"/>
@@ -85,19 +85,49 @@
 
 <!-- 페이지 네비게이터 -->
 <h3> 
-<a href="list?p=${vo.firstBlock()}">&laquo;</a>
+
+<c:choose>
+	<c:when test="${not vo.isFirst()}">
+		<a href="list?p=${vo.firstBlock()}&${vo.parameter()}">&laquo;</a>
+	</c:when>
+	<c:otherwise>
+		<a href="#">&laquo;</a>
+	</c:otherwise>
+</c:choose>
 
 <!-- 이전을 누르면 이전 구간의 마지막 페이지로 안내 -->
-<a href="list?p=${vo.prevBlock()}">&lt;</a>
+<c:choose>
+	<c:when test="${vo.hasPrev()}">
+		<a href="list?p=${vo.prevBlock()}&${vo.parameter()}">&lt;</a>
+	</c:when>
+	<c:otherwise>
+		<a href="#">&lt;</a>
+	</c:otherwise>
+</c:choose>
  
 <c:forEach var="i" begin="${vo.startBlock()}" end="${vo.endBlock()}" step="1">
-	<a href="list?p=${i}">${i}</a>
+	<a href="list?p=${i}&${vo.parameter()}">${i}</a>
 </c:forEach>
 
 <!-- 다음을 누르면 다음 구간의 첫 페이지로 안내 -->
-<a href="list?p=${vo.nextBlock()}">&gt;</a>
+<c:choose>
+	<c:when test="${vo.hasNext()}">
+		<a href="list?p=${vo.nextBlock()}&${vo.parameter()}">&gt;</a>
+	</c:when>
+	<c:otherwise>
+		<a href="#">&gt;</a>
+	</c:otherwise>
+</c:choose>
 
-<a href="list?p=${vo.lastBlock()}">&raquo;</a>
+<c:choose>
+	<c:when test="${not vo.isLast()}">
+		<a href="list?p=${vo.lastBlock()}&${vo.parameter()}">&raquo;</a>
+	</c:when>
+	<c:otherwise>
+		<a href="#">&raquo;</a>
+	</c:otherwise>
+</c:choose>
+
 </h3>
 
 <!-- 검색창 -->
