@@ -132,6 +132,7 @@
 
 <!-- 검색창 -->
 <form action="list" method="get">
+	<input type="hidden" name="size" value="${vo.size}">
 	<select name="type" required>
 		<option value="board_title" <c:if test="${vo.type == 'board_title'}">selected</c:if>>제목</option>
 		<option value="board_writer" <c:if test="${vo.type == 'board_writer'}">selected</c:if>>작성자</option>
