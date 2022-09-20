@@ -16,7 +16,7 @@ public interface BoardDao {
 	List<BoardDto> list(BoardListSearchVO vo);
 	List<BoardDto> search(BoardListSearchVO vo);
 	
-	//검색과 목록의 총 데이터 개수를 구하는 메소드
+	//검색과 목록의 총 데이터 개수를 구하는 메소드(마지막 페이지 번호)
 	int count(BoardListSearchVO vo);
 	int searchCount(BoardListSearchVO vo);
 	int listCount(BoardListSearchVO vo);

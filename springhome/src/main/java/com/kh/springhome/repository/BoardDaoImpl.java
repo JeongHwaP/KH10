@@ -188,11 +188,11 @@ public class BoardDaoImpl implements BoardDao {
 	
 	@Override
 	public int count(BoardListSearchVO vo) {
-		if(vo.isSearch()) {//검색이라면
-			return searchCount(vo);//검색카운트 구하는 메소드
+		if(vo.isSearch()) {
+			return searchCount(vo);
 		}
 		else {
-			return listCount(vo);//목록카운트 구하는 메소드
+			return listCount(vo);
 		}
 	}
 	
@@ -204,7 +204,8 @@ public class BoardDaoImpl implements BoardDao {
 	
 	@Override
 	public int searchCount(BoardListSearchVO vo) {
-		String sql = "select count(*) from board where instr(#1, ?) > 0";
+		String sql = "select count(*) from board "
+						+ "where instr(#1, ?) > 0";
 		sql = sql.replace("#1", vo.getType());
 		Object[] param = {vo.getKeyword()};
 		return jdbcTemplate.queryForObject(sql, int.class, param);
