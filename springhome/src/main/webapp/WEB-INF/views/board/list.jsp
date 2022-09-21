@@ -22,7 +22,7 @@
 	<thead>
 		<c:if test="${loginId != null}">
 		<tr>
-			<td align="right" colspan="5">
+			<td align="right" colspan="8">
 				<a href="write">글쓰기</a>
 			</td>
 		</tr>
@@ -33,6 +33,9 @@
 			<th>작성자</th>
 			<th>작성일</th>
 			<th>조회수</th>
+			<th>그룹</th>
+			<th>부모</th>
+			<th>차수</th>
 		</tr>
 	</thead>
 	<tbody align="center">
@@ -40,7 +43,11 @@
 		<tr>
 			<td>${boardDto.boardNo}</td>
 			<td align="left">
-			
+				<!-- 차수만큼 띄어쓰기를 반복 -->
+				<c:forEach var="i" begin="1" end="${boardDto.boardDepth}" step="1">
+					&nbsp;&nbsp;
+				</c:forEach>
+				
 				<!-- 말머리 출력(있을 경우에만) -->
 				<c:if test="${boardDto.boardHead != null}">
 					[${boardDto.boardHead}]
@@ -69,13 +76,16 @@
 				</c:choose>
 			</td>
 			<td>${boardDto.boardRead}</td>
+			<td>${boardDto.boardGroup}</td>
+			<td>${boardDto.boardParent}</td>
+			<td>${boardDto.boardDepth}</td>
 		</tr>
 		</c:forEach>
 	</tbody>
 	<c:if test="${loginId != null}">
 	<tfoot>
 		<tr>
-			<td align="right" colspan="5">
+			<td align="right" colspan="8">
 				<a href="write">글쓰기</a>
 			</td>
 		</tr>

@@ -52,6 +52,9 @@ public class BoardDaoImpl implements BoardDao {
 							.boardLike(rs.getInt("board_like"))
 							.boardWritetime(rs.getDate("board_writetime"))
 							.boardUpdatetime(rs.getDate("board_updatetime"))
+							.boardGroup(rs.getInt("board_group"))
+							.boardParent(rs.getInt("board_parent"))
+							.boardDepth(rs.getInt("board_depth"))
 						.build();
 		}
 	};
@@ -86,6 +89,9 @@ public class BoardDaoImpl implements BoardDao {
 						.boardLike(rs.getInt("board_like"))
 						.boardWritetime(rs.getDate("board_writetime"))
 						.boardUpdatetime(rs.getDate("board_updatetime"))
+						.boardGroup(rs.getInt("board_group"))
+						.boardParent(rs.getInt("board_parent"))
+						.boardDepth(rs.getInt("board_depth"))
 					.build();
 			}
 			else {
@@ -165,7 +171,9 @@ public class BoardDaoImpl implements BoardDao {
 							+ "select rownum rn, TMP.* from ("
 								+ "select * from board "
 								+ "where instr(#1, ?) > 0 "
-								+ "order by board_no desc"
+								+ "connect by prior board_no=board_parent "
+								+ "start with board_parent is null "
+								+ "order siblings by board_group desc, board_no asc "
 							+ ")TMP"
 						+ ") where rn between ? and ?";
 		sql = sql.replace("#1", vo.getType());
@@ -179,7 +187,10 @@ public class BoardDaoImpl implements BoardDao {
 	public List<BoardDto> list(BoardListSearchVO vo) {
 		String sql = "select * from ("
 							+ "select rownum rn, TMP.* from ("
-								+ "select * from board order by board_no desc"
+								+ "select * from board "
+								+ "connect by prior board_no=board_parent "
+								+ "start with board_parent is null "
+								+ "order siblings by board_group desc, board_no asc "
 							+ ")TMP"
 						+ ") where rn between ? and ?";
 		Object[] param = {vo.startRow(), vo.endRow()};
