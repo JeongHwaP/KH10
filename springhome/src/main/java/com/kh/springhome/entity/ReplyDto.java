@@ -12,4 +12,5 @@ public class ReplyDto {
 	private int replyNo, replyOrigin;
 	private String replyWriter, replyContent;
 	private Date replyWritetime;
+	private boolean replyBlind;
 }

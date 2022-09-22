@@ -28,6 +28,7 @@ public class ReplyDaoImpl implements ReplyDao{
 							.replyContent(rs.getString("reply_content"))
 							.replyOrigin(rs.getInt("reply_origin"))
 							.replyWritetime(rs.getDate("reply_writetime"))
+							.replyBlind(rs.getString("reply_blind") != null)
 						.build();
 		}
 	};
@@ -81,6 +82,7 @@ public class ReplyDaoImpl implements ReplyDao{
 						.replyContent(rs.getString("reply_content"))
 						.replyOrigin(rs.getInt("reply_origin"))
 						.replyWritetime(rs.getDate("reply_writetime"))
+						.replyBlind(rs.getString("reply_blind") != null)
 					.build();
 			}
 			else {
