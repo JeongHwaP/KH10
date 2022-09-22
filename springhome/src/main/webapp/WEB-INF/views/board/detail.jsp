@@ -7,6 +7,28 @@
 	<jsp:param value="자유 게시판" name="title"/>
 </jsp:include>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(function(){
+		//목표 : 
+		//1. edit-btn을 누르면 view를 숨기고 editor를 보여준다
+		//2. cancel-btn을 누르면 editor를 숨기고 view를 보여준다
+		//3. 처음에는 view만 보여준다
+		//1
+		$(".edit-btn").click(function(){
+			$(this).parents(".view").hide();
+			$(this).parents(".view").next(".editor").show();
+		});
+		//2
+		$(".cancel-btn").click(function(){
+			$(this).parents(".editor").hide();
+			$(this).parents(".editor").prev(".view").show();
+		});
+		//3
+		$(".editor").hide();
+	});
+</script>
+
 <h1>게시글 보기</h1>
 
 <table border="1" width="500">
@@ -89,10 +111,12 @@
 	<!-- 댓글 목록 -->
 	<tbody>
 		<c:forEach var="replyDto" items="${replyList}">
-		<tr>
+		
+		<!-- 사용자에게 보여주는 화면 -->
+		<tr class="view">
 			<td width="90%">
 				<!-- 작성자 -->
-				${replyDto.replyWriter} 
+				${replyDto.replyWriter}
 				<c:if test="${boardDto.boardWriter ==  replyDto.replyWriter}">
 				(작성자)
 				</c:if>
@@ -107,7 +131,7 @@
 			<th>
 				<!-- 수정과 삭제는 현재 사용자가 남긴 댓글에만 표시 -->
 				<c:if test="${loginId == replyDto.replyWriter}">
-					수정
+					<a class="edit-btn">수정</a>
 					<br>
 					<a href="reply/delete?replyNo=${replyDto.replyNo}&replyOrigin=${replyDto.replyOrigin}">삭제</a>
 				</c:if>
@@ -117,6 +141,25 @@
 				</c:if>
 			</th>
 		</tr>
+		
+		<c:if test="${loginId ==  replyDto.replyWriter}">
+		<!-- 수정하기 위한 화면 : 댓글 작성자 본인에게만 출력 -->
+		<tr class="editor">
+			<th colspan="2">
+				<form action="reply/edit" method="post">
+					<input type="hidden" name="replyNo" 
+												value="${replyDto.replyNo}">
+					<input type="hidden" name="replyOrigin"
+												value="${replyDto.replyOrigin}">
+					<textarea name="replyContent" rows="5" cols="50" 
+							required>${replyDto.replyContent}</textarea>
+					<button type="submit">변경</button>
+					<a class="cancel-btn">취소</a>
+				</form>
+			</th>
+		</tr>
+		</c:if>
+		
 		</c:forEach>
 	</tbody>
 </table>

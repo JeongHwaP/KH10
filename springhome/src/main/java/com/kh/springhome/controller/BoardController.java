@@ -185,4 +185,13 @@ public class BoardController {
 		attr.addAttribute("boardNo", replyOrigin);
 		return "redirect:/board/detail";
 	}
+	
+	@PostMapping("/reply/edit")
+	public String replyEdit(
+			@ModelAttribute ReplyDto replyDto,
+			RedirectAttributes attr) {
+		replyDao.update(replyDto);
+		attr.addAttribute("boardNo", replyDto.getReplyOrigin());
+		return "redirect:/board/detail";
+	}
 }
