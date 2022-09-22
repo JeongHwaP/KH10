@@ -62,7 +62,7 @@ public class ReplyDaoImpl implements ReplyDao{
 	@Override
 	public boolean delete(int replyNo) {
 		String sql = "delete reply where reply_no = ?";
-		Object[]param = {replyNo};
+		Object[] param = {replyNo};
 		return jdbcTemplate.update(sql, param) > 0;
 	}
 	

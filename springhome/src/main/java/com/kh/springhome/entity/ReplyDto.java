@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+@Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class ReplyDto {
 	private int replyNo, replyOrigin;
 	private String replyWriter, replyContent;
