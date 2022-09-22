@@ -9,6 +9,7 @@ import com.kh.springhome.interceptor.AdminInterceptor;
 import com.kh.springhome.interceptor.MemberBoardOwnerCheckInterceptor;
 import com.kh.springhome.interceptor.MemberBoardPermissionCheckInterceptor;
 import com.kh.springhome.interceptor.MemberInterceptor;
+import com.kh.springhome.interceptor.MemberReplyOwnerCheckInterceptor;
 import com.kh.springhome.interceptor.TestInterceptor;
 
 //스프링 설정파일
@@ -32,6 +33,9 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 	
 	@Autowired
 	private MemberBoardOwnerCheckInterceptor ownerCheckInterceptor;
+	
+	@Autowired
+	private MemberReplyOwnerCheckInterceptor ownerCheckInterceptor2;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -86,6 +90,13 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 					.addPathPatterns(
 							"/board/edit",
 							"/board/delete"
+					);
+		
+		//소유자만 댓글 수정/삭제 가능하도록 검사하는 인터셉터
+		registry.addInterceptor(ownerCheckInterceptor2)
+					.addPathPatterns(
+						"/board/reply/edit",
+						"/board/reply/delete"
 					);
 	}
 }
