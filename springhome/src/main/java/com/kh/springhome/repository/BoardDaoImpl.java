@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.springhome.entity.BoardDto;
 import com.kh.springhome.vo.BoardListSearchVO;
+import com.kh.springhome.vo.BoardListVO;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -58,6 +59,25 @@ public class BoardDaoImpl implements BoardDao {
 						.build();
 		}
 	};
+	
+	private RowMapper<BoardListVO> listMapper = new RowMapper<BoardListVO>() {
+		@Override
+		public BoardListVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+			return BoardListVO.builder()
+						.boardNo(rs.getInt("board_no"))
+						.boardTitle(rs.getString("board_title"))
+						.boardWriter(rs.getString("board_writer"))
+						.boardHead(rs.getString("board_head"))
+						.boardRead(rs.getInt("board_read"))
+						.boardLike(rs.getInt("board_like"))
+						.boardWritetime(rs.getDate("board_writetime"))
+						.boardGroup(rs.getInt("board_group"))
+						.boardParent(rs.getInt("board_parent"))
+						.boardDepth(rs.getInt("board_depth"))
+						.replyCount(rs.getInt("reply_count"))
+					.build();
+		}
+	};
 
 	@Override
 	public List<BoardDto> selectList() {
@@ -66,7 +86,7 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<BoardDto> selectList(BoardListSearchVO vo) {
+	public List<BoardListVO> selectList(BoardListSearchVO vo) {
 		if(vo.isSearch()) {//검색이라면
 			return search(vo);
 		}
@@ -169,10 +189,14 @@ public class BoardDaoImpl implements BoardDao {
 	}
 	
 	@Override
-	public List<BoardDto> search(BoardListSearchVO vo) {
+	public List<BoardListVO> search(BoardListSearchVO vo) {
 		String sql = "select * from ("
 							+ "select rownum rn, TMP.* from ("
-								+ "select * from board "
+								+ "select * from ("
+									+ "select distinct B.*, "
+										+ "count(R.reply_no) over(partition by B.board_no) reply_count "
+									+ "from board B left outer join reply R on B.board_no = R.reply_origin "
+								+ ")"
 								+ "where instr(#1, ?) > 0 "
 								+ "connect by prior board_no=board_parent "
 								+ "start with board_parent is null "
@@ -183,21 +207,25 @@ public class BoardDaoImpl implements BoardDao {
 		Object[] param = {
 			vo.getKeyword(), vo.startRow(), vo.endRow()
 		};
-		return jdbcTemplate.query(sql, mapper, param);
+		return jdbcTemplate.query(sql, listMapper, param);
 	}
 	
 	@Override
-	public List<BoardDto> list(BoardListSearchVO vo) {
+	public List<BoardListVO> list(BoardListSearchVO vo) {
 		String sql = "select * from ("
 							+ "select rownum rn, TMP.* from ("
-								+ "select * from board "
+								+ "select * from ("
+									+ "select distinct B.*, "
+										+ "count(R.reply_no) over(partition by B.board_no) reply_count "
+									+ "from board B left outer join reply R on B.board_no = R.reply_origin "
+								+ ")"
 								+ "connect by prior board_no=board_parent "
 								+ "start with board_parent is null "
 								+ "order siblings by board_group desc, board_no asc "
 							+ ")TMP"
 						+ ") where rn between ? and ?";
 		Object[] param = {vo.startRow(), vo.endRow()};
-		return jdbcTemplate.query(sql, mapper, param);
+		return jdbcTemplate.query(sql, listMapper, param);
 	}
 	
 	@Override

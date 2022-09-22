@@ -58,6 +58,11 @@
 					${boardDto.boardTitle}
 				</a>
 				
+				<!-- 댓글 개수 출력 -->
+				<c:if test="${boardDto.replyCount > 0}">
+					[${boardDto.replyCount}]
+				</c:if>
+				
 			</td>
 			<td>${boardDto.boardWriter}</td>
 			<td>
