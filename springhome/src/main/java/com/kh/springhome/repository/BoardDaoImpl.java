@@ -225,4 +225,3 @@ public class BoardDaoImpl implements BoardDao {
 		return jdbcTemplate.queryForObject(sql, int.class, param);
 	}
 }
-
