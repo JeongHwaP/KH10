@@ -1,0 +1,86 @@
+-- INNER JOIN : 매칭되는 데이터만 합쳐서 조회하는 기술(방향 무관)
+-- OUTER JOIN : 기준 테이블은 전부 다 조회하고 나머지는 매칭되는 데이터만 합치는 기술(방향 있음)
+
+-- 샘플 테이블
+CREATE TABLE teacher(
+teacher_no NUMBER PRIMARY KEY,
+teacher_name VARCHAR2(21) NOT NULL,
+teacher_subject VARCHAR2(15) NOT NULL
+);
+
+CREATE TABLE pupil(
+pupil_no NUMBER PRIMARY KEY,
+pupil_name VARCHAR2(21) NOT NULL,
+teacher_no REFERENCES teacher(teacher_no) ON DELETE CASCADE
+);
+
+INSERT INTO teacher VALUES(1, '피카츄', '전기학');
+INSERT INTO teacher VALUES(2, '손오공', '에너지학');
+INSERT INTO teacher VALUES(3, '홍길동', '전통학');
+
+INSERT INTO pupil VALUES(1, '라이츄', 1);
+INSERT INTO pupil VALUES(2, '파이리', 1);
+INSERT INTO pupil VALUES(3, '꼬부기', 1);
+INSERT INTO pupil VALUES(4, '야무차', 2);
+-- INSERT INTO pupil VALUES(5, '부르마', 2);
+commit;
+
+-- 각각의 테이블을 조회
+select * from teacher;
+select * from pupil;
+
+-- 두 개의 테이블을 inner join으로 합쳐서 조회
+-- 문제점 : 충돌이 발생하는 컬럼이 있을 수  있다.(와일드카드(*) 자제)
+-- 해결책 : (1) 모든 컬럼을 직접 지정, (2) 한쪽은 전부, 나머지는 지정
+select * from teacher inner join pupil on teacher.teacher_no=pupil.teacher_no;
+
+select
+    teacher.teacher_no, teacher.teacher_name, teacher.teacher_subject,
+    pupil.pupil_no, pupil.pupil_name
+from teacher inner join pupil on teacher.teacher_no=pupil.teacher_no;
+
+-- 별칭 부여
+select 
+T.teacher_no, T.teacher_name, T.teacher_subject, P.pupil_no, P.pupil_name 
+from teacher T inner join pupil P on T.teacher_no=P.teacher_no;
+
+-- T는 전부 조회, P는 선택적으로 조회
+select 
+T.*, P.pupil_no, P.pupil_name 
+from teacher T inner join pupil P on T.teacher_no=P.teacher_no;
+
+-- 댓글 조회 시 작성자의 등급을 같이 출력
+select * from reply R inner join member M on R.reply_writer = M.member_id;
+
+select 
+R.*, M.member_nick, M.member_grade 
+from reply R inner join member M on R.reply_writer = M.member_id;
+
+-- full outer join : 양쪽 테이블의 솔로 데이터를 모두 조회
+-- left outer join : 왼쪽 테이블의 솔로 데이터를 모두 조회
+-- right outer join : 오른쪽 테이블의 솔로 데이터를 모두 조회
+select * from teacher T full outer join pupil P on T.teacher_no = P.teacher_no;
+select * from teacher T left outer join pupil P on T.teacher_no = P.teacher_no;
+select * from teacher T right outer join pupil P on T.teacher_no = P.teacher_no;
+
+-- 최종 댓글에 등급 닉네임 붙여서 출력하는 구문(회원 없는 경우 고려)
+select 
+R.*, M.member_nick, M.member_grade 
+from reply R left outer join member M on R.reply_writer = M.member_id;
+
+-- 게시글 조회 시 댓글 개수를 같이 출력
+-- (1) group by 사용
+select 
+    B.board_no, B.board_writer, B.board_head, B.board_title, B.board_content,
+    B.board_read, B.board_writetime, B.board_updatetime, B.board_group,
+    B.board_parent, B.board_depth, B.board_like,
+    count(R.reply_no) reply_count
+from board B left outer join reply R on B.board_no = R.reply_origin
+group by B.board_no, B.board_writer, B.board_head, B.board_title, B.board_content,
+    B.board_read, B.board_writetime, B.board_updatetime, B.board_group,
+    B.board_parent, B.board_depth, B.board_like;
+
+-- (2) 분석 함수 over() 사용
+select distinct
+    B.*, count(R.reply_no) over(partition by B.board_no) reply_count
+from board B left outer join reply R on B.board_no = R.reply_origin;

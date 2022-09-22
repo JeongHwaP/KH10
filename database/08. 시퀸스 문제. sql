@@ -20,11 +20,10 @@
 create sequence board_seq; --게시글 번호 시퀸스 생성
 
 create table board(
-board_no number not null unique,
+board_no number not null unique,-- 시퀀스
 board_title varchar2(300) not null,
 board_content varchar2(4000) not null,
 board_writer varchar2(20) not null check(regexp_like(board_writer, '^[a-z][a-z0-9]{7,19}$')),
-board_read number default 0 not null check(board_read>=0), --default는 미입력 시 적용
 board_time char(10) not null --길이가 변할 가능성이 없어서 char
 --board_time date not null
 );
