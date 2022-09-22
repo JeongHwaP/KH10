@@ -19,12 +19,12 @@ public class ReplyTest {
 	@BeforeEach
 	public void before() {
 		//insert
-		for(int i=1; i<=100; i++) {
+		for(int i=1; i <= 100; i++) {
 			replyDao.insert(ReplyDto.builder()
-					.replyWriter("hello1234")
-					.replyContent("댓글테스트"+i)
-					.replyOrigin(1)
-					.build());
+										.replyWriter("hello1234")
+										.replyContent("댓글테스트"+i)
+										.replyOrigin(1)
+									.build());
 		}
 	}
 	
@@ -36,4 +36,5 @@ public class ReplyTest {
 			System.out.println(replyDto);
 		}
 	}
+	
 }
