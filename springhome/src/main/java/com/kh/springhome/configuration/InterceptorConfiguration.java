@@ -71,7 +71,9 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 						"/member/list",//회원목록
 						"/member/detail",//회원상세
 						"/member/change*",//회원수정
-						"/member/exit"//회원삭제
+						"/member/exit",//회원삭제
+						"/admin/**",//관리자기능
+						"/board/reply/blind"//블라인드기능
 					)
 					.excludePathPatterns(//위의 주소에서 제외할 주소
 						"/music/list",//음원 목록

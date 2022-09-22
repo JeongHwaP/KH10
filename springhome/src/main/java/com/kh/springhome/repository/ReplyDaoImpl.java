@@ -97,4 +97,13 @@ public class ReplyDaoImpl implements ReplyDao{
 		Object[] param = {replyNo};
 		return jdbcTemplate.query(sql, extractor, param);
 	}
+	
+	@Override
+	public boolean updateBlind(int replyNo, boolean blind) {
+		String sql = "update reply set reply_blind = ? where reply_no = ?";
+		String replyBlind = blind ? "Y" : null;//삼항연산
+		//if(blind) {replyBlind = "Y";}else {replyBlind=null;}
+		Object[] param = {replyBlind, replyNo};
+		return jdbcTemplate.update(sql, param) > 0;
+	}
 }

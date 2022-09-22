@@ -150,10 +150,10 @@
 					<!-- 블라인드 여부에 따라 다르게 표시 -->
 					<c:choose>
 						<c:when test="${replyDto.replyBlind}">
-							<a href="#">블라인드<br>해제</a>
+							<a href="reply/blind?replyNo=${replyDto.replyNo}&replyOrigin=${replyDto.replyOrigin}">블라인드<br>해제</a>
 						</c:when>
 						<c:otherwise>
-							<a href="#">블라인드<br>설정</a>
+							<a href="reply/blind?replyNo=${replyDto.replyNo}&replyOrigin=${replyDto.replyOrigin}">블라인드<br>설정</a>
 						</c:otherwise>
 					</c:choose>
 					

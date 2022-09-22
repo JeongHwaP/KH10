@@ -194,4 +194,22 @@ public class BoardController {
 		attr.addAttribute("boardNo", replyDto.getReplyOrigin());
 		return "redirect:/board/detail";
 	}
+	
+	@GetMapping("/reply/blind")
+	public String replyBlind(
+			@RequestParam int replyNo,
+			@RequestParam int replyOrigin,
+			RedirectAttributes attr){
+		ReplyDto replyDto = replyDao.selectOne(replyNo);
+		replyDao.updateBlind(replyNo, !replyDto.isReplyBlind());
+//		if(replyDto.isReplyBlind()) {
+//			replyDao.updateBlind(replyNo, false);
+//		}
+//		else {
+//			replyDao.updateBlind(replyNo, true);
+//		}
+		
+		attr.addAttribute("boardNo", replyOrigin);
+		return "redirect:/board/detail";
+	}
 }
