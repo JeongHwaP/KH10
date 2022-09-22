@@ -13,8 +13,8 @@ import com.kh.springhome.entity.ReplyDto;
 
 @Repository
 public class ReplyDaoImpl implements ReplyDao{
-	
-	@Autowired//필요한거 주세요~!
+
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
 	private RowMapper<ReplyDto> mapper = new RowMapper<ReplyDto>() {
@@ -61,8 +61,9 @@ public class ReplyDaoImpl implements ReplyDao{
 
 	@Override
 	public boolean delete(int replyNo) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "delete reply where reply_no = ?";
+		Object[]param = {replyNo};
+		return jdbcTemplate.update(sql, param) > 0;
 	}
 	
 }
