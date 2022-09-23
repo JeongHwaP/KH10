@@ -116,12 +116,13 @@
 		<tr class="view">
 			<td width="90%">
 				<!-- 작성자 -->
-				${replyDto.replyWriter}
+				${replyDto.memberNick}
+				(${replyDto.replyWriter})
 				<c:if test="${boardDto.boardWriter ==  replyDto.replyWriter}">
 				(작성자)
 				</c:if>
 				
-				(등급) 
+				(${replyDto.memberGrade}) 
 				<br>
 				
 				<!-- 블라인드 여부에 따라 다르게 표시 -->
