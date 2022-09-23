@@ -63,6 +63,11 @@
 					[${boardDto.replyCount}]
 				</c:if>
 				
+				<!-- 좋아요 개수 출력 -->
+				<c:if test="${boardDto.boardLike > 0}">
+					♥ ${boardDto.boardLike}
+				</c:if>
+				
 			</td>
 			<td>${boardDto.boardWriter}</td>
 			<td>

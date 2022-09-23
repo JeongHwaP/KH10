@@ -43,7 +43,24 @@
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td>${boardDto.boardTitle}</td>
+			<td>
+				${boardDto.boardTitle}
+				
+				<!-- 좋아요 하트 -->
+				<c:if test="${isLike == null}">
+					♥
+				</c:if>
+				<c:if test="${isLike == true}">
+					<a href="like?boardNo=${boardDto.boardNo}">♥</a>
+				</c:if>
+				<c:if test="${isLike == false}">
+					<a href="like?boardNo=${boardDto.boardNo}">♡</a>
+				</c:if>
+				
+				<!-- 좋아요 개수 -->
+				${likeCount}, ${boardDto.boardLike}		
+
+			</td>
 		</tr>
 		<tr>
 			<th>작성자</th>

@@ -7,4 +7,6 @@ public interface MemberBoardLikeDao {
 	void delete(MemberBoardLikeDto dto);
 //	MemberBoardLikeDto selectOne(MemberBoardLikeDto dto);
 	boolean check(MemberBoardLikeDto dto);
+	int count(int boardNo);
+	void refresh(int boardNo);
 }

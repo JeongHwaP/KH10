@@ -17,9 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springhome.constant.SessionConstant;
 import com.kh.springhome.entity.BoardDto;
+import com.kh.springhome.entity.MemberBoardLikeDto;
 import com.kh.springhome.entity.ReplyDto;
 import com.kh.springhome.error.TargetNotFoundException;
 import com.kh.springhome.repository.BoardDao;
+import com.kh.springhome.repository.MemberBoardLikeDao;
 import com.kh.springhome.repository.ReplyDao;
 import com.kh.springhome.vo.BoardListSearchVO;
 
@@ -32,6 +34,9 @@ public class BoardController {
 	
 	@Autowired
 	private ReplyDao replyDao;
+	
+	@Autowired
+	private MemberBoardLikeDao likeDao;
 	
 //	참고 : ModelAttribute로 수신한 데이터는 자동으로 Model에 첨부된다
 //	- 옵션에 name을 작성하면 해당하는 이름으로 model에 첨부
@@ -84,6 +89,15 @@ public class BoardController {
 		
 //		(+추가) 댓글 목록을 조회하여 첨부
 		model.addAttribute("replyList", replyDao.selectList(boardNo));
+		
+//		(+추가) 좋아요 기록이 있는지 조회하여 첨부
+		String loginId = (String) session.getAttribute(SessionConstant.ID);
+		if(loginId != null) {//회원이라면
+			MemberBoardLikeDto likeDto = new MemberBoardLikeDto();
+			likeDto.setMemberId(loginId);
+			likeDto.setBoardNo(boardNo);
+			model.addAttribute("isLike", likeDao.check(likeDto));//좋아요 기록을 조회하여 model에 추가
+		}
 		
 		return "board/detail";
 	}
@@ -210,6 +224,29 @@ public class BoardController {
 //		}
 		
 		attr.addAttribute("boardNo", replyOrigin);
+		return "redirect:/board/detail";
+	}
+	
+//	좋아요
+	@GetMapping("/like")
+	public String boardLike(
+			@RequestParam int boardNo, 
+			HttpSession session, RedirectAttributes attr) {
+		String memberId = (String)session.getAttribute(SessionConstant.ID);
+		MemberBoardLikeDto dto = new MemberBoardLikeDto();
+		dto.setMemberId(memberId);
+		dto.setBoardNo(boardNo);
+		
+		if(likeDao.check(dto)) {//좋아요를 한 상태면
+			likeDao.delete(dto);//지우세요
+		}
+		else {//좋아요를 한 적이 없는 상태면
+			likeDao.insert(dto);//추가하세요
+		}
+		
+		likeDao.refresh(boardNo);//조회수 갱신
+		
+		attr.addAttribute("boardNo", boardNo);
 		return "redirect:/board/detail";
 	}
 }
