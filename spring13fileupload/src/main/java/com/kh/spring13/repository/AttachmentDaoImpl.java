@@ -52,21 +52,21 @@ public class AttachmentDaoImpl implements AttachmentDao{
 	
 	@Override
 	public int sequence() {
-		String sql = "attachment_seq.nextval from dual";
+		String sql = "select attachment_seq.nextval from dual";
 		return jdbcTemplate.queryForObject(sql, int.class);
 	}
 	
 	@Override
 	public void insert(AttachmentDto attachmentDto) {
 		String sql = "insert into attachment("
-				+ "attachment_no, attachment_name, "
-				+ "attachment_type, attachment_size"
-				+ ") values(?, ?, ?, ?)";
+							+ "attachment_no, attachment_name,"
+							+ "attachment_type, attachment_size"
+						+ ") values(?, ?, ?, ?)";
 		Object[] param = {
-				attachmentDto.getAttachmentNo(),
-				attachmentDto.getAttachmentName(),
-				attachmentDto.getAttachmentType(),
-				attachmentDto.getAttachmentSize()
+			attachmentDto.getAttachmentNo(), 
+			attachmentDto.getAttachmentName(),
+			attachmentDto.getAttachmentType(),
+			attachmentDto.getAttachmentSize()
 		};
 		jdbcTemplate.update(sql, param);
 	}
@@ -80,7 +80,7 @@ public class AttachmentDaoImpl implements AttachmentDao{
 	@Override
 	public AttachmentDto selectOne(int attachmentNo) {
 		String sql = "select * from attachment "
-				+ "where attachment_no = ?";
+						+ "where attachment_no = ?";
 		Object[] param = {attachmentNo};
 		return jdbcTemplate.query(sql, extractor, param);
 	}

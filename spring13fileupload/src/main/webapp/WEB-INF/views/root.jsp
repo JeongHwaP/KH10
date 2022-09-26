@@ -29,3 +29,7 @@
 	<input type="file" name="attachment">
 	<button type="submit">등록</button>
 </form>
+
+<h1><a href="list">파일 목록 보기</a></h1>
+
+

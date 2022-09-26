@@ -58,11 +58,11 @@ public class FileController {
 		//DB 저장
 		int attachmentNo = attachmentDao.sequence();
 		attachmentDao.insert(AttachmentDto.builder()
-					.attachmentNo(attachmentNo)
-					.attachmentName(attachment.getOriginalFilename())
-					.attachmentType(attachment.getContentType())
-					.attachmentSize(attachment.getSize())
-				.build());
+							.attachmentNo(attachmentNo)
+							.attachmentName(attachment.getOriginalFilename())
+							.attachmentType(attachment.getContentType())
+							.attachmentSize(attachment.getSize())
+						.build());
 		
 		//파일 저장
 		File dir = new File("D:/upload");
