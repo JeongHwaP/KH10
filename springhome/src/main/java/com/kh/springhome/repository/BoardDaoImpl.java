@@ -252,4 +252,37 @@ public class BoardDaoImpl implements BoardDao {
 		Object[] param = {vo.getKeyword()};
 		return jdbcTemplate.queryForObject(sql, int.class, param);
 	}
+	
+	@Override
+	public List<BoardDto> selectLikeList(String memberId, int begin, int end) {
+		String sql = "select * from ("
+							+ "select rownum rn, TMP.* from ("
+								+ "select B.*, MBL.member_id "
+								+ "from board B "
+									+ "inner join member_board_like MBL on B.board_no = MBL.board_no "
+								+ "where MBL.member_id = ? "
+							+ ")TMP"
+						+ ") where rn between ? and ?";
+		Object[] param = {memberId, begin, end};
+		return jdbcTemplate.query(sql, mapper, param);
+	}
+	
+	@Override
+	public List<BoardDto> selectWriteList(String memberId, int begin, int end) {
+		String sql = "select * from ("
+							+ "select rownum rn, TMP.* from ("
+								+ "select * from board "
+								+ "where board_writer = ? "
+								+ "order by board_no desc"
+							+ ")TMP"
+						+ ") where rn between ? and ?";
+		Object[] param = {memberId, begin, end};
+		return jdbcTemplate.query(sql, mapper, param);
+	}
+	
+	@Override
+	public List<BoardListVO> selectListForMain() {
+		BoardListSearchVO vo = new BoardListSearchVO();
+		return list(vo);
+	}
 }

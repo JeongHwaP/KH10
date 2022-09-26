@@ -33,8 +33,8 @@ public class HomeController {
 	@RequestMapping("/")
 	public String home(Model model) {
 		
-//		model.addAttribute("memberList", memberDao.selectListForMain());
-//		model.addAttribute("boardList", boardDao.selectListForMain());
+		model.addAttribute("memberList", memberDao.selectListForMain());
+		model.addAttribute("boardList", boardDao.selectListForMain());
 		model.addAttribute("pocketmonList", pocketMonsterDao.selectListForMain());
 		model.addAttribute("guestBookList", guestBookDao.selectListForMain());
 		model.addAttribute("musicList", musicDao.selectListForMain());

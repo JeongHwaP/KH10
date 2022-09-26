@@ -31,4 +31,8 @@ public interface BoardDao {
 	
 	void clear();
 	boolean delete(int boardNo);
+	
+	List<BoardDto> selectWriteList(String boardWriter, int begin, int end);
+	List<BoardDto> selectLikeList(String boardWriter, int begin, int end);
+	List<BoardListVO> selectListForMain();
 }
