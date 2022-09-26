@@ -1,5 +1,8 @@
 package com.kh.spring13.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +25,7 @@ public class FileController {
 	@PostMapping("/")
 	public String upload(
 			@RequestParam String uploader,
-			@RequestParam MultipartFile attachment) {
+			@RequestParam MultipartFile attachment) throws IllegalStateException, IOException {
 		System.out.println("uploader = " + uploader);
 		System.out.println("attachment = " + attachment);
 		//attachment 분석
@@ -30,6 +33,16 @@ public class FileController {
 		System.out.println("name = " + attachment.getName());
 		System.out.println("original file name = " + attachment.getOriginalFilename());
 		System.out.println("size = " + attachment.getSize());
+		
+		//사용자가 올린 파일을 저장
+		File directory = new File("D:/upload");//업로드할 폴더 선택
+//		File directory = new File(
+//			System.getProperty("user.home") + "/upload");
+		directory.mkdirs();//폴더 생성 명령
+		File target = new File(directory, 
+				attachment.getOriginalFilename());//저장될 파일 생성
+		attachment.transferTo(target);//실제 저장 처리 명령
+		
 		return "redirect:/";
 	}
 	
