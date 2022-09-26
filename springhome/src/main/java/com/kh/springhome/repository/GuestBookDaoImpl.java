@@ -75,22 +75,32 @@ public class GuestBookDaoImpl implements GuestBookDao{
 		Object[] param = {no};
 		return jdbcTemplate.query(sql, extractor, param);
 	}
-
+	
 	@Override
 	public boolean update(GuestBookDto dto) {
 		String sql = "update guest_book "
-				+ "set name=?, memo=? "
-				+ "where no=?";
+							+ "set name=?, memo=? "
+							+ "where no=?";
 		Object[] param = {
 				dto.getName(), dto.getMemo(), dto.getNo()
-				};
-		return jdbcTemplate.update(sql, param)>0;
+		};
+		return jdbcTemplate.update(sql, param) > 0;
 	}
 
 	@Override
 	public boolean delete(int no) {
 		String sql = "delete guest_book where no = ?";
 		Object[] param = {no};
-		return jdbcTemplate.update(sql, param)>0;
+		return jdbcTemplate.update(sql, param) > 0;
+	}
+	
+	@Override
+	public List<GuestBookDto> selectListForMain() {
+		String sql = "select * from ("
+							+ "select rownum rn, TMP.* from ("
+								+ "select * from guest_book order by no desc"
+							+ ")TMP"
+						+ ") where rn between 1 and 10";
+		return jdbcTemplate.query(sql, mapper);
 	}
 }

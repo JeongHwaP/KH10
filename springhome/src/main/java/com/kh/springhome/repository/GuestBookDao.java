@@ -11,4 +11,5 @@ public interface GuestBookDao {
 	GuestBookDto selectOne(int no);
 	boolean update(GuestBookDto dto);
 	boolean delete(int no);
+	List<GuestBookDto> selectListForMain();
 }

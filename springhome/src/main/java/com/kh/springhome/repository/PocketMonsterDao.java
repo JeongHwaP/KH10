@@ -13,4 +13,5 @@ public interface PocketMonsterDao {
 	boolean delete(int no);
 	
 	List<PocketMonsterCountVO> selectCountList();
+	List<PocketMonsterDto> selectListForMain();
 }

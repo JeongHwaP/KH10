@@ -180,4 +180,14 @@ public class MusicDaoImpl implements MusicDao{
 						+ ")TMP";
 		return jdbcTemplate.query(sql, countMapper);
 	}
+
+	@Override
+	public List<MusicDto> selectListForMain() {
+		String sql = "select * from ("
+							+ "select rownum rn, TMP.* from ("
+								+ "select * from music order by music_no desc"
+							+ ")TMP"
+						+ ") where rn between 1 and 5";
+		return jdbcTemplate.query(sql, mapper);
+	}
 }

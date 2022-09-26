@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.kh.springhome.entity.MemberDto;
+import com.kh.springhome.vo.MemberListForMainVO;
 
 @Repository
 public class MemberDaoImpl implements MemberDao{
@@ -180,11 +181,43 @@ public class MemberDaoImpl implements MemberDao{
 		};
 		return jdbcTemplate.update(sql, param) > 0;
 	}
-
+	
 	@Override
 	public boolean updateLoginTime(String memberId) {
-		String sql = "update member set member_login=sysdate where member_id=?";
+		String sql = "update member "
+						+ "set member_login=sysdate "
+						+ "where member_id=?";
 		Object[] param = {memberId};
-		return jdbcTemplate.update(sql, param)>0;
+		return jdbcTemplate.update(sql, param) > 0;
+	}
+	
+	private RowMapper<MemberListForMainVO> mainMapper = new RowMapper<MemberListForMainVO>() {
+		@Override
+		public MemberListForMainVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+			return MemberListForMainVO.builder()
+									.memberId(rs.getString("member_id"))
+									.memberNick(rs.getString("member_nick"))
+									.memberGrade(rs.getString("member_grade"))
+									.cnt(rs.getInt("cnt"))
+									.rank(rs.getInt("rank"))
+								.build();
+		}
+	};
+	
+	@Override
+	public List<MemberListForMainVO> selectListForMain() {
+		String sql = "select * from ("
+							+ "select TMP.*, rank() over(order by cnt desc) rank from ("
+								+ "select distinct "
+								+ "M.member_id, "
+								+ "M.member_nick, "
+								+ "M.member_grade, "
+								+ "count(B.board_no) over(partition by M.member_id) cnt "
+								+ "from "
+								+ "member M inner join board B "
+								+ "on M.member_id = B.board_writer"
+							+ ")TMP"
+						+ ") where rank between 1 and 3";
+		return jdbcTemplate.query(sql, mainMapper);
 	}
 }

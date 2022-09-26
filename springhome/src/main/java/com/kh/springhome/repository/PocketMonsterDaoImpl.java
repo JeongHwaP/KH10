@@ -105,4 +105,14 @@ public class PocketMonsterDaoImpl implements PocketMonsterDao{
 							+ "group by type order by cnt desc";
 		return jdbcTemplate.query(sql, countMapper);
 	}
+
+	@Override
+	public List<PocketMonsterDto> selectListForMain() {
+		String sql = "select * from ("
+							+ "select rownum rn, TMP.* from ("
+								+ "select * from pocket_monster order by no desc"
+							+ ")TMP"
+						+ ") where rn between 1 and 3";
+		return jdbcTemplate.query(sql, mapper);
+	}
 }
