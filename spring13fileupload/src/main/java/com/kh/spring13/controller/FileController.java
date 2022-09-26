@@ -19,7 +19,7 @@ public class FileController {
 	
 	//컨트롤러에서의 파일 수신 처리
 	// -> Multipart Request를 처리한다고 부름
-	// -> Spring boot에서 내부적으로 multipartResolver를 등록
+	// -> Spring boot 에서 내부적으로 multipartResolver를 등록
 	// -> Spring Controller에서는 MultipartFile 형태로 파일을 수신
 	// -> 기존에 사용하던 annotation 전부 지원
 	@PostMapping("/")
@@ -37,10 +37,10 @@ public class FileController {
 		//사용자가 올린 파일을 저장
 		File directory = new File("D:/upload");//업로드할 폴더 선택
 //		File directory = new File(
-//			System.getProperty("user.home") + "/upload");
+//						System.getProperty("user.home")+"/upload");
 		directory.mkdirs();//폴더 생성 명령
 		File target = new File(directory, 
-				attachment.getOriginalFilename());//저장될 파일 생성
+							attachment.getOriginalFilename());//저장될 파일 생성
 		attachment.transferTo(target);//실제 저장 처리 명령
 		
 		return "redirect:/";
