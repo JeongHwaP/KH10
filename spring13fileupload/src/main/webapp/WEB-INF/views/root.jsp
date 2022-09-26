@@ -7,7 +7,7 @@
 	- 기존 방식(GET/POST 무관)으로는 파일명만 전송
 	- form에 post방식 + enctype="multipart/form-data"로 설정
 	- 절취선이 생기면서 파일의 여러 정보가 하나의 구역에 담겨 전송
--->
+ -->
 
 <h1>DB없이 업로드</h1>
 
@@ -31,5 +31,3 @@
 </form>
 
 <h1><a href="list">파일 목록 보기</a></h1>
-
-
