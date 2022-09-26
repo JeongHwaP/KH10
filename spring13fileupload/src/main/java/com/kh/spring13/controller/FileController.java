@@ -3,11 +3,15 @@ package com.kh.spring13.controller;
 import java.io.File;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.kh.spring13.entity.AttachmentDto;
+import com.kh.spring13.repository.AttachmentDao;
 
 @Controller
 public class FileController {
@@ -43,6 +47,28 @@ public class FileController {
 							attachment.getOriginalFilename());//저장될 파일 생성
 		attachment.transferTo(target);//실제 저장 처리 명령
 		
+		return "redirect:/";
+	}
+	
+	@Autowired
+	private AttachmentDao attachmentDao;
+	
+	@PostMapping("/upload")
+	public String upload(@RequestParam MultipartFile attachment) throws IllegalStateException, IOException {
+		//DB 저장
+		int attachmentNo = attachmentDao.sequence();
+		attachmentDao.insert(AttachmentDto.builder()
+					.attachmentNo(attachmentNo)
+					.attachmentName(attachment.getOriginalFilename())
+					.attachmentType(attachment.getContentType())
+					.attachmentSize(attachment.getSize())
+				.build());
+		
+		//파일 저장
+		File dir = new File("D:/upload");
+		dir.mkdirs();
+		File target = new File(dir, String.valueOf(attachmentNo));
+		attachment.transferTo(target);
 		return "redirect:/";
 	}
 	
