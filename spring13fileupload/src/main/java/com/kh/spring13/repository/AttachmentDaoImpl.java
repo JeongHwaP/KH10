@@ -51,27 +51,45 @@ public class AttachmentDaoImpl implements AttachmentDao{
 	};
 	
 	@Override
+	public int sequence() {
+		String sql = "attachment_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
+	
+	@Override
 	public void insert(AttachmentDto attachmentDto) {
-		// TODO Auto-generated method stub
-		
+		String sql = "insert into attachment("
+				+ "attachment_no, attachment_name, "
+				+ "attachment_type, attachment_size"
+				+ ") values(?, ?, ?, ?)";
+		Object[] param = {
+				attachmentDto.getAttachmentNo(),
+				attachmentDto.getAttachmentName(),
+				attachmentDto.getAttachmentType(),
+				attachmentDto.getAttachmentSize()
+		};
+		jdbcTemplate.update(sql, param);
 	}
 	
 	@Override
 	public List<AttachmentDto> selectList() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from attachment";
+		return jdbcTemplate.query(sql, mapper);
 	}
 	
 	@Override
 	public AttachmentDto selectOne(int attachmentNo) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from attachment "
+				+ "where attachment_no = ?";
+		Object[] param = {attachmentNo};
+		return jdbcTemplate.query(sql, extractor, param);
 	}
 	
 	@Override
 	public boolean delete(int attachmentNo) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "delete attachment where attachment_no = ?";
+		Object[] param = {attachmentNo};
+		return jdbcTemplate.update(sql, param) > 0;
 	}
 }
 
