@@ -1,5 +1,8 @@
 package com.kh.springhome.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springhome.constant.SessionConstant;
 import com.kh.springhome.entity.MemberDto;
+import com.kh.springhome.repository.BoardDao;
+import com.kh.springhome.repository.MemberBoardLikeDao;
 import com.kh.springhome.repository.MemberDao;
 
 @Controller
@@ -23,15 +29,34 @@ public class MemberController {
 	@Autowired
 	private MemberDao memberDao;
 	
+	@Autowired
+	private BoardDao boardDao;
+	
+	@Autowired
+	private MemberBoardLikeDao memberBoardLikeDao;
+	
 	@GetMapping("/join")
 	public String join() {
 //		return "/WEB-INF/views/member/join.jsp";
 		return "member/join";
 	}
 	
+//	(+추가) 첨부파일을 받아서 저장
 	@PostMapping("/join")
-	public String join(@ModelAttribute MemberDto memberDto) {
+	public String join(
+			@ModelAttribute MemberDto memberDto,
+			@RequestParam MultipartFile memberProfile) throws IllegalStateException, IOException {
+		//데이터베이스 등록
 		memberDao.insert(memberDto);
+		
+		if(!memberProfile.isEmpty()) {//첨부파일이 있다면
+			//프로필 저장
+			File directory = new File("D:/upload/member");
+			directory.mkdirs();
+			File target = new File(directory, memberDto.getMemberId());
+			memberProfile.transferTo(target);
+		}
+		
 		return "redirect:join_finish";
 	}
 	
@@ -169,6 +194,12 @@ public class MemberController {
 		
 		//3. 불러온 회원 정보를 모델에 첨부한다
 		model.addAttribute("memberDto", memberDto);
+		
+		//(+추가) 내가 작성한 게시글 최근순 5개 조회
+		model.addAttribute("writeBoardList", boardDao.selectWriteList(loginId, 1, 10));
+		
+		//(+추가) 내가 좋아요한 게시글 최근순 5개 조회
+		model.addAttribute("likeBoardList", boardDao.selectLikeList(loginId, 1, 10));
 		
 		//4. 화면(View)으로 전달(Forward)한다
 		//(참고) 기존에 사용하던 회원상세(detail.jsp) 뷰와 같이 사용
