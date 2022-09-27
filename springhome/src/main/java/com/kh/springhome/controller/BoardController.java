@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springhome.constant.SessionConstant;
-import com.kh.springhome.entity.AttachmentDto;
 import com.kh.springhome.entity.BoardDto;
 import com.kh.springhome.entity.MemberBoardLikeDto;
 import com.kh.springhome.entity.ReplyDto;
@@ -30,6 +29,7 @@ import com.kh.springhome.repository.AttachmentDao;
 import com.kh.springhome.repository.BoardDao;
 import com.kh.springhome.repository.MemberBoardLikeDao;
 import com.kh.springhome.repository.ReplyDao;
+import com.kh.springhome.service.BoardService;
 import com.kh.springhome.vo.BoardListSearchVO;
 
 @Controller
@@ -49,8 +49,11 @@ public class BoardController {
 	private AttachmentDao attachmentDao;
 	
 	private final File directory = new File("D:/upload");
+	
+	@Autowired
+	private BoardService boardService;
 
-	@PostConstruct//최초 실행시 딱 한 번만 실행되는 코드
+	@PostConstruct//최초 실행시 딱 한 번만 실행되는 메소드
 	public void prepare() {
 		directory.mkdirs();
 	}
@@ -109,11 +112,11 @@ public class BoardController {
 		
 //		(+추가) 좋아요 기록이 있는지 조회하여 첨부
 		String loginId = (String) session.getAttribute(SessionConstant.ID);
-		if(loginId != null) {//회원이라면
+		if(loginId != null) {
 			MemberBoardLikeDto likeDto = new MemberBoardLikeDto();
 			likeDto.setMemberId(loginId);
 			likeDto.setBoardNo(boardNo);
-			model.addAttribute("isLike", likeDao.check(likeDto));//좋아요 기록을 조회하여 model에 추가
+			model.addAttribute("isLike", likeDao.check(likeDto));
 		}
 		
 //		(+추가) 게시글에 대한 첨부파일을 조회하여 첨부
@@ -138,51 +141,7 @@ public class BoardController {
 		String memberId = (String)session.getAttribute(SessionConstant.ID);
 		boardDto.setBoardWriter(memberId);
 		
-//		등록될 글의 번호를 미리 생성
-		int boardNo = boardDao.sequence();
-		boardDto.setBoardNo(boardNo);
-
-//		등록 전에 "새글"인지 "답글"인지 파악해서 그에 맞는 계산을 수행
-		if(boardDto.getBoardParent() == 0) {//새글이라면
-			boardDto.setBoardGroup(boardNo);
-			boardDto.setBoardParent(0);
-			boardDto.setBoardDepth(0);
-		}
-		else {//답글이라면
-			BoardDto parentDto = boardDao.selectOne(
-													boardDto.getBoardParent());
-			boardDto.setBoardGroup(parentDto.getBoardGroup());
-			boardDto.setBoardDepth(parentDto.getBoardDepth() + 1);
-		}
-		
-//		문제점 : 등록은 되는데 몇 번인지 알 수 없다
-//		해결책 : 번호를 미리 생성하고 등록하도록 메소드 변경
-		boardDao.insert2(boardDto);
-		
-//		(+추가) 게시글이 등록된 다음 파일이 있다면 해당 파일을 등록 및 연결
-//		- 첨부파일이 없어도 리스트에는 1개의 객체가 들어있다.
-		for(MultipartFile file : attachment) {
-			if(!file.isEmpty()) {
-				System.out.println("첨부파일 발견");
-				
-				//DB 등록
-				int attachmentNo = attachmentDao.sequence();
-				attachmentDao.insert(AttachmentDto.builder()
-							.attachmentNo(attachmentNo)
-							.attachmentName(file.getOriginalFilename())
-							.attachmentType(file.getContentType())
-							.attachmentSize(file.getSize())
-						.build());
-				
-				//파일 저장
-				File target = new File(directory, String.valueOf(attachmentNo));
-				System.out.println(target.getAbsolutePath());
-				file.transferTo(target);
-				
-				// + 연결 테이블에 연결 정보를 저장(게이슬번호, 첨부파일번호)
-				boardDao.connectAttachment(boardNo, attachmentNo);
-			}
-		}
+		int boardNo = boardService.write(boardDto, attachment);
 		
 		attr.addAttribute("boardNo", boardNo);
 		return "redirect:detail";
@@ -261,7 +220,7 @@ public class BoardController {
 	public String replyBlind(
 			@RequestParam int replyNo,
 			@RequestParam int replyOrigin,
-			RedirectAttributes attr){
+			RedirectAttributes attr) {
 		ReplyDto replyDto = replyDao.selectOne(replyNo);
 		replyDao.updateBlind(replyNo, !replyDto.isReplyBlind());
 //		if(replyDto.isReplyBlind()) {
@@ -278,8 +237,9 @@ public class BoardController {
 //	좋아요
 	@GetMapping("/like")
 	public String boardLike(
-			@RequestParam int boardNo, 
-			HttpSession session, RedirectAttributes attr) {
+				@RequestParam int boardNo,
+				HttpSession session, RedirectAttributes attr
+			) {
 		String memberId = (String)session.getAttribute(SessionConstant.ID);
 		MemberBoardLikeDto dto = new MemberBoardLikeDto();
 		dto.setMemberId(memberId);
