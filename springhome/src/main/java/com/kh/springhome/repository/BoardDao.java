@@ -35,4 +35,6 @@ public interface BoardDao {
 	List<BoardDto> selectWriteList(String boardWriter, int begin, int end);
 	List<BoardDto> selectLikeList(String boardWriter, int begin, int end);
 	List<BoardListVO> selectListForMain();
+	
+	void connectAttachment(int boardNo, int attachmentNo);
 }

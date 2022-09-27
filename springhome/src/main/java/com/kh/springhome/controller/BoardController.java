@@ -1,9 +1,12 @@
 package com.kh.springhome.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +21,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springhome.constant.SessionConstant;
+import com.kh.springhome.entity.AttachmentDto;
 import com.kh.springhome.entity.BoardDto;
 import com.kh.springhome.entity.MemberBoardLikeDto;
 import com.kh.springhome.entity.ReplyDto;
 import com.kh.springhome.error.TargetNotFoundException;
+import com.kh.springhome.repository.AttachmentDao;
 import com.kh.springhome.repository.BoardDao;
 import com.kh.springhome.repository.MemberBoardLikeDao;
 import com.kh.springhome.repository.ReplyDao;
@@ -39,6 +44,16 @@ public class BoardController {
 	
 	@Autowired
 	private MemberBoardLikeDao likeDao;
+	
+	@Autowired
+	private AttachmentDao attachmentDao;
+	
+	private final File directory = new File("D:/upload");
+
+	@PostConstruct//최초 실행시 딱 한 번만 실행되는 코드
+	public void prepare() {
+		directory.mkdirs();
+	}
 	
 //	참고 : ModelAttribute로 수신한 데이터는 자동으로 Model에 첨부된다
 //	- 옵션에 name을 작성하면 해당하는 이름으로 model에 첨부
@@ -113,7 +128,7 @@ public class BoardController {
 	public String write(
 			@ModelAttribute BoardDto boardDto,
 			@RequestParam List<MultipartFile> attachment,
-			HttpSession session, RedirectAttributes attr) {
+			HttpSession session, RedirectAttributes attr) throws IllegalStateException, IOException {
 //		session에 있는 회원 아이디를 작성자로 추가한 뒤 등록해야함
 //		String memberId = (String)session.getAttribute("loginId");
 		String memberId = (String)session.getAttribute(SessionConstant.ID);
@@ -147,8 +162,21 @@ public class BoardController {
 				System.out.println("첨부파일 발견");
 				
 				//DB 등록
+				int attachmentNo = attachmentDao.sequence();
+				attachmentDao.insert(AttachmentDto.builder()
+							.attachmentNo(attachmentNo)
+							.attachmentName(file.getOriginalFilename())
+							.attachmentType(file.getContentType())
+							.attachmentSize(file.getSize())
+						.build());
+				
 				//파일 저장
-				//+@
+				File target = new File(directory, String.valueOf(attachmentNo));
+				System.out.println(target.getAbsolutePath());
+				file.transferTo(target);
+				
+				// + 연결 테이블에 연결 정보를 저장(게이슬번호, 첨부파일번호)
+				boardDao.connectAttachment(boardNo, attachmentNo);
 			}
 		}
 		
