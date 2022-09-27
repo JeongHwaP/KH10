@@ -10,4 +10,5 @@ import com.kh.springhome.entity.BoardDto;
 public interface BoardService {
 	int write(BoardDto boardDto, List<MultipartFile> attachment) 
 									throws IllegalStateException, IOException;
+	boolean remove(int boardNo);
 }

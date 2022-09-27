@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springhome.constant.SessionConstant;
+import com.kh.springhome.entity.AttachmentDto;
 import com.kh.springhome.entity.BoardDto;
 import com.kh.springhome.entity.MemberBoardLikeDto;
 import com.kh.springhome.entity.ReplyDto;
@@ -149,7 +150,7 @@ public class BoardController {
 	
 	@GetMapping("/delete")
 	public String delete(@RequestParam int boardNo) {
-		boolean result = boardDao.delete(boardNo);
+		boolean result = boardService.remove(boardNo);
 		if(result) {//성공
 			return "redirect:list";
 		}
