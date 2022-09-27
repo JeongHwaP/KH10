@@ -18,7 +18,7 @@
 
 
 
-<form action="write" method="post">
+<form action="write" method="post" enctype="multipart/form-data">
 <%-- 답글이라면 부모글번호를 추가로 전송하도록 처리 --%>
 <c:if test="${isReply}">
 	<input type="hidden" name="boardParent" 
@@ -58,6 +58,15 @@
 				<textarea name="boardContent" rows="10" cols="50" required></textarea>
 			</td>
 		</tr>
+		
+		<!-- 첨부파일 -->
+		<tr>
+			<th>첨부파일</th>
+			<td>
+				<input type="file" name="attachment" multiple>
+			</td>
+		</tr>
+		
 	</tbody>
 	<tfoot>
 		<tr>

@@ -1,6 +1,7 @@
 package com.kh.springhome.controller;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springhome.constant.SessionConstant;
@@ -110,6 +112,7 @@ public class BoardController {
 	@PostMapping("/write")
 	public String write(
 			@ModelAttribute BoardDto boardDto,
+			@RequestParam List<MultipartFile> attachment,
 			HttpSession session, RedirectAttributes attr) {
 //		session에 있는 회원 아이디를 작성자로 추가한 뒤 등록해야함
 //		String memberId = (String)session.getAttribute("loginId");
@@ -136,6 +139,19 @@ public class BoardController {
 //		문제점 : 등록은 되는데 몇 번인지 알 수 없다
 //		해결책 : 번호를 미리 생성하고 등록하도록 메소드 변경
 		boardDao.insert2(boardDto);
+		
+//		(+추가) 게시글이 등록된 다음 파일이 있다면 해당 파일을 등록 및 연결
+//		- 첨부파일이 없어도 리스트에는 1개의 객체가 들어있다.
+		for(MultipartFile file : attachment) {
+			if(!file.isEmpty()) {
+				System.out.println("첨부파일 발견");
+				
+				//DB 등록
+				//파일 저장
+				//+@
+			}
+		}
+		
 		attr.addAttribute("boardNo", boardNo);
 		return "redirect:detail";
 	}
