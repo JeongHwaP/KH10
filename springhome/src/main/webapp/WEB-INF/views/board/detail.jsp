@@ -83,6 +83,7 @@
 				<fmt:formatDate value="${boardDto.boardWritetime}" pattern="y년 M월 d일 E요일 a h시 m분 s초"/>
 			</td>
 		</tr>
+
 		<c:if test="${boardDto.boardUpdatetime != null}">
 		<tr>
 			<th>수정일</th>
@@ -99,10 +100,11 @@
 				<ul>
 					<c:forEach var="attachmentDto" items="${attachmentList}">
 					<li>
-						${attachmentDto.attachmentName}
-						(${attachmentDto.attachmentSize} bytes)
-						-
+						${attachmentDto.attachmentName} 
+						(${attachmentDto.attachmentSize} bytes) 
+						- 
 						[${attachmentDto.attachmentType}]
+						<a href="/attachment/download/${attachmentDto.attachmentNo}">↓</a>
 					</li>
 					</c:forEach>
 				</ul>
