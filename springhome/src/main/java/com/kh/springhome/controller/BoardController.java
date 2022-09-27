@@ -116,6 +116,10 @@ public class BoardController {
 			model.addAttribute("isLike", likeDao.check(likeDto));//좋아요 기록을 조회하여 model에 추가
 		}
 		
+//		(+추가) 게시글에 대한 첨부파일을 조회하여 첨부
+		model.addAttribute("attachmentList", 
+				attachmentDao.selectBoardAttachmentList(boardNo));
+		
 		return "board/detail";
 	}
 	

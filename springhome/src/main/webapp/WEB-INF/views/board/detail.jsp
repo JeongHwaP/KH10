@@ -91,6 +91,24 @@
 			</td>
 		</tr>
 		</c:if>
+		
+		<c:if test="${attachmentList != null}">
+		<tr>
+			<th>첨부파일</th>
+			<td>
+				<ul>
+					<c:forEach var="attachmentDto" items="${attachmentList}">
+					<li>
+						${attachmentDto.attachmentName}
+						(${attachmentDto.attachmentSize} bytes)
+						-
+						[${attachmentDto.attachmentType}]
+					</li>
+					</c:forEach>
+				</ul>
+			</td>
+		</tr>
+		</c:if>
 	</tbody>
 	<tfoot>
 		<tr>
