@@ -102,28 +102,32 @@
     font-size: 20px;
     padding: 0.75em;/*글자 크기의 0.75배*/
     cursor: pointer;
+    /* a 태그를 버튼으로 만들기 위해 추가 */
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
 }
-.btn-positive {
+.btn.btn-positive {
     background-color: #0984e3;
     color: white;
 }
-.btn-positive:hover {
+.btn.btn-positive:hover {
     background-color: #0876cc;
 }
-.btn-neutral {
+.btn.btn-neutral {
     border: 1px solid gray;
     background-color: white;
     color: gray;
 }
-.btn-neutral:hover {
+.btn.btn-neutral:hover {
     border: 1px solid black;
     color: black;
 }
-.btn-negative {
+.btn.btn-negative {
     background-color: #d63031;
     color: white;
 }
-.btn-negative:hover {
+.btn.btn-negative:hover {
     background-color: #c42627;
 }
 
