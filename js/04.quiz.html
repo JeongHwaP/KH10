@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 크기 조절</title>
+
+    <script type="text/javascript">
+        //자바스크립트 코드
+
+        function small(){
+            var target = document.querySelector(".display");
+            target.width = 100;
+            target.height = 100;
+            // target.style.width = "100px";
+            // target.style.height = "100px";
+        }
+        
+        function normal(){
+            var target = document.querySelector(".display");
+            target.width = 200;
+            target.height = 200;
+            // target.style.width = "200px";
+            // target.style.height = "200px";
+        }
+        
+        function big(){
+            var target = document.querySelector(".display");
+            target.width = 300;
+            target.height = 300;
+            // target.style.width = "300px";
+            // target.style.height = "300px";
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- HTML 화면 -->
+    <button onclick="small();">작게</button>
+    <button onclick="normal();">기본</button>
+    <button onclick="big();">크게</button>
+
+    <hr>
+    
+    <img class="display" src="./image/bg.jpg" width="200" height="200">
+</body>
+</html>

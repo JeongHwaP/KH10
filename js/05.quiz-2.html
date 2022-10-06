@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        //자바스크립트 코드
+        var size = 16;
+
+        function decrease(){
+            if(size == 10) {
+                return;
+            }
+            
+            size--;
+            console.log("size = " + size);
+            if(size == 10){
+                //- 버튼 잠금
+                var minusBtn = document.querySelector(".minus-btn");
+                minusBtn.disabled = true;
+            }
+            else {
+                //-, + 버튼 해제
+                var minusBtn = document.querySelector(".minus-btn");
+                minusBtn.disabled = false;
+
+                var plusBtn = document.querySelector(".plus-btn");
+                plusBtn.disabled = false;                
+            }
+
+            var textViewer = document.querySelector(".text-viewer");
+            textViewer.style.fontSize = size+"px";
+
+            var sizeViewer = document.querySelector(".size-viewer");
+            sizeViewer.textContent = size;
+        }
+        function increase(){
+            if(size == 50) {
+                
+                return;
+            }
+
+            size++;
+            console.log("size = " + size);
+            if(size == 50){
+                //+ 버튼 잠금
+                var plusBtn = document.querySelector(".plus-btn");
+                plusBtn.disabled = "disabled";
+            }
+            else {
+                //-, + 버튼 해제
+                var minusBtn = document.querySelector(".minus-btn");
+                minusBtn.disabled = false;
+
+                var plusBtn = document.querySelector(".plus-btn");
+                plusBtn.disabled = false;
+            }
+
+            var textViewer = document.querySelector(".text-viewer");
+            textViewer.style.fontSize = size+"px";
+
+            var sizeViewer = document.querySelector(".size-viewer");
+            sizeViewer.textContent = size;
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- HTML 화면 -->
+    <button class="minus-btn" onclick="decrease();">-</button>
+    <span class="size-viewer">16</span>
+    <button class="plus-btn" onclick="increase();">+</button>
+
+    <hr>
+    
+    <p class="text-viewer">어쩌구 저쩌구</p>
+</body>
+</html>
