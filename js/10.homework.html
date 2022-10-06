@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <script type="text/javascript">
+        //자바스크립트 코드
+        function memberJoin(){
+            var inputId = document.querySelector("input[name=joinId]");
+            var ID = inputId.value;
+
+            var span = document.querySelector(".Id-result");
+            if(!ID){//미입력
+                span.textContent = "";
+            }
+            else {//입력
+                var regex = /^[a-z][a-z0-9]{7,19}$/;
+                if(regex.test(ID)){//통과
+                    span.textContent = "사용하실 수 있는 아이디입니다.";
+                    span.style.color = "black";
+                }
+                else{//거절
+                    span.textContent = "영문소문자로 시작해서 숫자포함 8~20자로 작성하세요.";
+                    span.style.color = "red";
+                }
+            }
+        
+            var inputPw = document.querySelector("input[name=joinPw]");
+            var PW = inputPw.value;
+
+            var span = document.querySelector(".Pw-result");
+            if(!PW){//미입력
+                span.textContent = "";
+            }
+            else {//입력
+                var regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$])[A-Za-z0-9!@#$]{8,16}$/;
+                if(regex.test(PW)){//통과
+                    span.textContent = "사용하실 수 있는 비밀번호입니다.";
+                    span.style.color = "black";
+                }
+                else{//거절
+                    span.textContent = "영문대소문자, 숫자, 특수문자(!@#$)를 반드시 포함한 8~16자로 작성하세요.";
+                    span.style.color = "red";
+                }
+            }
+
+            var check = document.querySelector("input[name=pwCheck]");
+            var pwCheck = check.value;
+
+            var span = document.querySelector(".PwCheck-result");
+            if(!pwCheck){//미입력
+                span.textContent = "";
+            }
+            else {//입력
+                if(regex.test(PW) == regex.test(pwCheck)){//통과
+                    span.textContent = "비밀번호가 일치합니다.";
+                    span.style.color = "black";
+                }
+                else{//거절
+                    span.textContent = "비밀번호가 일치하지 않습니다.";
+                    span.style.color = "red";
+                }
+            }
+            
+            var button = document.querySelector(".btn[join]");
+            if(inputId.value && inputPw.value && check.value) { 
+                button.disabled = false; // 활성화
+            } 
+            else { 
+                button.disabled = true; // 비활성화
+            }
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- HTML 화면 -->
+    <div class="container-400">
+        
+        <div class="row center">
+            <h1>회원가입</h1>
+        </div>
+
+        <div class="row">
+            <label>아이디</label>
+            <input type="text" name="joinId" class="input w-100" onblur="memberJoin();">
+        </div>
+        <div class="row">
+            <span class="Id-result"></span>
+        </div>
+
+        <div class="row mt-30">
+            <label>비밀번호</label>
+            <input type="text" name="joinPw" class="input w-100" onblur="memberJoin();">
+        </div>
+        <div class="row">
+            <span class="Pw-result"></span>
+        </div>
+
+        <div class="row mt-30">
+            <label>비밀번호 확인</label>
+            <input type="text" name="pwCheck" class="input w-100" onblur="memberJoin();">
+        </div>
+        <div class="row">
+            <span class="PwCheck-result"></span>
+        </div>
+
+        <div class="row right mt-30">
+            <button class="btn" name="join" onclick="onoff" type="submit">가입</button>
+        </div>
+    </div>
+
+</body>
+</html>
