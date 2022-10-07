@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <script type="text/javascript">
+        //자바스크립트 코드
+
+        function checkAll(tag){ //전체동의
+            var checkboxes = document.querySelectorAll(".check-all");
+            for(var i=0; i < checkboxes.length; i++){
+                checkboxes[i].checked = tag.checked;
+            }
+
+            var okcheckboxes = document.querySelectorAll(".check");
+            for(var i=0; i < okcheckboxes.length; i++){
+                okcheckboxes[i].checked = tag.checked;
+            }
+        }
+
+        function okcheck(){ //체크풀릴때 전체동의 풀리도록
+            var ok = document.querySelectorAll(".check");
+
+            var count = 0;
+            for(var i=0; i < ok.length; i++){
+                if(ok[i].checked){
+                    count++;
+                }
+            }
+
+            var judge = ok.length == count;
+
+            var checkboxes = document.querySelectorAll(".check-all");
+            for(var i=0; i < checkboxes.length; i++){
+                checkboxes[i].checked = judge;
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+
+    <!-- HTML 화면 -->
+    <div class="container-400">
+        <div class="row center">
+            <h1>이용약관</h1>
+        </div>
+
+        <div class="row">
+            <label><input type="checkbox" class="check-all" oninput="checkAll(this);">전체동의</label>
+        </div>
+        
+        <br>
+
+        <div class="row">
+            <div class="row left">
+                <label>사이트 이용 약관 (필수)</label>
+                <table class="table table-border">
+                    <tbody>
+                        <td>어쩌구 저쩌구</td>
+                    </tbody>
+                </table>
+            </div>
+            <label><input type="checkbox" class="check" name="ok" value="이용약관" oninput="okcheck();">동의합니다 *</label><br><br>
+
+            <div class="row left">
+                <label>개인정보 수집 및 이용 동의 (필수)</label>
+                <table class="table table-border">
+                    <tbody>
+                        <td>어쩌구 저쩌구</td>
+                    </tbody>
+                </table>
+            </div>
+            <label><input type="checkbox" class="check" name="ok" value="개인정보" oninput="okcheck();">동의합니다 *</label><br><br>
+
+            <div class="row left">
+                <label>프로모션 정보 수신 동의 (선택)</label>
+                <table class="table table-border">
+                    <tbody>
+                        <td>어쩌구 저쩌구</td>
+                    </tbody>
+                </table>
+            </div>
+            <label><input type="checkbox" class="check" name="selectok" value="프로모션" oninput="okcheck();">동의합니다</label><br><br>
+            
+            <div class="row">
+                <button class="btn btn-positive w-100" type="button">확인</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
