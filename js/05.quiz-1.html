@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        //자바스크립트 코드
+        function changeFontSize(size){
+            var target = document.querySelector(".text-viewer");
+            target.style.fontSize = size+"px";
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- HTML 화면 -->
+    <button onclick="changeFontSize(12);">작게</button>
+    <button onclick="changeFontSize(16);">기본</button>
+    <button onclick="changeFontSize(20);">크게</button>
+
+    <hr>
+    
+    <p class="text-viewer">어쩌구 저쩌구</p>
+</body>
+</html>

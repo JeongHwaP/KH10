@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css animation</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <link rel="stylesheet" type="text/css" href="layout.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+
+    <!-- <link rel="stylesheet" type="text/css" href="test.css"> -->
+    <style>
+        /* 애니메이션 생성 */
+        @keyframes blingbling {
+            from {
+                color:red;
+            }
+            to {
+                color:blue;
+            }
+        }
+
+        .glow-text {
+            /* animation: blingbling 1s linear 0s 1 alternate; */
+            animation-name: blingbling;
+            animation-delay: 0s;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        .pulse-text:hover {
+            animation: pulse 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rotate-text {
+            display: inline-block;
+        }
+        .rotate-text:hover {
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                color: black;
+            }
+            20% {
+                transform: translate(0, -5%) rotate(0deg) scale(1);
+                color: black;
+            }
+            40% {
+                transform: translate(0, -15%) rotate(0deg) scale(1.1);
+                color: red;
+            }
+            42% {
+                transform: translate(0, -15%) rotate(2deg) scale(1.1);
+                color: blue;
+            }
+            46% {
+                transform: translate(0, -15%) rotate(-2deg) scale(1.1);
+                color: red;
+            }
+            50% {
+                transform: translate(0, -15%) rotate(2deg) scale(1.1);
+                color: blue;
+            }
+            54% {
+                transform: translate(0, -15%) rotate(-2deg) scale(1.1);
+                color: red;
+            }
+            58% {
+                transform: translate(0, -15%) rotate(2deg) scale(1.1);
+                color: blue;
+            }
+            62% {
+                transform: translate(0, -15%) rotate(-2deg) scale(1.1);
+                color: red;
+            }
+            66% {
+                transform: translate(0, -15%) rotate(2deg) scale(1.1);
+                color: blue;
+            }
+            70% {
+                transform: translate(0, -15%) rotate(-2deg) scale(1.1);
+                color: red;
+            }
+            72% {
+                transform: translate(0, -15%) rotate(0deg) scale(1.1);
+                color: blue;
+            }
+            90% {
+                transform: translate(0, -5%) rotate(0deg) scale(1);
+                color: black;
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                color: black;
+            }
+        }
+
+        .bounce-text {
+            display: inline-block;
+        }
+        .bounce-text:hover {
+            animation: bounce 2s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-400">
+
+        <div class="row mt-40">
+            <h1>CSS 애니메이션</h1>
+        </div>
+
+        <div class="row text-center">
+            <h2 class="glow-text">Hello CSS Animation</h2>
+        </div>
+
+        <!-- 위와 똑같은 글자를 만들고 투명도를 조절하는 애니메이션을 부여 -->
+        <div class="row text-center">
+            <h2 class="pulse-text">Hello CSS Animation</h2>
+        </div>
+
+        <div class="row text-center">
+            <h2 class="rotate-text">Hello CSS Animation</h2>
+        </div>
+
+        <div class="row text-center">
+            <h2 class="bounce-text">Hello CSS Animation</h2>
+        </div>
+
+    </div>
+</body>
+</html>
