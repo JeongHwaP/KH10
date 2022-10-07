@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
 <jsp:include page="/WEB-INF/views/template/header.jsp">
 	<jsp:param value="음원 등록" name="title"/>
 </jsp:include>
 
 <form action="insert" method="post">
-<div class="container-400 mt-40">
+<div class="container-500 mt-40">
 	<div class="row center">
 		<h1>음원 정보 입력</h1>
 	</div>
@@ -21,11 +19,11 @@
 	</div>
 	<div class="row left">
 		<label>앨범</label>
-		<input class="input w-100" name="musicAlbum" type="text" required>
+		<input class="input w-100" name="musicAlbum" type="text" required autocomplete="off">
 	</div>
 	<div class="row left">
 		<label>발매일</label>
-		<input class="input w-100" name="releaseTime" type="date" required>
+		<input class="input w-100" name="releaseTime" type="date" required autocomplete="off">
 	</div>
 	<div class="row right">
 		<a class="btn btn-neutral" href="list">목록</a>
