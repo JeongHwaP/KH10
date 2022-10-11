@@ -18,6 +18,10 @@
             background-color: #74b9ff;
             cursor: not-allowed;
         }
+
+        .fullscreen {
+            background-color: white;
+        }
     </style>
     <script type="text/javascript">
         //자바스크립트 코드
@@ -54,6 +58,21 @@
             button.disabled = count != agreeBoxList.length;
         }
 
+        function fullScreen3(){
+
+            var textarea = document.querySelector(".textarea3");
+            textarea.classList.add("fullscreen");
+
+            return false;//기본이벤트 실행 방지
+        }
+
+        function closeScreen3(e){
+            if(e.keyCode == 27){
+                var textarea = document.querySelector(".textarea3");
+                textarea.classList.remove("fullscreen");
+            }
+        }
+
     </script>
 
 </head>
@@ -78,12 +97,18 @@
         <div class="row">
             <textarea class="input w-100 fix-size" rows="6" readonly>어쩌구저쩌구</textarea>
         </div>
-        <div class="row">
-            <label>
+        <div class="row float-container">
+
+            <label class="float-left w-50">
                 <input oninput="checkAgree();" class="ck ck-required" type="checkbox" name="agree" value="type1">
                 <span>동의합니다</span>
                 <span>*</span>
             </label>
+
+            <div class="float-left w-50 right">
+                <a href="#">전문 보기</a>
+            </div>
+
         </div>
 
         <div class="row mt-30">
@@ -92,25 +117,37 @@
         <div class="row">
             <textarea class="input w-100 fix-size" rows="6" readonly>어쩌구저쩌구</textarea>
         </div>
-        <div class="row">
-            <label>
+        <div class="row float-container">
+
+            <label class="float-left w-50">
                 <input oninput="checkAgree();" class="ck ck-required" type="checkbox" name="agree" value="type2">
                 <span>동의합니다</span>
                 <span>*</span>
             </label>
+
+            <div class="float-left w-50 right">
+                <a href="#">전문 보기</a>
+            </div>
+
         </div>
 
         <div class="row mt-30">
             <h2>제목 자리</h2>
         </div>
         <div class="row">
-            <textarea class="input w-100 fix-size" rows="6" readonly>어쩌구저쩌구</textarea>
+            <textarea onkeydown="closeScreen3(event);" class="input w-100 fix-size textarea3" rows="6" readonly>어쩌구저쩌구</textarea>
         </div>
-        <div class="row">
-            <label>
+        <div class="row float-container">
+
+            <label class="float-left w-50">
                 <input class="ck" type="checkbox" name="agree" value="type3">
                 <span>동의합니다</span>
             </label>
+
+            <div class="float-left w-50 right">
+                <a href="#" onclick="return fullScreen3();">전문 보기</a>
+            </div>
+
         </div>
 
         <div class="row mt-50 mb-50">
