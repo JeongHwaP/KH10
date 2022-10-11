@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 크기 조절 문제</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <script type="text/javascript">
+        //자바스크립트 코드
+        window.onload = function(){
+            
+            //각각의 버튼에 클릭 이벤트를 설정
+
+            var btnSmall = document.querySelector(".btn-small");
+            btnSmall.addEventListener("click", function(){
+                var image = document.querySelector(".display");
+                image.width = 100;
+                image.height = 100;
+            });
+
+            var btnNormal = document.querySelector(".btn-normal");
+            btnNormal.addEventListener("click", function(){
+                var image = document.querySelector(".display");
+                image.width = 200;
+                image.height = 200;
+            });
+
+            var btnBig = document.querySelector(".btn-big");
+            btnBig.addEventListener("click", function(){
+                var image = document.querySelector(".display");
+                image.width = 300;
+                image.height = 300;
+            });
+
+        };
+    </script>
+
+</head>
+<body>
+
+    <!-- HTML 화면 -->
+    <button class="btn-small">작게</button>
+    <button class="btn-normal">보통</button>
+    <button class="btn-big">크게</button>
+    <hr>
+    <img class="display" src="./image/bg.jpg" width="200" height="200">
+    
+</body>
+</html>
