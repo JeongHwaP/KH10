@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springhome.constant.SessionConstant;
-import com.kh.springhome.entity.AttachmentDto;
 import com.kh.springhome.entity.BoardDto;
 import com.kh.springhome.entity.MemberBoardLikeDto;
 import com.kh.springhome.entity.ReplyDto;
@@ -257,5 +256,14 @@ public class BoardController {
 		
 		attr.addAttribute("boardNo", boardNo);
 		return "redirect:/board/detail";
+	}
+	
+	@GetMapping("/delete_admin")
+	public String deleteAdmin(
+			@RequestParam List<Integer> boardNo) {
+		for(int  no : boardNo) {
+			boardDao.delete(no);
+		}
+		return "redirect:list";
 	}
 }
