@@ -26,14 +26,24 @@
 	}
 </style>
 
-
 <div class="container-900 mt-40 mb-40">
 	<div class="row center">
 		<h1>자유 게시판</h1>
 	</div>
 	
+	<%-- 관리자일 경우만 form을 추가 --%>
+	<c:if test="${mg == '관리자'}">
+	<form action="delete_admin" method="get">
+	</c:if>
+	
 	<c:if test="${loginId != null}">
 	<div class="row right">
+		
+		<%-- 관리자일 경우만 삭제버튼을 추가 --%>
+		<c:if test="${mg == '관리자'}">
+			<button type="submit" class="btn btn-negative">삭제</button>
+		</c:if>
+		
 		<a class="btn btn-neutral" href="write">글쓰기</a>
 	</div>
 	</c:if>
@@ -42,6 +52,12 @@
 		<table class="table table-border table-hover">
 			<thead>
 				<tr>
+					<%-- 관리자일 경우만 체크박스란을 추가 --%>
+					<c:if test="${mg == '관리자'}">
+					<th>
+						<input type="checkbox" class="check-all">
+					</th>
+					</c:if>
 					<th>번호</th>
 					<th width="45%">제목</th>
 					<th>작성자</th>
@@ -55,6 +71,14 @@
 			<tbody align="center">
 				<c:forEach var="boardDto" items="${list}">
 				<tr>
+					<%-- 관리자일 경우만 체크박스란을 추가 --%>
+					<c:if test="${mg == '관리자'}">
+					<td>
+						<input type="checkbox" class="check-item"
+								name="boardNo" value="${boardDto.boardNo}">
+					</td>
+					</c:if>
+				
 					<td>${boardDto.boardNo}</td>
 					<td align="left">
 						<!-- 차수만큼 띄어쓰기를 반복 -->
@@ -111,8 +135,17 @@
 	
 	<c:if test="${loginId != null}">
 	<div class="row right">
+		<%-- 관리자일 경우만 삭제버튼을 추가 --%>
+		<c:if test="${mg == '관리자'}">
+			<button type="submit" class="btn btn-negative">삭제</button>
+		</c:if>
 		<a class="btn btn-neutral" href="write">글쓰기</a>
 	</div>
+	</c:if>
+	
+	<%-- 관리자일 경우만 form을 추가 --%>
+	<c:if test="${mg == '관리자'}">
+	</form>
 	</c:if>
 	
 	<div class="row center">
