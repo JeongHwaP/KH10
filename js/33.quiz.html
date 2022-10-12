@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>글자 크기 조절 문제</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,23 +12,59 @@
 
     <link rel="stylesheet" type="text/css" href="./css/reset.css">
     <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <style>
+        .text-viewer {
+            line-height: 1.5;
+            word-break: break-all;
+        }
+    </style>
 
     <!-- jquery를 사용하기 위하여 라이브러리 js 파일을 불러온다-->
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
     <script type="text/javascript">
+        //(+주의) 가급적 전역(global) 공간에 변수나 함수를 만들지 마세요(충돌 생겨요)
+        $(function(){
+            var size = 16;
+            $(".size-viewer").text(size);
 
+            $(".btn-small").click(function(){
+                if(size <= 10) return;
+
+                size--;
+                $(".text-viewer").css("font-size", size+"px");
+                //$(".size-viewer").html(size);//innerHTML
+                $(".size-viewer").text(size);//textContent
+            });
+            $(".btn-big").click(function(){
+                if(size >= 50) return;
+
+                size++;
+                $(".text-viewer").css("font-size", size+"px");
+                $(".size-viewer").text(size);
+            });
+        });
     </script>
 
 </head>
 <body>
 
     <!-- HTML 화면 -->
-    <button class="minus-btn">-</button>
-    <span class="size-viewer">16</span>
-    <button class="plus-btn">+</button>
-
-    <hr>
+    <div class="container-800">
+        <div class="row">
+            <h1>글자 크기 조절 문제</h1>
+        </div>
+        <div class="row">
+            <button class="btn-small">-</button>
+            <span class="size-viewer">??</span>
+            <button class="btn-big">+</button>
+        </div>
+        <div class="row">
+            <p class="text-viewer mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu condimentum ipsum. Morbi tristique magna sit amet dui ultricies tristique. In quis nulla faucibus magna gravida mollis sit amet ac tortor. Aenean quam sapien, pretium at odio et, aliquam molestie arcu. Etiam eget risus et neque vehicula vehicula ut id libero. Aenean hendrerit quis felis eget egestas. In sed nunc convallis, pellentesque sem eget, feugiat purus. Suspendisse molestie nisl vitae lorem auctor iaculis.</p>
+            <p class="text-viewer mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu condimentum ipsum. Morbi tristique magna sit amet dui ultricies tristique. In quis nulla faucibus magna gravida mollis sit amet ac tortor. Aenean quam sapien, pretium at odio et, aliquam molestie arcu. Etiam eget risus et neque vehicula vehicula ut id libero. Aenean hendrerit quis felis eget egestas. In sed nunc convallis, pellentesque sem eget, feugiat purus. Suspendisse molestie nisl vitae lorem auctor iaculis.</p>
+            <p class="text-viewer mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu condimentum ipsum. Morbi tristique magna sit amet dui ultricies tristique. In quis nulla faucibus magna gravida mollis sit amet ac tortor. Aenean quam sapien, pretium at odio et, aliquam molestie arcu. Etiam eget risus et neque vehicula vehicula ut id libero. Aenean hendrerit quis felis eget egestas. In sed nunc convallis, pellentesque sem eget, feugiat purus. Suspendisse molestie nisl vitae lorem auctor iaculis.</p>
+            <p class="text-viewer mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu condimentum ipsum. Morbi tristique magna sit amet dui ultricies tristique. In quis nulla faucibus magna gravida mollis sit amet ac tortor. Aenean quam sapien, pretium at odio et, aliquam molestie arcu. Etiam eget risus et neque vehicula vehicula ut id libero. Aenean hendrerit quis felis eget egestas. In sed nunc convallis, pellentesque sem eget, feugiat purus. Suspendisse molestie nisl vitae lorem auctor iaculis.</p>
+        </div>
+    </div>
     
-    <p class="text-viewer">어쩌구 저쩌구</p>
 </body>
 </html>
