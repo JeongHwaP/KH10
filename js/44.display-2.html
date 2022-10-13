@@ -12,6 +12,9 @@
 
     <link rel="stylesheet" type="text/css" href="./css/reset.css">
     <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <style>
+
+    </style>
 
     <!-- jquery를 사용하기 위하여 라이브러리 js 파일을 불러온다-->
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
@@ -19,22 +22,15 @@
         $(function(){
 
             $(".hide").click(function(){
-                //document.querySelector("h2").style.display = "none";
-                $("h2").css("display", "none");
+                $("h2").hide();
             });
 
             $(".show").click(function(){
-                //document.querySelector("h2").style.display = "block";
-                $("h2").css("display", "block");
+                $("h2").show();
             });
 
             $(".toggle").click(function(){
-                if($("h2").css("display") != "none") {
-                    $("h2").css("display", "none");
-                }
-                else {
-                    $("h2").css("display", "block");
-                }
+                $("h2").toggle();
             });
 
         });
