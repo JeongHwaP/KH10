@@ -35,12 +35,19 @@
             $("input[name=memberId").blur(function(){
 
                 var memberId = $(this).val();
+                if(!memberId) return;
 
                 $.ajax({
                     url:"http://localhost:8888/rest/member/id?memberId="+memberId,
                     method:"get",
                     success:function(resp){
-                        $("input[name=memberId]").next("span").text(resp);
+                        // $("input[name=memberId]").next("span").text(resp);
+                        if(resp == "NNNNY"){
+                            $("input[name=memberId]").next("span").text("사용할 수 있는 아이디입니다.")
+                        }
+                        else if(resp == "NNNNN"){
+                            $("input[name=memberId]").next("span").text("이미 사용중인 아이디입니다.")
+                        }
                     }
                 });//[] - 배열, {} - 객체
 
