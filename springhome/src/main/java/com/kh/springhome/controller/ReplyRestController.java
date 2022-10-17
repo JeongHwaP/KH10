@@ -36,4 +36,9 @@ public class ReplyRestController {
 		return replyDao.selectList(replyDto.getReplyOrigin());
 	}
 	
+	@PostMapping("/delete")
+	public List<ReplyListVO> delete(@ModelAttribute ReplyDto replyDto){
+		replyDao.delete(replyDto.getReplyNo());
+		return replyDao.selectList(replyDto.getReplyOrigin());
+	}
 }

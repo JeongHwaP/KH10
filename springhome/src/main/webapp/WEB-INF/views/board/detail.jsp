@@ -66,39 +66,66 @@
 				//},
 				data:$(form).serialize(),//form을 전송 가능한 형태의 문자로 변환한다
 				success:function(resp){
-					//console.log(resp);
-					
-					//원래 있던 댓글 삭제
-					//$(".table-reply-list").children("thead").remove();
-					//$(".table-reply-list").children("tbody").remove();
-					$(".table-reply-list").empty();//태그는 유지하고 내부를 삭제
-					
-					//헤더 생성
-					var header = $("#reply-list-header").text();
-					header = header.replace("{{size}}", resp.length);
-					$(".table-reply-list").append(header);
-					
-					//바디 생성
-					$(".table-reply-list").append("<tbody>");
-					
-					//현재 resp는 배열이다.
-					//미리 댓글 형식을 만들어두고 값만 바꿔치기해서 댓글 목록에 추가하도록 구현
-					for(var i=0; i < resp.length; i++){
-						//console.log(resp[i]);
-						var item = $("#reply-list-item").text();
-						item = item.replace("{{memberNick}}", resp[i].memberNick);
-						item = item.replace("{{replyWriter}}", resp[i].replyWriter);
-						item = item.replace("{{memberGrade}}", resp[i].memberGrade);
-						item = item.replace("{{replyContent}}", resp[i].replyContent);
-						item = item.replace("{{replyWritetime}}", resp[i].replyWritetime);
-						$(".table-reply-list").children("tbody").append(item);
-					}
+					listHandler(resp);
 					
 					//입력창 초기화(= 폼 초기화) - 자바스크립트로 처리
 					form.reset();
 				}
 			});
 		});
+		
+		//댓글 삭제버튼을 누르면 삭제 후 목록 갱신
+		$(".delete-btn").click(deleteHandler);
+		
+		function deleteHandler(e){
+			e.preventDefault();
+			
+			console.log(this);
+			
+			$.ajax({
+				url:"/rest/reply/delete",
+				method:"post",
+				data:{
+					replyOrigin:$(this).data("reply-origin"),
+					replyNo:$(this).data("reply-no")
+				},
+				success:function(resp){
+					listHandler(resp);
+				}
+// 				success:listHandler
+			});
+		}
+		function listHandler(resp){
+			//원래 있던 댓글 삭제
+			$(".table-reply-list").empty();//태그는 유지하고 내부를 삭제
+			
+			//헤더 생성
+			var header = $("#reply-list-header").text();
+			header = header.replace("{{size}}", resp.length);
+			$(".table-reply-list").append(header);
+			
+			//바디 생성
+			$(".table-reply-list").append("<tbody>");
+			
+			//현재 resp는 배열이다.
+			//미리 댓글 형식을 만들어두고 값만 바꿔치기해서 댓글 목록에 추가하도록 구현
+			for(var i=0; i < resp.length; i++){
+				//console.log(resp[i]);
+				var item = $("#reply-list-item").text();
+				item = item.replace("{{memberNick}}", resp[i].memberNick);
+				item = item.replace("{{replyWriter}}", resp[i].replyWriter);
+				item = item.replace("{{memberGrade}}", resp[i].memberGrade);
+				item = item.replace("{{replyContent}}", resp[i].replyContent);
+				item = item.replace("{{replyWritetime}}", resp[i].replyWritetime);
+				item = item.replace("{{replyNo}}", resp[i].replyNo);
+				item = item.replace("{{replyOrigin}}", resp[i].replyOrigin);
+				var result  = $(item);
+				result.find(".delete-btn").click(deleteHandler);//개별 추가
+				console.log("result", result.find(".delete-btn"));
+				$(".table-reply-list").children("tbody").append(result);
+			}
+			
+		}
 	});
 </script>
 
@@ -133,7 +160,7 @@
 					<th>
 						<!-- 수정과 삭제는 현재 사용자가 남긴 댓글에만 표시 -->
 						<a style="display:block; margin:10px 0px;" class="edit-btn"><img src="/image/edit.png" width="20" height="20"></a>
-						<a style="display:block; margin:10px 0px;"><img src="/image/delete.png" width="20" height="20"></a>
+						<a style="display:block; margin:10px 0px;" class="delete-btn" data-reply-origin="{{replyOrigin}}" data-reply-no="{{replyNo}}"><img src="/image/delete.png" width="20" height="20"></a>
 					</th>
 				</tr>	
 </script>
@@ -383,6 +410,5 @@
 		</c:choose>
 	</div>
 </div>
-
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
