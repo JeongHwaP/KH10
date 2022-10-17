@@ -39,6 +39,46 @@
 		//3
 		$(".editor").hide();
 	});
+	
+	
+	//댓글 등록 처리
+	$(function(){
+		$(".reply-insert-form").submit(function(e){
+			//기본 이벤트를 차단한다(form을 사용하지 않을 예정)
+			e.preventDefault();
+			
+			//댓글 입력값을 가져와서 검사 후 전송
+			var text = $(this).find("[name=replyContent]").val();
+			if(!text){
+				alert("내용을 작성해주세요");
+				return;
+			}
+			
+			//정상적으로 입력되었다면 비동기 통신으로 등록 요청
+			$.ajax({
+				url:"http://localhost:8888/rest/reply/insert",
+				method:"post",
+				data:{
+					replyOrigin:$(this).find("[name=replyOrigin]").val(),
+					replyContent:text
+				},
+				success:function(resp){
+					//console.log(resp);
+					
+					//원래 있던 댓글 삭제
+					//$(".table-reply-list").children("thead").remove();
+					//$(".table-reply-list").children("tbody").remove();
+					$(".table-reply-list").empty();//태그는 유지하고 내부를 삭제
+					
+					//현재 resp는 배열이다.
+					//미리 댓글 형식을 만들어두고 값만 바꿔치기해서 댓글 목록에 추가하도록 구현
+					for(var i=0; i < resp.length; i++){
+						console.log(resp[i]);
+					}
+				}
+			});
+		});
+	});
 </script>
 
 <div class="container-800 mt-40 mb-40">
@@ -160,7 +200,7 @@
 	</div>
 	
 	<div class="row center">
-		<table class="table table-slit table-hover">
+		<table class="table table-slit table-hover table-reply-list">
 			<!-- 댓글 목록 -->
 			<thead>
 				<tr>
@@ -249,7 +289,8 @@
 		<c:choose>
 			<c:when test="${loginId != null}">
 				<!-- 댓글 작성 -->
-				<form action="reply/write" method="post">
+<!-- 			<form action="reply/write" method="post"> -->
+				<form class="reply-insert-form">
 				<input type="hidden" name="replyOrigin" value="${boardDto.boardNo}">
 				<table class="table">
 					<tbody>
@@ -287,3 +328,4 @@
 
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+
