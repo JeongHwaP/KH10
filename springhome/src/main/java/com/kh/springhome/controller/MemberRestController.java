@@ -32,14 +32,14 @@ public class MemberRestController {
 		}
 	}
 	
-	@GetMapping("/nick")
+	@RequestMapping("/nick")
 	public String nick(@RequestParam String memberNick) {
 		MemberDto memberDto = memberDao.findByNickname(memberNick);
 		if(memberDto == null) {
-			return "NNNNY";
+			return "NNNNY";//사용할 수 있는 닉네임인 경우(닉네임 없음)
 		}
 		else {
-			return "NNNNN";
+			return "NNNNN";//사용할 수 없는 닉네임인 경우(닉네임 있음)
 		}
 	}
 	
