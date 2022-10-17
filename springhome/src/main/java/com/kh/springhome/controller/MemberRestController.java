@@ -32,4 +32,15 @@ public class MemberRestController {
 		}
 	}
 	
+	@GetMapping("/nick")
+	public String nick(@RequestParam String memberNick) {
+		MemberDto memberDto = memberDao.findByNickname(memberNick);
+		if(memberDto == null) {
+			return "NNNNY";
+		}
+		else {
+			return "NNNNN";
+		}
+	}
+	
 }

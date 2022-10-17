@@ -11,6 +11,7 @@ public interface MemberDao {
 	List<MemberDto> selectList();
 	List<MemberDto> selectList(String type, String keyword);
 	MemberDto selectOne(String memberId);
+	MemberDto findByNickname(String memberNick);
 	
 	boolean update(MemberDto memberDto);
 	boolean changePassword(String memberId, String memberPw);
@@ -20,4 +21,5 @@ public interface MemberDao {
 	boolean delete(String memberId);
 
 	List<MemberListForMainVO> selectListForMain();
+
 }
