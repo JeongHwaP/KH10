@@ -133,7 +133,7 @@
 					<th>
 						<!-- 수정과 삭제는 현재 사용자가 남긴 댓글에만 표시 -->
 						<a style="display:block; margin:10px 0px;" class="edit-btn"><img src="/image/edit.png" width="20" height="20"></a>
-						<a style="display:block; margin:10px 0px;" href="reply/delete?replyNo=${replyDto.replyNo}&replyOrigin=${replyDto.replyOrigin}"><img src="/image/delete.png" width="20" height="20"></a>
+						<a style="display:block; margin:10px 0px;"><img src="/image/delete.png" width="20" height="20"></a>
 					</th>
 				</tr>	
 </script>
@@ -301,7 +301,7 @@
 						<!-- 수정과 삭제는 현재 사용자가 남긴 댓글에만 표시 -->
 						<c:if test="${loginId == replyDto.replyWriter}">
 							<a style="display:block; margin:10px 0px;" class="edit-btn"><img src="/image/edit.png" width="20" height="20"></a>
-							<a style="display:block; margin:10px 0px;" href="reply/delete?replyNo=${replyDto.replyNo}&replyOrigin=${replyDto.replyOrigin}"><img src="/image/delete.png" width="20" height="20"></a>
+							<a style="display:block; margin:10px 0px;" class="delete-btn" data-reply-origin="${replyDto.replyOrigin}" data-reply-no="${replyDto.replyNo}"><img src="/image/delete.png" width="20" height="20"></a>
 						</c:if>
 						
 						<c:if test="${admin}">
