@@ -7,6 +7,18 @@
 	<jsp:param value="자유 게시판" name="title"/>
 </jsp:include>
 
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+	$(function(){
+		$("[name=boardContent]").summernote({
+			height:350,
+			minHeight:350,
+		});
+	});
+</script>
+
+
 <form action="edit" method="post">
 <!-- input[type=hidden]은 form 안에 위치해야 한다 -->
 <input type="hidden" name="boardNo" value="${boardDto.boardNo}">

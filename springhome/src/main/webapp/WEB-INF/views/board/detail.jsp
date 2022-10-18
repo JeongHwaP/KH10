@@ -210,8 +210,10 @@
 				<tr height="200" valign="top">
 					<th>내용</th>
 					<td>
-						<!-- pre 태그는 엔터, 띄어쓰기, 탭키 등을 있는 그대로 표시하는 영역 -->
-						<pre>${boardDto.boardContent}</pre>
+<!-- 						pre 태그는 엔터, 띄어쓰기, 탭키 등을 있는 그대로 표시하는 영역 -->
+<%-- 						<pre>${boardDto.boardContent}</pre> --%>
+<!-- 						rich text editor를 사용할 경우 pre 태그를 사용하지 않는다 -->
+						${boardDto.boardContent}
 					</td>
 				</tr>
 				<tr>
