@@ -19,43 +19,70 @@
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
     <script type="text/javascript">
         $(function(){
-            const ctx = document.querySelector('#myChart');
-            const myChart = new Chart(ctx, {
-                //type: 'bar',
-                //type:'line',
-                type:'doughnut',
-                data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                    datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+            //시나리오
+            //1. 미리 준비한 서버의 RestController로 비동기 요청을 전송한다.
+            //2. 요청이 성공하면 전달받은 데이터를 차트에 사용할 수 있게 변형한다.
+            //3. 차트를 생성한다.
+
+            $.ajax({
+                url:"http://localhost:8888/rest/pocketmon/count",
+                method:"get",
+                dataType:"json",//서버에서 돌아오리라 믿고 있는 타입
+                success:function(resp){
+                    //console.log(resp);
+
+                    //비어있는 배열 2개를 만들고 resp의 데이터를 분산 저장
+                    var labels = [];
+                    var values = [];
+                    for(var i=0; i<resp.length; i++){
+                        labels.push(resp[i].type);
+                        values.push(resp[i].cnt);
                     }
-                }
+
+                    console.log(labels);
+                    console.log(values);
+
+                    //labels와 values로 차트를 생성
+                    const ctx = document.querySelector('#myChart');
+                    const myChart = new Chart(ctx, {
+                        type: 'bar',
+                        //type:'line',
+                        //type:'doughnut',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: '몬스터 마리수',
+                                data: values,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                },
             });
+
         });
     </script>
 
