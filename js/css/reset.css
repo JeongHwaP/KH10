@@ -1,4 +1,4 @@
-/*
+/* 
     http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126
     License: none (public domain)
@@ -7,7 +7,7 @@
 @charset "UTF-8";
 
 html, body, div, span, applet, object, iframe,
-p, blockquote, pre,
+blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -50,6 +50,6 @@ q:before, q:after {
     box-sizing: border-box;
 }
 
-html{
+html {
     font-family: 'Noto Sans KR', sans-serif;
 }
