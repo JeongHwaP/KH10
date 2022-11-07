@@ -1,5 +1,7 @@
 package com.kh.spring15;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,19 +10,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.kh.spring15.entity.GuestBookDto;
 
 @SpringBootTest
-public class MybatisInsertTest {
-
+public class GuestBookInsertTest {
+	
 	@Autowired
 	private SqlSession sqlSession;
 	
 	@Test
 	public void test() {
-		GuestBookDto dto = GuestBookDto.builder()
-				.no(15)
-				.name("이름")
-				.memo("잘 먹고 갑니다.")
-				.build();
-		sqlSession.insert("guestbook.add", dto);
+		//assertNotNull(sqlSession);
+		
+		sqlSession.insert("guestbook.insert", GuestBookDto.builder()
+																		.name("테스트유저")
+																		.memo("하이")
+																	.build());
 	}
-
+	
 }
