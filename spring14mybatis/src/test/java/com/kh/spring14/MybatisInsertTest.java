@@ -1,7 +1,5 @@
 package com.kh.spring14;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
