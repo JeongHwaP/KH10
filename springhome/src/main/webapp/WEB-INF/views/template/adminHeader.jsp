@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="login" value="${loginId != null}"></c:set>
 <c:set var="admin" value="${mg == '관리자'}"></c:set>
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
+
 
 <html>
 	<head>
@@ -21,15 +23,15 @@
 	    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	
-	    <link rel="stylesheet" type="text/css" href="/css/reset.css">
-	    <link rel="stylesheet" type="text/css" href="/css/commons.css">
-	    <link rel="stylesheet" type="text/css" href="/css/layout.css">
+	    <link rel="stylesheet" type="text/css" href="${root}/css/reset.css">
+	    <link rel="stylesheet" type="text/css" href="${root}/css/commons.css">
+	    <link rel="stylesheet" type="text/css" href="${root}/css/layout.css">
 	
 	    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 	
 	    <!-- <link rel="stylesheet" type="text/css" href="/css/test.css"> -->
 	    
-	    <script src="/js/checkbox.js"></script>
+	    <script src="${pageContext.request.contextPath}/js/checkbox.js"></script>
 	</head>
 	<body>
 		

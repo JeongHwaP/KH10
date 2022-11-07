@@ -58,7 +58,7 @@
 			
 			//정상적으로 입력되었다면 비동기 통신으로 등록 요청
 			$.ajax({
-				url:"http://localhost:8888/rest/reply/insert",
+				url:"${pageContext.request.contextPath}/rest/reply/insert",
 				method:"post",
 				//data:{
 				//	replyOrigin:$(this).find("[name=replyOrigin]").val(),
@@ -83,7 +83,7 @@
 			console.log(this);
 			
 			$.ajax({
-				url:"/rest/reply/delete",
+				url:"${pageContext.request.contextPath}/rest/reply/delete",
 				method:"post",
 				data:{
 					replyOrigin:$(this).data("reply-origin"),

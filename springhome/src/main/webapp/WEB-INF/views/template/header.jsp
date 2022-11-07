@@ -21,14 +21,15 @@
 	    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	
-	    <link rel="stylesheet" type="text/css" href="/css/reset.css">
-	    <link rel="stylesheet" type="text/css" href="/css/commons.css">
-	    <link rel="stylesheet" type="text/css" href="/css/layout.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/commons.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layout.css">
 	
 	    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 	
 	    <!-- <link rel="stylesheet" type="text/css" href="/css/test.css"> -->
-	    
+	  
+	  	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>  
 	    <script src="/js/checkbox.js"></script>
 	</head>
 	<body>
@@ -50,19 +51,19 @@
 				<ul class="dropdown-menu">
 					<c:choose>
 						<c:when test="${login}">
-							<li><a href="/">홈</a></li>
+							<li><a href="${pageContext.request.contextPath}">홈</a></li>
 							<li>
 								<a href="#">데이터셋</a>
 								<ul>
-									<li><a href="/pocketmon/list">포켓몬스터</a></li>
-									<li><a href="/music/list">음원관리</a></li>						
+									<li><a href="${pageContext.request.contextPath}/pocketmon/list">포켓몬스터</a></li>
+									<li><a href="${pageContext.request.contextPath}/music/list">음원관리</a></li>						
 								</ul>
 							</li>
 							<li>
 								<a href="#">커뮤니티</a>
 								<ul>
-									<li><a href="/board/list">게시판</a></li>
-									<li><a href="/guestbook/list">방명록</a></li>
+									<li><a href="${pageContext.request.contextPath}/board/list">게시판</a></li>
+									<li><a href="${pageContext.request.contextPath}/guestbook/list">방명록</a></li>
 								</ul>
 							</li>
 							<li class="right-menu">
@@ -70,27 +71,27 @@
 								<ul>
 									<!-- 관리자 기능 -->
 									<c:if test="${login && admin}">
-										<li><a href="/admin/home">관리자페이지</a></li>
+										<li><a href="${pageContext.request.contextPath}/admin/home">관리자페이지</a></li>
 									</c:if>
 									
-									<li><a href="/member/mypage">마이페이지</a></li>
-									<li><a href="/member/logout">로그아웃</a></li>
+									<li><a href="${pageContext.request.contextPath}/member/mypage">마이페이지</a></li>
+									<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 								</ul>
 							</li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="/">홈</a></li>
+							<li><a href="${pageContext.request.contextPath}/">홈</a></li>
 							<li>
 								<a href="#">커뮤니티</a>
 								<ul>
-									<li><a href="/board/list">게시판</a></li>
-									<li><a href="/guestbook/list">방명록</a></li>
+									<li><a href="${pageContext.request.contextPath}/board/list">게시판</a></li>
+									<li><a href="${pageContext.request.contextPath}/guestbook/list">방명록</a></li>
 								</ul>
 							</li>
 							<li class="right-menu">
-								<a href="/member/login">로그인</a>
+								<a href="${pageContext.request.contextPath}/member/login">로그인</a>
 								<ul>
-									<li><a href="/member/join">회원가입</a></li>
+									<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
 								</ul>
 							</li>
 						</c:otherwise>
