@@ -76,8 +76,22 @@
 	});
 	
 	//체크박스나 select처럼 백엔드에서 값을 주기 어려운 요소들을 프론트에서 처리
+	//- URLSearchParams는 FE용 파라미터 분석도구
+	//- location.search는 파라미터 정보
+	//- 분석한 정보에서 type과 sort를 찾아서 각각 check와 select 처리를 수행
+	//- 단점 : GET방식으로 데이터가 전송될ㄴ 경우만 가능
 	$(function(){
+		var param = new URLSearchParams(location.search);
 		
+		var type = param.getAll("type");
+		for(var i=0; i < type.length; i++){
+			$("[name=type][value="+type[i]+"]").prop("checked", true);
+		}
+		
+		var sort = param.getAll("sort");
+		for(var i=0; i < sort.length; i++){
+			$("[name=sort]").eq(i).val(sort[i]);
+		}
 	});
 	
 </script>
