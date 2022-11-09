@@ -48,4 +48,5 @@ public class CreateCertTest {
 		CertDto certDto = CertDto.builder().who(email).serial(serial).build();
 		sqlSession.insert("cert.insert", certDto);
 	}
+	
 }
