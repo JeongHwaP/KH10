@@ -11,19 +11,19 @@ import com.kh.spring18.entity.CertDto;
 
 @SpringBootTest
 public class CheckCertTest {
-
+	
 	@Autowired
 	private SqlSession sqlSession;
 	
-	String email = "pjm2329@gmail.com";
-	String serial = "938024";
+	String email = "hwang8243@gmail.com";
+	String serial = "815378";
 	
 	@Test
 	public void test() {
 		CertDto result = sqlSession.selectOne("cert.check", CertDto.builder()
-					.who(email)
-					.serial(serial)
-				.build());
+																				.who(email)
+																				.serial(serial)
+																			.build());
 		System.out.println(result);
 		if(result != null) {//인증 성공
 			System.out.println("인증 성공");
@@ -33,4 +33,5 @@ public class CheckCertTest {
 			System.out.println("인증 실패");
 		}
 	}
+	
 }
