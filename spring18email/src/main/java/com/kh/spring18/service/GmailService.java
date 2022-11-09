@@ -40,4 +40,13 @@ public class GmailService implements EmailService {
 		CertDto certDto = CertDto.builder().who(email).serial(serial).build();
 		certDao.insert(certDto);
 	}
+
+	@Override
+	public boolean checkCert(CertDto certDto) {
+		if(certDao.check(certDto)) {//인증 성공
+			certDao.delete(certDto.getWho());
+			return true;
+		}
+		return false;
+	}
 }
