@@ -7,10 +7,10 @@ import java.util.Random;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RandomGeneratorImpl implements RandomGenerator {
+public class RandomGeneratorImpl implements RandomGenerator{
 	
 	private Random r = new Random();
-	
+
 	@Override
 	public String generateSerial(int size) {
 		int range = (int)Math.pow(10, size);
@@ -24,4 +24,6 @@ public class RandomGeneratorImpl implements RandomGenerator {
 		String serial = f.format(number);
 		return serial;
 	}
+	
+	
 }
