@@ -11,7 +11,7 @@ import com.kh.spring18.repository.CertDao;
 
 @Service
 public class GmailService implements EmailService {
-
+	
 	@Autowired
 	private RandomGenerator randomGenerator;
 	
@@ -23,15 +23,15 @@ public class GmailService implements EmailService {
 
 	@Override
 	public void sendCertMail(String email) {
-		//목표 : (1)랜덤인증번호생성 -> (2)이메일발송 -> (3)데이터베이스 등록
+		//목표 : (1) 랜덤인증번호생성 -> (2) 이메일발송 -> (3) 데이터베이스 등록
 		
 		//(1)
 		String serial = randomGenerator.generateSerial(6);
-
+		
 		//(2)
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(email);
-		message.setSubject("[KH정보교육원] 이메일 인증번호입니다.");
+		message.setSubject("[KH정보교육원] 이메일 인증번호입니다");
 		message.setText("인증번호 : " + serial);
 		javaMailSender.send(message);
 		
@@ -40,7 +40,7 @@ public class GmailService implements EmailService {
 		CertDto certDto = CertDto.builder().who(email).serial(serial).build();
 		certDao.insert(certDto);
 	}
-
+	
 	@Override
 	public boolean checkCert(CertDto certDto) {
 		if(certDao.check(certDto)) {//인증 성공
@@ -49,4 +49,5 @@ public class GmailService implements EmailService {
 		}
 		return false;
 	}
+	
 }
