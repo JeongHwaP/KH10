@@ -2,6 +2,7 @@ package com.kh.spring18.configuration;
 
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,14 +12,17 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 @Configuration
 public class EmailConfiguration {
 
+	@Autowired
+	private EmailProperties emailProperties;
+	
 	//등록 메소드
 	@Bean
 	public JavaMailSender javaMailSender() {
 		JavaMailSenderImpl sender = new JavaMailSenderImpl();
-		sender.setHost("smtp.gmail.com");//이메일 전송 대행업체의 HOST
-		sender.setPort(587);//이메일 전송 대행업체의 PORT
-		sender.setUsername("pjm2329");//이메일 전송 대행업체 로그인 ID
-		sender.setPassword("wxrwcqhwocxvtyhu");//이메일 전송 대행업체 로그인 PW(앱 비밀번호)
+		sender.setHost(emailProperties.getHost());//이메일 전송 대행업체의 HOST
+		sender.setPort(emailProperties.getPort());//이메일 전송 대행업체의 PORT
+		sender.setUsername(emailProperties.getUsername());//이메일 전송 대행업체 로그인 ID
+		sender.setPassword(emailProperties.getPassword());//이메일 전송 대행업체 로그인 PW(앱 비밀번호)
 		
 		//추가 정보 설정
 		Properties props = new Properties();//Map<String, String> 형태의 저장소
