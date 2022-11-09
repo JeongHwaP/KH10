@@ -1,35 +1,28 @@
-package com.kh.spring18;
+package com.kh.spring18.service;
 
-import org.apache.ibatis.session.SqlSession;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
 
 import com.kh.spring18.component.RandomGenerator;
 import com.kh.spring18.entity.CertDto;
 import com.kh.spring18.repository.CertDao;
 
-@SpringBootTest
-public class CreateCertTest {
+@Service
+public class GmailService implements EmailService {
 
-	@Autowired
-	private SqlSession sqlSession;
-	
-	@Autowired
-	private JavaMailSender javaMailSender;
-	
 	@Autowired
 	private RandomGenerator randomGenerator;
 	
 	@Autowired
 	private CertDao certDao;
 	
-	String email = "pjm2329@gmail.com";//사용자가 입력할 정보
-	
-	@Test
-	public void test() {
+	@Autowired
+	private JavaMailSender javaMailSender;
+
+	@Override
+	public void sendCertMail(String email) {
 		//목표 : (1)랜덤인증번호생성 -> (2)이메일발송 -> (3)데이터베이스 등록
 		
 		//(1)
