@@ -30,14 +30,15 @@ public class MimeMessageTest2 {
 		//3.정보 설정
 		helper.setTo("pjm2329@gmail.com");
 		helper.setSubject("첨부파일 테스트");
-		helper.setText("첨부파일 확인해주세요.");
+		helper.setText("첨부파일 확인해주세요");
 		
-		//이메일 첨부는 DataSource라는 형태로 해야 한다.
-		File target = new File("D:\\study", "Team2Semi.drawio");
+		//이메일 첨부는 DataSource라는 형태로 해야 한다
+		File target = new File("D:\\study", "springhome.drawio");
 		DataSource source = new FileDataSource(target);
 		helper.addAttachment(target.getName(), source);
 		
 		//4.전송
 		javaMailSender.send(message);
 	}
+	
 }

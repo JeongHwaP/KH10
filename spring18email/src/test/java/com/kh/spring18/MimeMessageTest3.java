@@ -30,7 +30,7 @@ public class MimeMessageTest3 {
 																		message, false, "UTF-8");
 		
 		//3.정보 설정
-		helper.setTo("hwang8243@gmail.com");
+		helper.setTo("pjm2329@gmail.com");
 		helper.setSubject("HTML 템플릿 테스트");
 		
 		ClassPathResource resource = new ClassPathResource("email/template.html");
