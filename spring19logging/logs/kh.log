@@ -1,8 +1,0 @@
-2022-11-10 12:20:46.138 [INFO ] [com.kh.spring19.LoggingTest1] Starting LoggingTest1 using Java 17.0.4 on DESKTOP-EI3B66C with PID 10680 (started by user1 in D:\study\spring-workspace\spring19logging) 
-2022-11-10 12:20:46.143 [DEBUG] [com.kh.spring19.LoggingTest1] Running with Spring Boot v2.7.5, Spring v5.3.23 
-2022-11-10 12:20:46.144 [INFO ] [com.kh.spring19.LoggingTest1] No active profile set, falling back to 1 default profile: "default" 
-2022-11-10 12:20:48.843 [INFO ] [com.kh.spring19.LoggingTest1] Started LoggingTest1 in 3.013 seconds (JVM running for 3.839) 
-2022-11-10 12:20:49.269 [DEBUG] [com.kh.spring19.LoggingTest1] debug 메세지 
-2022-11-10 12:20:49.270 [INFO ] [com.kh.spring19.LoggingTest1] info 메세지 
-2022-11-10 12:20:49.270 [WARN ] [com.kh.spring19.LoggingTest1] warn 메세지 
-2022-11-10 12:20:49.270 [ERROR] [com.kh.spring19.LoggingTest1] error 메세지 
