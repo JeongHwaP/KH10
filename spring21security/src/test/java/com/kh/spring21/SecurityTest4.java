@@ -11,10 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SpringBootTest
 public class SecurityTest4 {
-	//목표 : spring-security-core에 있는 암호화 도구를 활용
-	// - StandardPasswordEncoder : SHA-256 방식의 암호화를 하는 도구
-	// - Pbkdf2PasswordEncoder : 의도적으로 단방향 암호화를 느리게 하는 도구
-	// - BCryptPasswordEncoder : 시간을 이용하여 매번 달라지는 암호화를 하는 도구
+//	목표 : spring-security-core에 있는 암호화 도구를 활용
+//	- StandardPasswordEncoder : SHA-256 방식의 암호화를 하는 도구
+//	- Pbkdf2PasswordEncoder : 의도적으로 단방향 암호화를 느리게 하는 도구
+//	- BCryptPasswordEncoder : 시간을 이용하여 매번 달라지는 암호화를 하는 도구
 	
 //	@Test
 	public void test() {
@@ -34,7 +34,7 @@ public class SecurityTest4 {
 		log.debug("encrypt = {}", encrypt);
 	}
 	
-	@Test
+//	@Test
 	public void test3() {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String origin = "hello everyone";
@@ -44,4 +44,5 @@ public class SecurityTest4 {
 		
 		log.debug("판정 = {}", encoder.matches(origin, encrypt));
 	}
+	
 }
