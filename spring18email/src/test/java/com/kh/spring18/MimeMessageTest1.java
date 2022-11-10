@@ -24,7 +24,7 @@ public class MimeMessageTest1 {
 		MimeMessageHelper helper = new MimeMessageHelper(message, false, "UTF-8");
 		
 		//3.정보 설정
-		helper.setTo("pjm2329@gmail.com");
+		helper.setTo("hwang8243@gmail.com");
 		helper.setSubject("마임메세지 테스트");
 		//helper.setText("<h1>안녕</h1>");
 		helper.setText("<h1>안녕</h1>", true);
@@ -32,4 +32,5 @@ public class MimeMessageTest1 {
 		//4.전송
 		javaMailSender.send(message);
 	}
+	
 }
