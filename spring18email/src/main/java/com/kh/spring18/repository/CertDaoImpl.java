@@ -34,5 +34,4 @@ public class CertDaoImpl implements CertDao {
 		sqlSession.delete("cert.clear");
 	}
 	
-	
 }
