@@ -1,0 +1,484 @@
+2022-11-10 14:13:42.405 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:13:42.405 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:13:42.405 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:13:44.62 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 1.926 seconds (JVM running for 2.459) 
+2022-11-10 14:41:06.712 [ERROR] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[jsp]] Servlet.service() for servlet [jsp] threw exception 
+org.apache.el.parser.ParseException: Encountered " <ILLEGAL_CHARACTER> "\uc774 "" at line 1, column 10.
+Was expecting:
+    <IDENTIFIER> ...
+    
+	at org.apache.el.parser.ELParser.generateParseException(ELParser.java:3897)
+	at org.apache.el.parser.ELParser.jj_consume_token(ELParser.java:3747)
+	at org.apache.el.parser.ELParser.DotSuffix(ELParser.java:1636)
+	at org.apache.el.parser.ELParser.ValueSuffix(ELParser.java:1603)
+	at org.apache.el.parser.ELParser.Value(ELParser.java:1538)
+	at org.apache.el.parser.ELParser.Unary(ELParser.java:1506)
+	at org.apache.el.parser.ELParser.Multiplication(ELParser.java:1219)
+	at org.apache.el.parser.ELParser.Math(ELParser.java:1124)
+	at org.apache.el.parser.ELParser.Concatenation(ELParser.java:1073)
+	at org.apache.el.parser.ELParser.Compare(ELParser.java:847)
+	at org.apache.el.parser.ELParser.Equality(ELParser.java:722)
+	at org.apache.el.parser.ELParser.And(ELParser.java:657)
+	at org.apache.el.parser.ELParser.Or(ELParser.java:592)
+	at org.apache.el.parser.ELParser.Choice(ELParser.java:543)
+	at org.apache.el.parser.ELParser.Assignment(ELParser.java:271)
+	at org.apache.el.parser.ELParser.Semicolon(ELParser.java:203)
+	at org.apache.el.parser.ELParser.Expression(ELParser.java:196)
+	at org.apache.el.parser.ELParser.DynamicExpression(ELParser.java:162)
+	at org.apache.el.parser.ELParser.CompositeExpression(ELParser.java:46)
+	at org.apache.el.lang.ExpressionBuilder.createNodeInternal(ExpressionBuilder.java:113)
+	at org.apache.el.lang.ExpressionBuilder.build(ExpressionBuilder.java:175)
+	at org.apache.el.lang.ExpressionBuilder.createValueExpression(ExpressionBuilder.java:239)
+	at org.apache.el.ExpressionFactoryImpl.createValueExpression(ExpressionFactoryImpl.java:66)
+	at org.apache.jasper.compiler.Validator$ValidateVisitor.prepareExpression(Validator.java:1642)
+	at org.apache.jasper.compiler.Validator$ValidateVisitor.visit(Validator.java:771)
+	at org.apache.jasper.compiler.Node$ELExpression.accept(Node.java:958)
+	at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2384)
+	at org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2436)
+	at org.apache.jasper.compiler.Node$Visitor.visit(Node.java:2442)
+	at org.apache.jasper.compiler.Node$Root.accept(Node.java:470)
+	at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2384)
+	at org.apache.jasper.compiler.Validator.validateExDirectives(Validator.java:1869)
+	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:224)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:391)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:367)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:351)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:399)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:379)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:327)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:711)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:459)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:385)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:313)
+	at org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:171)
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:316)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1405)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1149)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:670)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-11-10 14:41:06.713 [ERROR] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [org.apache.jasper.JasperException: javax.el.ELException: Failed to parse the expression [${cookie.이름.value}]] with root cause 
+org.apache.el.parser.ParseException: Encountered " <ILLEGAL_CHARACTER> "\uc774 "" at line 1, column 10.
+Was expecting:
+    <IDENTIFIER> ...
+    
+	at org.apache.el.parser.ELParser.generateParseException(ELParser.java:3897)
+	at org.apache.el.parser.ELParser.jj_consume_token(ELParser.java:3747)
+	at org.apache.el.parser.ELParser.DotSuffix(ELParser.java:1636)
+	at org.apache.el.parser.ELParser.ValueSuffix(ELParser.java:1603)
+	at org.apache.el.parser.ELParser.Value(ELParser.java:1538)
+	at org.apache.el.parser.ELParser.Unary(ELParser.java:1506)
+	at org.apache.el.parser.ELParser.Multiplication(ELParser.java:1219)
+	at org.apache.el.parser.ELParser.Math(ELParser.java:1124)
+	at org.apache.el.parser.ELParser.Concatenation(ELParser.java:1073)
+	at org.apache.el.parser.ELParser.Compare(ELParser.java:847)
+	at org.apache.el.parser.ELParser.Equality(ELParser.java:722)
+	at org.apache.el.parser.ELParser.And(ELParser.java:657)
+	at org.apache.el.parser.ELParser.Or(ELParser.java:592)
+	at org.apache.el.parser.ELParser.Choice(ELParser.java:543)
+	at org.apache.el.parser.ELParser.Assignment(ELParser.java:271)
+	at org.apache.el.parser.ELParser.Semicolon(ELParser.java:203)
+	at org.apache.el.parser.ELParser.Expression(ELParser.java:196)
+	at org.apache.el.parser.ELParser.DynamicExpression(ELParser.java:162)
+	at org.apache.el.parser.ELParser.CompositeExpression(ELParser.java:46)
+	at org.apache.el.lang.ExpressionBuilder.createNodeInternal(ExpressionBuilder.java:113)
+	at org.apache.el.lang.ExpressionBuilder.build(ExpressionBuilder.java:175)
+	at org.apache.el.lang.ExpressionBuilder.createValueExpression(ExpressionBuilder.java:239)
+	at org.apache.el.ExpressionFactoryImpl.createValueExpression(ExpressionFactoryImpl.java:66)
+	at org.apache.jasper.compiler.Validator$ValidateVisitor.prepareExpression(Validator.java:1642)
+	at org.apache.jasper.compiler.Validator$ValidateVisitor.visit(Validator.java:771)
+	at org.apache.jasper.compiler.Node$ELExpression.accept(Node.java:958)
+	at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2384)
+	at org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2436)
+	at org.apache.jasper.compiler.Node$Visitor.visit(Node.java:2442)
+	at org.apache.jasper.compiler.Node$Root.accept(Node.java:470)
+	at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2384)
+	at org.apache.jasper.compiler.Validator.validateExDirectives(Validator.java:1869)
+	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:224)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:391)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:367)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:351)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:399)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:379)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:327)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:711)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:459)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:385)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:313)
+	at org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:171)
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:316)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1405)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1149)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:670)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-11-10 14:48:33.535 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:48:33.536 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:48:33.536 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:48:33.966 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.452 seconds (JVM running for 2092.363) 
+2022-11-10 14:48:46.525 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:48:46.525 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:48:46.525 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:48:46.880 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.372 seconds (JVM running for 2105.277) 
+2022-11-10 14:49:22.834 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:49:22.834 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:49:22.834 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:49:23.185 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.367 seconds (JVM running for 2141.581) 
+2022-11-10 14:49:31.756 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:49:31.757 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:49:31.757 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:49:32.111 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.37 seconds (JVM running for 2150.508) 
+2022-11-10 14:49:40.748 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:49:40.748 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:49:40.748 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:49:41.77 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.343 seconds (JVM running for 2159.473) 
+2022-11-10 14:49:54.813 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:49:54.813 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:49:54.813 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:49:55.162 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.363 seconds (JVM running for 2173.559) 
+2022-11-10 14:50:02.720 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:50:02.720 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:50:02.720 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:50:03.61 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.355 seconds (JVM running for 2181.458) 
+2022-11-10 14:50:48.398 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:50:48.398 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:50:48.398 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:50:48.746 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.363 seconds (JVM running for 2227.143) 
+2022-11-10 14:51:12.538 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:51:12.538 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:51:12.538 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:51:12.893 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.37 seconds (JVM running for 2251.29) 
+2022-11-10 14:51:26.554 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:51:26.554 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:51:26.555 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:51:26.837 [ERROR] [org.springframework.boot.SpringApplication] Application run failed 
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'cookieTestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.kh.spring20.controller.CookieTestController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@66afd66c]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:289) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1302) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.23.jar:5.3.23]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.23.jar:5.3.23]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.5.jar:2.7.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-2.7.5.jar:2.7.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.5.jar:2.7.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) ~[spring-boot-2.7.5.jar:2.7.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-2.7.5.jar:2.7.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-2.7.5.jar:2.7.5]
+	at com.kh.spring20.Spring20cookieApplication.main(Spring20cookieApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.7.5.jar:2.7.5]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.kh.spring20.controller.CookieTestController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@66afd66c]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:485) ~[spring-core-5.3.23.jar:5.3.23]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:321) ~[spring-core-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:267) ~[spring-beans-5.3.23.jar:5.3.23]
+	... 23 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: HttpServletResponse
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3402) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2504) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:467) ~[spring-core-5.3.23.jar:5.3.23]
+	... 25 common frames omitted
+Caused by: java.lang.ClassNotFoundException: HttpServletResponse
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[na:na]
+	at java.base/java.lang.Class.forName0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.forName(Class.java:467) ~[na:na]
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:145) ~[spring-boot-devtools-2.7.5.jar:2.7.5]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[na:na]
+	... 29 common frames omitted
+2022-11-10 14:51:28.280 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:51:28.281 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:51:28.281 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:51:28.601 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.335 seconds (JVM running for 2266.998) 
+2022-11-10 14:51:38.249 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:51:38.249 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:51:38.249 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:51:38.574 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.338 seconds (JVM running for 2276.971) 
+2022-11-10 14:56:52.457 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:56:52.457 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:56:52.457 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:56:52.797 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.355 seconds (JVM running for 2591.194) 
+2022-11-10 14:57:14.572 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:57:14.572 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:57:14.573 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:57:14.907 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.349 seconds (JVM running for 2613.304) 
+2022-11-10 14:58:11.369 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:58:11.369 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:58:11.369 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:58:11.708 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.355 seconds (JVM running for 2670.105) 
+2022-11-10 14:58:25.372 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:58:25.372 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:58:25.372 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:58:25.750 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.395 seconds (JVM running for 2684.147) 
+2022-11-10 14:58:31.283 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:58:31.283 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:58:31.283 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:58:31.656 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.388 seconds (JVM running for 2690.053) 
+2022-11-10 14:58:36.179 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:58:36.179 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:58:36.180 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:58:36.502 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.335 seconds (JVM running for 2694.898) 
+2022-11-10 14:59:01.366 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:59:01.367 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:59:01.367 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:59:01.723 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.37 seconds (JVM running for 2720.12) 
+2022-11-10 14:59:06.298 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:59:06.298 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:59:06.298 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:59:06.624 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.341 seconds (JVM running for 2725.021) 
+2022-11-10 14:59:49.734 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 14:59:49.735 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 14:59:49.735 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 14:59:50.75 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.356 seconds (JVM running for 2768.472) 
+2022-11-10 15:00:09.856 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:00:09.856 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:00:09.856 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:00:10.189 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.347 seconds (JVM running for 2788.585) 
+2022-11-10 15:01:28.269 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:01:28.269 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:01:28.269 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:01:28.595 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.341 seconds (JVM running for 2866.992) 
+2022-11-10 15:02:09.770 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:02:09.770 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:02:09.770 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:02:10.98 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.342 seconds (JVM running for 2908.494) 
+2022-11-10 15:02:37.972 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:02:37.972 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:02:37.972 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:02:38.296 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.337 seconds (JVM running for 2936.693) 
+2022-11-10 15:03:04.197 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:03:04.197 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:03:04.197 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:03:04.536 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.354 seconds (JVM running for 2962.933) 
+2022-11-10 15:03:39.658 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:03:39.658 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:03:39.658 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:03:39.971 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.327 seconds (JVM running for 2998.368) 
+2022-11-10 15:12:28.952 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:12:28.952 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:12:28.952 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:12:29.267 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.329 seconds (JVM running for 3527.664) 
+2022-11-10 15:13:12.454 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:13:12.454 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:13:12.454 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:13:12.779 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.339 seconds (JVM running for 3571.176) 
+2022-11-10 15:13:15.255 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:13:15.255 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:13:15.255 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:13:15.585 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.343 seconds (JVM running for 3573.982) 
+2022-11-10 15:14:02.807 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:14:02.807 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:14:02.807 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:14:03.135 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.342 seconds (JVM running for 3621.532) 
+2022-11-10 15:14:56.486 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:14:56.486 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:14:56.486 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:14:56.800 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.326 seconds (JVM running for 3675.197) 
+2022-11-10 15:15:16.589 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:15:16.589 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:15:16.589 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:15:16.909 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.334 seconds (JVM running for 3695.306) 
+2022-11-10 15:15:25.488 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:15:25.488 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:15:25.488 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:15:25.812 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.337 seconds (JVM running for 3704.209) 
+2022-11-10 15:17:17.793 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:17:17.794 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:17:17.794 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:17:18.119 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.339 seconds (JVM running for 3816.515) 
+2022-11-10 15:17:36.672 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:17:36.672 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:17:36.672 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:17:36.983 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.324 seconds (JVM running for 3835.38) 
+2022-11-10 15:17:40.446 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:17:40.446 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:17:40.446 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:17:40.766 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.331 seconds (JVM running for 3839.163) 
+2022-11-10 15:18:13.125 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:18:13.125 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:18:13.125 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:18:13.436 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.323 seconds (JVM running for 3871.833) 
+2022-11-10 15:18:24.60 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:18:24.61 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:18:24.61 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:18:24.313 [ERROR] [org.springframework.boot.SpringApplication] Application run failed 
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'cookieTestController' defined in file [C:\Users\user1\git2\KH10\spring20cookie\target\classes\com\kh\spring20\controller\CookieTestController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.kh.spring20.controller.CookieTestController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	Syntax error, insert "enum Identifier" to complete EnumHeader
+	Syntax error, insert "EnumBody" to complete EnumDeclaration
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1334) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.23.jar:5.3.23]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.23.jar:5.3.23]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.5.jar:2.7.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-2.7.5.jar:2.7.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.5.jar:2.7.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) ~[spring-boot-2.7.5.jar:2.7.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-2.7.5.jar:2.7.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-2.7.5.jar:2.7.5]
+	at com.kh.spring20.Spring20cookieApplication.main(Spring20cookieApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.7.5.jar:2.7.5]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.kh.spring20.controller.CookieTestController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	Syntax error, insert "enum Identifier" to complete EnumHeader
+	Syntax error, insert "EnumBody" to complete EnumDeclaration
+
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:224) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1326) ~[spring-beans-5.3.23.jar:5.3.23]
+	... 22 common frames omitted
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	Syntax error, insert "enum Identifier" to complete EnumHeader
+	Syntax error, insert "EnumBody" to complete EnumDeclaration
+
+	at com.kh.spring20.controller.CookieTestController.<init>(CookieTestController.java:59) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[na:na]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211) ~[spring-beans-5.3.23.jar:5.3.23]
+	... 24 common frames omitted
+2022-11-10 15:18:48.76 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:18:48.76 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:18:48.76 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:18:48.404 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.341 seconds (JVM running for 3906.8) 
+2022-11-10 15:19:04.156 [INFO ] [com.kh.spring20.Spring20cookieApplication] Starting Spring20cookieApplication using Java 17.0.4 on DESKTOP-EI3B66C with PID 6572 (C:\Users\user1\git2\KH10\spring20cookie\target\classes started by user1 in C:\Users\user1\git2\KH10\spring20cookie) 
+2022-11-10 15:19:04.157 [DEBUG] [com.kh.spring20.Spring20cookieApplication] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 15:19:04.157 [INFO ] [com.kh.spring20.Spring20cookieApplication] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 15:19:04.478 [INFO ] [com.kh.spring20.Spring20cookieApplication] Started Spring20cookieApplication in 0.336 seconds (JVM running for 3922.875) 
