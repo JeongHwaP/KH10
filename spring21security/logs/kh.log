@@ -1,0 +1,50 @@
+2022-11-10 16:39:27.715 [INFO ] [com.kh.spring21.SecurityTest3] Starting SecurityTest3 using Java 17.0.4 on DESKTOP-EI3B66C with PID 10608 (started by user1 in C:\Users\user1\git2\KH10\spring21security) 
+2022-11-10 16:39:27.716 [DEBUG] [com.kh.spring21.SecurityTest3] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 16:39:27.716 [INFO ] [com.kh.spring21.SecurityTest3] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 16:39:29.865 [INFO ] [com.kh.spring21.SecurityTest3] Started SecurityTest3 in 2.464 seconds (JVM running for 3.259) 
+2022-11-10 16:39:30.326 [DEBUG] [com.kh.spring21.SecurityTest3] value = 5 
+2022-11-10 16:39:42.494 [INFO ] [com.kh.spring21.SecurityTest3] Starting SecurityTest3 using Java 17.0.4 on DESKTOP-EI3B66C with PID 7472 (started by user1 in C:\Users\user1\git2\KH10\spring21security) 
+2022-11-10 16:39:42.495 [DEBUG] [com.kh.spring21.SecurityTest3] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 16:39:42.495 [INFO ] [com.kh.spring21.SecurityTest3] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 16:39:44.626 [INFO ] [com.kh.spring21.SecurityTest3] Started SecurityTest3 in 2.441 seconds (JVM running for 3.251) 
+2022-11-10 16:39:45.26 [DEBUG] [com.kh.spring21.SecurityTest3] value = 5 
+2022-11-10 16:42:49.465 [INFO ] [com.kh.spring21.SecurityTest3] Starting SecurityTest3 using Java 17.0.4 on DESKTOP-EI3B66C with PID 7832 (started by user1 in C:\Users\user1\git2\KH10\spring21security) 
+2022-11-10 16:42:49.466 [DEBUG] [com.kh.spring21.SecurityTest3] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 16:42:49.466 [INFO ] [com.kh.spring21.SecurityTest3] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 16:42:51.455 [INFO ] [com.kh.spring21.SecurityTest3] Started SecurityTest3 in 2.282 seconds (JVM running for 3.155) 
+2022-11-10 16:42:51.852 [DEBUG] [com.kh.spring21.SecurityTest3] value = 28892241 
+2022-11-10 17:00:14.969 [INFO ] [com.kh.spring21.SecurityTest4] Starting SecurityTest4 using Java 17.0.4 on DESKTOP-EI3B66C with PID 10768 (started by user1 in C:\Users\user1\git2\KH10\spring21security) 
+2022-11-10 17:00:14.970 [DEBUG] [com.kh.spring21.SecurityTest4] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 17:00:14.971 [INFO ] [com.kh.spring21.SecurityTest4] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 17:00:17.286 [INFO ] [com.kh.spring21.SecurityTest4] Started SecurityTest4 in 2.627 seconds (JVM running for 3.472) 
+2022-11-10 17:00:18.183 [DEBUG] [com.kh.spring21.SecurityTest4] origin = hello everyone 
+2022-11-10 17:00:18.184 [DEBUG] [com.kh.spring21.SecurityTest4] encrypt = faabe46acc9a0ce5f6fb92a9fd3a9bd433f3562278c7873da110485b2417b51be9204bfd92ad7e6b 
+2022-11-10 17:05:34.664 [INFO ] [com.kh.spring21.SecurityTest4] Starting SecurityTest4 using Java 17.0.4 on DESKTOP-EI3B66C with PID 6472 (started by user1 in C:\Users\user1\git2\KH10\spring21security) 
+2022-11-10 17:05:34.665 [DEBUG] [com.kh.spring21.SecurityTest4] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 17:05:34.665 [INFO ] [com.kh.spring21.SecurityTest4] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 17:05:36.784 [INFO ] [com.kh.spring21.SecurityTest4] Started SecurityTest4 in 2.44 seconds (JVM running for 3.249) 
+2022-11-10 17:05:37.249 [DEBUG] [com.kh.spring21.SecurityTest4] origin = hello everyone 
+2022-11-10 17:05:37.250 [DEBUG] [com.kh.spring21.SecurityTest4] encrypt = $2a$10$WgB1zJtxU6Q47UNaCxT2vOJZiQx7vUaEPTq1hMZ4Yddihp5A3j/tC 
+2022-11-10 17:05:43.460 [INFO ] [com.kh.spring21.SecurityTest4] Starting SecurityTest4 using Java 17.0.4 on DESKTOP-EI3B66C with PID 7984 (started by user1 in C:\Users\user1\git2\KH10\spring21security) 
+2022-11-10 17:05:43.462 [DEBUG] [com.kh.spring21.SecurityTest4] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 17:05:43.462 [INFO ] [com.kh.spring21.SecurityTest4] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 17:05:45.652 [INFO ] [com.kh.spring21.SecurityTest4] Started SecurityTest4 in 2.495 seconds (JVM running for 3.284) 
+2022-11-10 17:05:46.179 [DEBUG] [com.kh.spring21.SecurityTest4] origin = hello everyone 
+2022-11-10 17:05:46.181 [DEBUG] [com.kh.spring21.SecurityTest4] encrypt = $2a$10$tHItPxgsgepNB/6xSP78PeX1oLDtikjRFMuCsUe2eaFUBiAFNFpdC 
+2022-11-10 17:05:50.915 [INFO ] [com.kh.spring21.SecurityTest4] Starting SecurityTest4 using Java 17.0.4 on DESKTOP-EI3B66C with PID 7192 (started by user1 in C:\Users\user1\git2\KH10\spring21security) 
+2022-11-10 17:05:50.916 [DEBUG] [com.kh.spring21.SecurityTest4] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 17:05:50.916 [INFO ] [com.kh.spring21.SecurityTest4] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 17:05:53.159 [INFO ] [com.kh.spring21.SecurityTest4] Started SecurityTest4 in 2.561 seconds (JVM running for 3.373) 
+2022-11-10 17:05:53.668 [DEBUG] [com.kh.spring21.SecurityTest4] origin = hello everyone 
+2022-11-10 17:05:53.669 [DEBUG] [com.kh.spring21.SecurityTest4] encrypt = $2a$10$Fh0mZX1CzGE/MSzC8kbriu0PH94r3F8OIOwX8FcJxApNCtGEUIwLG 
+2022-11-10 17:09:22.810 [INFO ] [com.kh.spring21.SecurityTest4] Starting SecurityTest4 using Java 17.0.4 on DESKTOP-EI3B66C with PID 1392 (started by user1 in C:\Users\user1\git2\KH10\spring21security) 
+2022-11-10 17:09:22.810 [DEBUG] [com.kh.spring21.SecurityTest4] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 17:09:22.811 [INFO ] [com.kh.spring21.SecurityTest4] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 17:09:25.49 [INFO ] [com.kh.spring21.SecurityTest4] Started SecurityTest4 in 2.562 seconds (JVM running for 3.362) 
+2022-11-10 17:09:25.504 [DEBUG] [com.kh.spring21.SecurityTest4] origin = hello everyone 
+2022-11-10 17:09:25.506 [DEBUG] [com.kh.spring21.SecurityTest4] encrypt = $2a$10$0yP5OtP6q9Q5an.XXXJ3hOU2lweUV2RhYs23UJS5IqJ1nW4NobDyO 
+2022-11-10 17:09:25.563 [DEBUG] [com.kh.spring21.SecurityTest4] 판정 = true 
+2022-11-10 17:53:55.23 [INFO ] [com.kh.spring21.SecurityTest5] Starting SecurityTest5 using Java 17.0.4 on DESKTOP-EI3B66C with PID 10700 (started by user1 in C:\Users\user1\git2\KH10\spring21security) 
+2022-11-10 17:53:55.24 [DEBUG] [com.kh.spring21.SecurityTest5] Running with Spring Boot v2.7.5, Spring v5.3.23 
+2022-11-10 17:53:55.25 [INFO ] [com.kh.spring21.SecurityTest5] No active profile set, falling back to 1 default profile: "default" 
+2022-11-10 17:53:57.361 [INFO ] [com.kh.spring21.SecurityTest5] Started SecurityTest5 in 2.656 seconds (JVM running for 3.482) 
