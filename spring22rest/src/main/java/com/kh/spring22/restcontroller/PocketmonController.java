@@ -16,6 +16,11 @@ import com.kh.spring22.entity.PocketMonsterDto;
 import com.kh.spring22.repository.PocketMonsterDao;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -28,10 +33,25 @@ public class PocketmonController {
 	private PocketMonsterDao dao;
 	
 	@Operation(
-		summary = "포켓몬 목록",
+		description = "포켓몬 목록",
 		responses = {
-			@ApiResponse(responseCode = "200", description = "OK"),
-			@ApiResponse(responseCode = "500", description = "ERROR")
+			@ApiResponse(
+				responseCode = "200", 
+				content = @Content(
+					mediaType = "application/json",
+					array = @ArraySchema(schema = @Schema(implementation = PocketMonsterDto.class))
+				)
+			),
+			@ApiResponse(
+				responseCode = "500", 
+				content = @Content(
+					mediaType = "text/plain",
+					schema = @Schema(implementation = String.class),
+					examples = {
+						@ExampleObject(value="server error")
+					}
+				)
+			)
 		}
 	)
 	@GetMapping("/pocketmon")
@@ -40,54 +60,150 @@ public class PocketmonController {
 	}
 	
 	@Operation(
-			summary = "포켓몬 상세",
-			responses = {
-				@ApiResponse(responseCode = "200", description = "OK"),
-				@ApiResponse(responseCode = "404", description = "Not found"),
-				@ApiResponse(responseCode = "500", description = "ERROR")
-			}
-		)
+		description = "포켓몬 상세",
+		responses = {
+			@ApiResponse(
+				responseCode = "200", 
+				content = @Content(
+					mediaType = "application/json",
+					array = @ArraySchema(schema = @Schema(implementation = PocketMonsterDto.class))
+				)
+			),
+			@ApiResponse(
+				responseCode = "404", 
+				content = @Content(
+					mediaType = "text/plain",
+					schema = @Schema(implementation = String.class),
+					examples = {
+						@ExampleObject(value="not found")
+					}
+				)
+			),
+			@ApiResponse(
+				responseCode = "500", 
+				content = @Content(
+					mediaType = "text/plain",
+					schema = @Schema(implementation = String.class),
+					examples = {
+						@ExampleObject(value="server error")
+					}
+				)
+			)
+		}
+	)
 	@GetMapping("/pocketmon/{no}")
-	public PocketMonsterDto find(@PathVariable int no) {
+	public PocketMonsterDto find(
+			@Parameter(description = "포켓몬 번호")
+			@PathVariable int no) {
 		return dao.find(no);
 	}
 	
 	@Operation(
-			summary = "포켓몬 등록",
-			responses = {
-				@ApiResponse(responseCode = "200", description = "OK"),
-				@ApiResponse(responseCode = "500", description = "ERROR")
-			}
-		)
+		description = "포켓몬 등록",
+		responses = {
+			@ApiResponse(responseCode = "200"),
+			@ApiResponse(
+				responseCode = "500", 
+				content = @Content(
+					mediaType = "text/plain",
+					schema = @Schema(implementation = String.class),
+					examples = {
+						@ExampleObject(value="server error")
+					}
+				)
+			)
+		}
+	)
 	@PostMapping("/pocketmon")
 	public void insert(@RequestBody PocketMonsterDto dto) {
 		dao.insert(dto);
 	}
 	
 	@Operation(
-		summary = "포켓몬 수정",
+		description = "포켓몬 수정",
 		responses = {
-			@ApiResponse(responseCode = "200", description = "OK"),
-			@ApiResponse(responseCode = "404", description = "Not found"),
-			@ApiResponse(responseCode = "500", description = "ERROR")
+			@ApiResponse(
+				responseCode = "200", 
+				content = @Content(
+					mediaType = "text/plain",
+					schema = @Schema(implementation = Boolean.class),
+					examples = {
+						@ExampleObject(value = "true")
+					}
+				)
+			),
+			@ApiResponse(
+				responseCode = "404", 
+				content = @Content(
+					mediaType = "text/plain",
+					schema = @Schema(implementation = String.class),
+					examples = {
+						@ExampleObject(value="not found")
+					}
+				)
+			),
+			@ApiResponse(
+				responseCode = "500", 
+				content = @Content(
+					mediaType = "text/plain",
+					schema = @Schema(implementation = String.class),
+					examples = {
+						@ExampleObject(value="server error")
+					}
+				)
+			)
 		}
 	)
 	//PUT 방식은 POST 처럼 데이터를 Body에 전송할 수 있는 방식
 	@PutMapping("/pocketmon")
-	public boolean edit(@RequestBody PocketMonsterDto dto) {
+	public boolean edit(
+			@Parameter(
+				description = "수정할 정보가 담긴 객체",
+				schema = @Schema(implementation = PocketMonsterDto.class)
+			)
+			@RequestBody PocketMonsterDto dto) {
 		return dao.edit(dto);
 	}
 	
 	@Operation(
-		summary = "포켓몬 삭제",
+		description = "포켓몬 삭제",
 		responses = {
-			@ApiResponse(responseCode = "200", description = "OK"),
-			@ApiResponse(responseCode = "404", description = "Not found"),
-			@ApiResponse(responseCode = "500", description = "ERROR")
+			@ApiResponse(
+				responseCode = "200", 
+				content = @Content(
+					mediaType = "text/plain",
+					schema = @Schema(implementation = Boolean.class),
+					examples = {
+						@ExampleObject(value = "true")
+					}
+				)
+			),
+			@ApiResponse(
+				responseCode = "404", 
+				content = @Content(
+					mediaType = "text/plain",
+					schema = @Schema(implementation = String.class),
+					examples = {
+						@ExampleObject(value="not found")
+					}
+				)
+			),
+			@ApiResponse(
+				responseCode = "500", 
+				content = @Content(
+					mediaType = "text/plain",
+					schema = @Schema(implementation = String.class),
+					examples = {
+						@ExampleObject(value="server error")
+					}
+				)
+			)
 		}
 	)
 	@DeleteMapping("/pocketmon/{no}")
-	public boolean delete(@PathVariable int no) {
+	public boolean delete(
+			@Parameter(description = "포켓몬 번호")
+			@PathVariable int no) {
 		return dao.delete(no);
 	}
 }
