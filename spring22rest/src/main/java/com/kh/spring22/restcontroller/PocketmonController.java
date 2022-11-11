@@ -3,7 +3,12 @@ package com.kh.spring22.restcontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +27,19 @@ public class PocketmonController {
 		return dao.list();
 	}
 	
-//	@PostMapping("/pocketmon")
-//	@PutMapping("/pocketmon")
-//	@DeleteMapping("/pocketmon")
+	@PostMapping("/pocketmon")
+	public void insert(@RequestBody PocketMonsterDto dto) {
+		dao.insert(dto);
+	}
+	
+	//PUT 방식은 POST처럼 데이터를 Body에 전송할 수 있는 방식
+	@PutMapping("/pocketmon")
+	public boolean edit(@RequestBody PocketMonsterDto dto) {
+		return dao.edit(dto);
+	}
+	
+	@DeleteMapping("/pocketmon")
+	public boolean delete(@PathVariable int no) {
+		return dao.delete(no);
+	}
 }

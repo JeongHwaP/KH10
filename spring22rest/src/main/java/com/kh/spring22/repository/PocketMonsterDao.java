@@ -6,4 +6,7 @@ import com.kh.spring22.entity.PocketMonsterDto;
 
 public interface PocketMonsterDao {
 	List<PocketMonsterDto> list();
+	void insert(PocketMonsterDto dto);
+	boolean edit(PocketMonsterDto dto);
+	boolean delete(int no);
 }

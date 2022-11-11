@@ -18,5 +18,22 @@ public class PocketMonsterDaoImpl implements PocketMonsterDao {
 	public List<PocketMonsterDto> list() {
 		return sqlSession.selectList("pocketmon.list");
 	}
+
+	@Override
+	public void insert(PocketMonsterDto dto) {
+		sqlSession.insert("pocketmon.insert", dto);
+	}
+
+	@Override
+	public boolean edit(PocketMonsterDto dto) {
+		int count = sqlSession.update("pocketmon.edit", dto);
+		return count > 0;
+	}
+
+	@Override
+	public boolean delete(int no) {
+		int count = sqlSession.delete("pocketmon.delete", no);
+		return count > 0;
+	}
 	
 }
