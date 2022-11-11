@@ -27,6 +27,11 @@ public class PocketmonController {
 		return dao.list();
 	}
 	
+	@GetMapping("/pocketmon/{no}")
+	public PocketMonsterDto find(@PathVariable int no) {
+		return dao.find(no);
+	}
+	
 	@PostMapping("/pocketmon")
 	public void insert(@RequestBody PocketMonsterDto dto) {
 		dao.insert(dto);

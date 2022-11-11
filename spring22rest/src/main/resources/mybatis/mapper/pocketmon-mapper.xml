@@ -23,4 +23,8 @@
 		delete pocket_monster where no = #{no}
 	</delete>
 	
+	<select id="get" parameterType="int" resultType="PocketMonsterDto">
+		select * from pocket_monster where no = #{no}
+	</select>
+	
 </mapper>

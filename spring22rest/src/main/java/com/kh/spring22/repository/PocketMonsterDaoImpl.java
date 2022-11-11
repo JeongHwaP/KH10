@@ -35,5 +35,10 @@ public class PocketMonsterDaoImpl implements PocketMonsterDao {
 		int count = sqlSession.delete("pocketmon.delete", no);
 		return count > 0;
 	}
+
+	@Override
+	public PocketMonsterDto find(int no) {
+		return sqlSession.selectOne("pocketmon.get", no);
+	}
 	
 }

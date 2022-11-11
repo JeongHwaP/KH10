@@ -9,4 +9,5 @@ public interface PocketMonsterDao {
 	void insert(PocketMonsterDto dto);
 	boolean edit(PocketMonsterDto dto);
 	boolean delete(int no);
+	PocketMonsterDto find(int no);
 }
