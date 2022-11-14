@@ -16,24 +16,33 @@ import com.kh.spring23.vo.MessageVO;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- *	JSON Message를 주고받는 서버
+ *	웹소켓의 문제점
+ *	- 구버전 브라우저 미지원
+ *	- 주소가 ws 혹은 wss로 시작 
+ *
+ *	해결할 수 있는 기술 
+ *	- sockJS, socket.io 등
+ *	- 구버전 브라우저는 풀링 혹은 롱풀링 방식으로 해결
+ *	- 주소를 http 또는 https로 시작하도록 해줌
+ *
+ *	적용방식
+ *	- 서버 등록시 SockJS를 사용하겠다고 선언
+ *	- 클라이언트 코드를 sockJS로 구현
  */
 @Slf4j
 @Service
-public class JsonWebsocketServer extends TextWebSocketHandler{
-	//사용자 저장소
+public class SockJSWebsocketServer extends TextWebSocketHandler{
+	
 	private Set<WebSocketSession> users = new CopyOnWriteArraySet<>();
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		users.add(session);
 	}
-	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		users.remove(session);
 	}
-	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		log.debug("메세지 - {}", message.getPayload());

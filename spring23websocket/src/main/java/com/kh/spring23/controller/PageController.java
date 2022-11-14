@@ -31,4 +31,9 @@ public class PageController {
 		return "json";
 	}
 	
+	@GetMapping("/sockjs")
+	public String sockjs() {
+		return "sockjs";
+	}
+	
 }

@@ -1,4 +1,4 @@
-package com.kh.spring23.websocket.vo;
+package com.kh.spring23.vo;
 //서버에서 클라이언트와 소통하기 위한 JSON 처리용 VO
 
 import java.util.Date;
