@@ -6,7 +6,8 @@
 <hr>
 <input type="text" id="message-input">
 <button type="button" id="message-send">전송</button>
-
+<hr>
+<div id="message-list"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
@@ -40,8 +41,11 @@
 				//console.log("error");
 				disconnectState();
 			};
-			socket.onmessage = function(){
-				console.log("message");
+			socket.onmessage = function(e){
+				//console.log("message");
+				//console.log(arguments);//모든 매개변수 목록을 배열로 반환
+				//console.log(e.data);
+				$("<p>").text(e.data).appendTo("#message-list");
 			};
 			
 			
