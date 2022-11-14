@@ -9,6 +9,7 @@
 <hr>
 <div id="message-list"></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
 	$(function(){
@@ -42,12 +43,16 @@
 				disconnectState();
 			};
 			socket.onmessage = function(e){
-				//console.log("message");
-				//console.log(arguments);//모든 매개변수 목록을 배열로 반환
-				//console.log(e.data);
-				$("<p>").text(e.data).appendTo("#message-list");
+				//수신된 e.data는 JSON 문자열
+				var data = JSON.parse(e.data);
+				//console.log(data);
+				
+				var p = $("<p>").text(data.text);
+				var time = moment(data.time).format("YYYY-MM-DD hh:mm");
+				var span = $("<span>").text("("+time+")");
+				p.append(span);
+				$("#message-list").append(p);
 			};
-			
 			
 		});
 		
@@ -64,6 +69,9 @@
 			var text = $("#message-input").val();
 			if(text.length == 0) return;
 			
+			//JSON으로 변환해서 전송
+			//- JSON.stringify(객체) : 객체를 문자열로
+			//- JSON.parse(문자열) : 문자열을 객체로
 			var data = {
 				text : text
 			};
