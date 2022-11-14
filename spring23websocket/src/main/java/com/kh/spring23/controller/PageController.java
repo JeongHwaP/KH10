@@ -20,4 +20,10 @@ public class PageController {
 	public String multiple() {
 		return "multiple";
 	}
+	
+	@GetMapping("/message")
+	public String message() {
+		return "message";
+	}
+	
 }
