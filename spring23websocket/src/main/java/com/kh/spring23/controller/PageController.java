@@ -26,4 +26,9 @@ public class PageController {
 		return "message";
 	}
 	
+	@GetMapping("/json")
+	public String json() {
+		return "json";
+	}
+	
 }
