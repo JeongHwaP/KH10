@@ -22,10 +22,10 @@ import lombok.extern.slf4j.Slf4j;
 public class BasicWebsocketServer extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		log.debug("사용자 접속");
+		log.debug("사용자 접속 : {}", session);
 	}
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		log.debug("사용자 종료");
+		log.debug("사용자 종료 : {}", session);
 	}	
 }
