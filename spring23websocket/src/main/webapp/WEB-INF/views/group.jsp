@@ -39,7 +39,12 @@
 		// - 웹소켓 객체가 기본 제공하는 4가지 이벤트를 설정해서 처리
 		//console.log(socket);
 		socket.onopen = function(){
-			//console.log("open");
+			//접속하자마자 서버로 입장메세지를 보내야 한다
+			var data = {
+				type:1,
+				room:"${room}"
+			};
+			socket.send(JSON.stringify(data));
 		};
 		socket.onclose = function(){
 			//console.log("close");
@@ -80,6 +85,7 @@
 			//- JSON.stringify(객체) : 객체를 문자열로
 			//- JSON.parse(문자열) : 문자열을 객체로
 			var data = {
+				type : 2,
 				text : text
 			};
 			socket.send(JSON.stringify(data));

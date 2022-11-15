@@ -8,6 +8,9 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.spring23.vo.ReceiveVO;
+import com.kh.spring23.vo.channel.Channel;
 import com.kh.spring23.vo.channel.Room;
 import com.kh.spring23.vo.channel.User;
 
@@ -23,6 +26,9 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberGroupChatServer extends TextWebSocketHandler{
 	//대기실
 	private Room waitingRoom = new Room();
+	
+	//채널
+	private Channel channel = new Channel();
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -49,10 +55,39 @@ public class MemberGroupChatServer extends TextWebSocketHandler{
 								.session(session)
 								.build();
 		waitingRoom.leave(user);
+		//채널에서 사용자 삭제
 		log.debug("사용자 퇴장");
 	}
+	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-
+		//서버에서는... 사용자 정보를 꺼낸 뒤 메세지를 종류별로 구분해서 처리
+		Map<String, Object> attr = session.getAttributes();
+		User user = User.builder()
+								.memberId((String)attr.get("loginId"))
+								.memberNick((String)attr.get("loginNick"))
+								.memberGrade((String)attr.get("loginAuth"))
+								.session(session)
+								.build();
+		
+		//메세지 해석
+		ObjectMapper mapper = new ObjectMapper();
+		ReceiveVO receiveVO = mapper.readValue(
+								message.getPayload(), ReceiveVO.class);
+		log.debug("receiveVO = {}", receiveVO);
+		
+		if(receiveVO.getType() == 1) {
+			//사용자가 입장하려고 하는 경우(방이름을 사용자가 보냄)
+			//- 대기실에서 사용자를 제거한다
+			waitingRoom.leave(user);
+			//- 해당하는 방에 사용자(user)를 입장시킨다
+			channel.join(user, receiveVO.getRoom());
+			log.debug("{} 방에 {} 입장", receiveVO.getRoom(), user.getMemberId());
+		}
+		else if(receiveVO.getType() == 2) {
+			//사용자가 채팅을 보내는 경우(채팅내용을 사용자가 보냄)
+			//- 이 사용자가 있는 방을 찾아야 한다
+			//- 해당하는 방의 모든 사용자에게 메세지를 전송
+		}
 	}
 }
