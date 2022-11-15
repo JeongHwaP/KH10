@@ -1,5 +1,6 @@
 package com.kh.spring23.websocket;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.spring23.vo.MessageVO;
 import com.kh.spring23.vo.ReceiveVO;
 import com.kh.spring23.vo.channel.Channel;
 import com.kh.spring23.vo.channel.Room;
@@ -54,9 +56,9 @@ public class MemberGroupChatServer extends TextWebSocketHandler{
 								.memberGrade((String)attr.get("loginAuth"))
 								.session(session)
 								.build();
-		waitingRoom.leave(user);
-		//채널에서 사용자 삭제
-		log.debug("사용자 퇴장");
+		waitingRoom.leave(user);//대기실에서 사용자 삭제
+		channel.exit(user);//채널에서 사용자 삭제
+		log.debug("사용자 퇴장 - {}", user.getMemberId());
 	}
 	
 	@Override
@@ -86,8 +88,18 @@ public class MemberGroupChatServer extends TextWebSocketHandler{
 		}
 		else if(receiveVO.getType() == 2) {
 			//사용자가 채팅을 보내는 경우(채팅내용을 사용자가 보냄)
-			//- 이 사용자가 있는 방을 찾아야 한다
 			//- 해당하는 방의 모든 사용자에게 메세지를 전송
+			
+			MessageVO vo = MessageVO.builder()
+												.id(user.getMemberId())
+												.nickname(user.getMemberNick())
+												.auth(user.getMemberGrade())
+												.text(receiveVO.getText())
+												.time(new Date())
+											.build();
+			String json = mapper.writeValueAsString(vo);
+			TextMessage msg = new TextMessage(json);
+			channel.send(user, msg);
 		}
 	}
 }

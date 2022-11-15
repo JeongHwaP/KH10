@@ -39,5 +39,5 @@ public class Room {
 	}
 	public int size() {
 		return users.size();
-	}
+	} 
 }
