@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties//이걸 추가해야 데이터가 없어도 변환해준다
 @Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class MessageVO {
+	private String id;
+	private String nickname;
+	private String auth;
 	private String text;//클라이언트가 보내는 정보
 	private Date time;//서버가 추가해야할 정보
-} 
+}

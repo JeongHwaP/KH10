@@ -28,20 +28,21 @@ public class PageController {
 	private SqlSession sqlSession;
 	
 	@PostMapping("/login")
-	public String login(@ModelAttribute MemberDto memberDto, 
+	public String login(@ModelAttribute MemberDto memberDto,
 			HttpSession session) {
-		MemberDto findDto = sqlSession.selectOne("member.get", memberDto.getMemberId());
+		MemberDto findDto = sqlSession.selectOne(
+					"member.get", memberDto.getMemberId());
 		if(findDto == null) return "redirect:home";
 		
-		boolean judge = memberDto.getMemberPw().equals(findDto.getMemberPw());
+		boolean judge = memberDto.getMemberPw()
+											.equals(findDto.getMemberPw());
 		if(judge) {
 			session.setAttribute("loginId", findDto.getMemberId());
 			session.setAttribute("loginNick", findDto.getMemberNick());
 			session.setAttribute("loginAuth", findDto.getMemberGrade());
 		}
-			return "redirect:home";
+		return "redirect:home";
 	}
-
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -71,6 +72,11 @@ public class PageController {
 	@GetMapping("/sockjs")
 	public String sockjs() {
 		return "sockjs";
+	}
+	
+	@GetMapping("/member")
+	public String member() {
+		return "member";
 	}
 	
 }
