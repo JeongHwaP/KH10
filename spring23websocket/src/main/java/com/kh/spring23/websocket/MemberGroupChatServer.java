@@ -102,4 +102,6 @@ public class MemberGroupChatServer extends TextWebSocketHandler{
 			channel.send(user, msg);
 		}
 	}
+	
 }
+
