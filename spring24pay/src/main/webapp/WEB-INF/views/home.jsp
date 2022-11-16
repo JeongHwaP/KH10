@@ -16,3 +16,8 @@
 		<h2><a href="logout">로그아웃</a></h2>
 	</c:otherwise>
 </c:choose>
+
+<!-- 상태 판정 출력 -->
+<h2>아이디 : ${loginId}</h2>
+<h2>닉네임 : ${loginNick}</h2>
+<h2>권한 : ${loginAuth}</h2>
