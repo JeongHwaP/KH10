@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.spring24.entity.MemberDto;
+import com.kh.spring24.repository.ProductDao;
 import com.kh.spring24.service.KakaoPayService;
 import com.kh.spring24.vo.KakaoPayApproveRequestVO;
 import com.kh.spring24.vo.KakaoPayApproveResponseVO;
@@ -107,6 +109,15 @@ public class PayController {
 	@GetMapping("/pay/result/success_view")
 	public String successView() {
 		return "success_view";
+	}
+	
+	@Autowired
+	private ProductDao productDao;
+	
+	@GetMapping("/pay2")
+	public String pay2(Model model) {
+		model.addAttribute("list", productDao.list());
+		return "pay2";
 	}
 	
 }
