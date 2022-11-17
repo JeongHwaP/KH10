@@ -6,4 +6,5 @@ import com.kh.spring24.entity.ProductDto;
 
 public interface ProductDao {
 	List<ProductDto> list();
+	ProductDto find(int no);//단일 조회
 }
