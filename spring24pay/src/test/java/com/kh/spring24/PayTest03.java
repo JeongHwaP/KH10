@@ -34,8 +34,8 @@ public class PayTest03 {
 				KakaoPayReadyRequestVO.builder()
 					.partner_order_id(UUID.randomUUID().toString())
 					.partner_user_id(UUID.randomUUID().toString())
-					.item_name("노트북")
-					.total_amount(600000)
+					.item_name("갤럭시폴드4")
+					.total_amount(990000)
 				.build();
 		log.debug("partner_order_id = {}", request.getPartner_order_id());
 		log.debug("partner_user_id = {}", request.getPartner_user_id());
