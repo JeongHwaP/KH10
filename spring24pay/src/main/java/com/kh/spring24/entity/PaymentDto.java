@@ -13,7 +13,7 @@ public class PaymentDto {
 	private String memberId;
 	private String itemName;
 	private int totalAmount;
-	private Date approve;
+	private Date approveAt;
 	private String paymentStatus;
 	private String tid;
 }
