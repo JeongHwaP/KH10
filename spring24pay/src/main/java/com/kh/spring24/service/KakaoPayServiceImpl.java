@@ -3,6 +3,7 @@ package com.kh.spring24.service;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -19,6 +20,8 @@ import com.kh.spring24.entity.ProductDto;
 import com.kh.spring24.repository.PaymentDao;
 import com.kh.spring24.vo.KakaoPayApproveRequestVO;
 import com.kh.spring24.vo.KakaoPayApproveResponseVO;
+import com.kh.spring24.vo.KakaoPayCancelRequestVO;
+import com.kh.spring24.vo.KakaoPayCancelResponseVO;
 import com.kh.spring24.vo.KakaoPayOrderRequestVO;
 import com.kh.spring24.vo.KakaoPayOrderResponseVO;
 import com.kh.spring24.vo.KakaoPayReadyRequestVO;
@@ -152,6 +155,33 @@ public class KakaoPayServiceImpl implements KakaoPayService{
 						.productPrice(productDto.getPrice() * itemVO.getQty())
 					.build());
 		}
+	}
+
+	@Override
+	public KakaoPayCancelResponseVO cancel(KakaoPayCancelRequestVO vo) throws URISyntaxException {
+		//주소 설정
+		URI uri = new URI("https://kapi.kakao.com/v1/payment/cancel");
+		
+		//헤더 설정
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", "KakaoAK "+kakaoPayProperties.getKey());
+		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		
+		//바디 설정
+		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+		body.add("cid", kakaoPayProperties.getCid());//가맹점번호(테스트용)
+		body.add("tid", vo.getTid());//거래번호
+		body.add("cancel_amount", String.valueOf(vo.getCancel_amount()));//취소 금액
+		body.add("cancel_tax_free_amount", "0");//취소 비과세액
+		
+		//보낼 내용 합체
+		HttpEntity<MultiValueMap<String, String>> entity = 
+											new HttpEntity<>(body, headers);
+		
+		//요청
+		KakaoPayCancelResponseVO response = 
+				template.postForObject(uri, entity, KakaoPayCancelResponseVO.class);
+		return response;
 	}
 	
 }
