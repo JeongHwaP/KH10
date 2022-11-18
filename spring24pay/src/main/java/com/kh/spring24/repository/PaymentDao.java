@@ -13,4 +13,7 @@ public interface PaymentDao {
 	void paymentDetailInsert(PaymentDetailDto paymentDetailDto);
 	
 	List<PaymentDto> paymentHistory(String memberId);
+	
+	PaymentDto findPayment(int paymentNo);
+	List<PaymentDetailDto> findPaymentDetail(int paymentNo);
 }

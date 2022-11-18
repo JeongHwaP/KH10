@@ -35,5 +35,15 @@ public class PaymentDaoImpl implements PaymentDao{
 	public List<PaymentDto> paymentHistory(String memberId) {
 		return sqlSession.selectList("payment.paymentHistory", memberId);
 	}
+	
+	@Override
+	public PaymentDto findPayment(int paymentNo) {
+		return sqlSession.selectOne("payment.findPayment", paymentNo);
+	}
+	
+	@Override
+	public List<PaymentDetailDto> findPaymentDetail(int paymentNo) {
+		return sqlSession.selectList("payment.findPaymentDetail", paymentNo);
+	}
 
 }

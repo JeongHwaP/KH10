@@ -7,6 +7,38 @@
 <h2><a href="${pageContext.request.contextPath}/">홈</a></h2>
 <h2><a href="list">목록</a></h2>
 
+<!-- 우리 DB에 있는 정보 -->
+<div>
+	<h1>대표 정보</h1>
+	<ul>
+		<li>paymentNo : ${paymentDto.paymentNo}</li>
+		<li>itemName : ${paymentDto.itemName}</li>
+		<li>totalAmount : ${paymentDto.totalAmount}</li>
+		<li>approveAt : ${paymentDto.approveAt}</li>
+		<li>paymentStatus : ${paymentDto.paymentStatus}</li>
+		<li>tid : ${paymentDto.tid}</li>
+	</ul>
+	<h2><a href="">취소</a></h2>
+</div>
+
+<div>
+	<h1>세부 내역</h1>
+	<ul>
+		<c:forEach var="paymentDetailDto" items="${paymentDetailList}">
+		<li>
+			${paymentDetailDto.productName}
+			(${paymentDetailDto.qty}개)
+			-
+			${paymentDetailDto.productPrice}원
+			[${paymentDetailDto.paymentDetailStatus}]
+			<a href="">취소</a>
+		</li>
+		</c:forEach>
+	</ul>
+</div>
+
+<!-- 카카오페이에서 조회한 정보 -->
+<h1>카카오페이 조회 정보</h1>
 <ul>
 	<li>거래번호 : ${info.tid}</li>
 	<li>

@@ -77,4 +77,18 @@
 		order by payment_no desc
 	</select>
 	
+	<!-- 결제 대표정보 단일조회 -->
+	<select id="findPayment" resultType="PaymentDto" 
+														parameterType="int">
+		select * from payment where payment_no = #{paymentNo}
+	</select>
+	
+	<!-- 결제 상세내역 조회 -->
+	<select id="findPaymentDetail" resultType="PaymentDetailDto" 
+														parameterType="int">
+		select * from payment_detail 
+		where payment_no = #{paymentNo}
+		order by payment_detail_no asc
+	</select>
+	
 </mapper>

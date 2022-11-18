@@ -201,10 +201,15 @@ public class PayController {
 	
 	//주문 조회 페이지
 	@GetMapping("/detail")
-	public String detail(@RequestParam String tid, Model model) throws URISyntaxException {
+	public String detail(@RequestParam int paymentNo, Model model) throws URISyntaxException {
+		PaymentDto paymentDto = paymentDao.findPayment(paymentNo);
+		
 		KakaoPayOrderRequestVO vo = KakaoPayOrderRequestVO
-				.builder().tid(tid).build();
+				.builder().tid(paymentDto.getTid()).build();
 		model.addAttribute("info", kakaoPayService.order(vo));
+		model.addAttribute("paymentDto", paymentDto);
+		model.addAttribute("paymentDetailList", 
+								paymentDao.findPaymentDetail(paymentNo));
 		return "detail";
 	}
 	
