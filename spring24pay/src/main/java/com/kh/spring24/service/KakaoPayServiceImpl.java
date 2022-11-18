@@ -2,7 +2,7 @@ package com.kh.spring24.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -13,12 +13,17 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.kh.spring24.configuration.KakaoPayProperties;
+import com.kh.spring24.entity.PaymentDetailDto;
+import com.kh.spring24.entity.PaymentDto;
+import com.kh.spring24.entity.ProductDto;
+import com.kh.spring24.repository.PaymentDao;
 import com.kh.spring24.vo.KakaoPayApproveRequestVO;
 import com.kh.spring24.vo.KakaoPayApproveResponseVO;
 import com.kh.spring24.vo.KakaoPayOrderRequestVO;
 import com.kh.spring24.vo.KakaoPayOrderResponseVO;
 import com.kh.spring24.vo.KakaoPayReadyRequestVO;
 import com.kh.spring24.vo.KakaoPayReadyResponseVO;
+import com.kh.spring24.vo.PurchaseItemVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -122,6 +127,31 @@ public class KakaoPayServiceImpl implements KakaoPayService{
 		KakaoPayOrderResponseVO response = 
 				template.postForObject(uri, entity, KakaoPayOrderResponseVO.class);
 		return response;
+	}
+	
+	@Autowired
+	private PaymentDao paymentDao;
+	
+	@Override
+	public void insertPayment(PaymentDto paymentDto, List<ProductDto> list, List<PurchaseItemVO> data) {
+		//- 결제가 완료되었으니까
+		//(1) 대표정보 insert 후 (2) 상세정보 상품 개수만큼 insert
+		paymentDao.paymentInsert(paymentDto);
+		
+		for(int i=0; i < list.size(); i++) {
+			ProductDto productDto = list.get(i);
+			PurchaseItemVO itemVO = data.get(i);
+			int paymentDetailNo = paymentDao.paymentDetailSequence();
+			paymentDao.paymentDetailInsert(
+					PaymentDetailDto.builder()
+						.paymentDetailNo(paymentDetailNo)
+						.paymentNo(paymentDto.getPaymentNo())
+						.productNo(productDto.getNo())
+						.productName(productDto.getName())
+						.qty(itemVO.getQty())
+						.productPrice(productDto.getPrice() * itemVO.getQty())
+					.build());
+		}
 	}
 	
 }

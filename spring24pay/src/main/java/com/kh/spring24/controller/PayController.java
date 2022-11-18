@@ -104,7 +104,8 @@ public class PayController {
 		String partner_order_id = (String)session.getAttribute("partner_order_id");
 		String partner_user_id = (String)session.getAttribute("partner_user_id");
 		List<ProductDto> list = (List<ProductDto>)session.getAttribute("list");
-		List<PurchaseItemVO> data = (List<PurchaseItemVO>)session.getAttribute("data");
+		List<PurchaseItemVO> data = 
+								(List<PurchaseItemVO>)session.getAttribute("data");
 		session.removeAttribute("tid");
 		session.removeAttribute("partner_order_id");
 		session.removeAttribute("partner_user_id");
@@ -120,34 +121,16 @@ public class PayController {
 				.build();
 		KakaoPayApproveResponseVO response = kakaoPayService.approve(vo);
 		
-		//이 시점에서 데이터베이스에 모든 정보를 INSERT해야 한다.
-		// - 결제가 완료되었으니까
-		// (1) 대표정보 insert 후 (2) 상세정보 insert
-		int paymentNo = paymentDao.paymentSequence();
-		paymentDao.paymentInsert(
-			PaymentDto.builder()
+		//이 시점에서 데이터베이스에 모든 정보를 INSERT 해야 한다
+		int paymentNo = Integer.parseInt(partner_order_id);
+		kakaoPayService.insertPayment(PaymentDto.builder()
 				.paymentNo(paymentNo)
 				.memberId((String)session.getAttribute("loginId"))
 				.itemName(response.getItem_name())
 				.totalAmount(response.getAmount().getTotal())
 				.approveAt(response.getApproved_at())
 				.tid(response.getTid())
-			.build());
-		
-		for(int i=0; i < list.size(); i++) {
-			ProductDto productDto = list.get(i);
-			PurchaseItemVO itemVO = data.get(i);
-			int paymentDetailNo = paymentDao.paymentDetailSequence();
-			paymentDao.paymentDetailInsert(
-					PaymentDetailDto.builder()
-						.paymentDetailNo(paymentDetailNo)
-						.paymentNo(paymentNo)
-						.productNo(productDto.getNo())
-						.productName(productDto.getName())
-						.qty(itemVO.getQty())
-						.productPrice(productDto.getPrice() * itemVO.getQty())
-					.build());
-		}
+			.build(), list, data);
 		
 		return "redirect:/pay/result/success_view";
 	}
@@ -180,7 +163,7 @@ public class PayController {
 		}
 		
 		//(+추가)
-		// - 결제 정보를 등록하려면 반드시 상품 정보를 알아야 한다.(List<ProductDto>)
+		//- 결제 정보를 등록하려면 반드시 상품 정보를 알아야 한다(List<ProductDto>)
 		List<ProductDto> list = new ArrayList<>();
 		int total_amount = 0;
 		for(PurchaseItemVO vo : purchaseVO.getData()) {
@@ -189,21 +172,23 @@ public class PayController {
 			total_amount += productDto.getPrice() * vo.getQty();
 		}
 		
-		// - 이름 설정
+		//- 이름 설정
 		String item_name = list.get(0).getName();//첫 번째 상품명 추출
 		if(list.size() >= 2) {
-			item_name += "외 " + (list.size()-1) + "개";
+			item_name += "외 " + (list.size()-1) +"개";
 		}
 		
+		int paymentNo = paymentDao.paymentSequence();
 		KakaoPayReadyRequestVO vo = KakaoPayReadyRequestVO
 				.builder()
-				.partner_order_id(UUID.randomUUID().toString())
+				//.partner_order_id(UUID.randomUUID().toString())
+				.partner_order_id(String.valueOf(paymentNo))
 				.partner_user_id((String)session.getAttribute("loginId"))
 				.item_name(item_name)
 				.total_amount(total_amount)
 				.build();
 		
-		KakaoPayReadyResponseVO response = kakaoPayService.ready(vo);
+		KakaoPayReadyResponseVO response = kakaoPayService.ready(vo);//3
 		
 		//4번 시점에서 9번 시점에 필요한 데이터를 세션에 저장
 		session.setAttribute("tid", response.getTid());
