@@ -16,4 +16,12 @@ public interface PaymentDao {
 	
 	PaymentDto findPayment(int paymentNo);
 	List<PaymentDetailDto> findPaymentDetail(int paymentNo);
+	
+	void cancelPayment(int paymentNo);
+	void cancelPaymentDetail(int paymentNo);
+	
+	PaymentDetailDto findPaymentDetailItem(int paymentDetailNo);
+	
+	void cancelPaymentDetailItem(int paymentDetailNo);
+	void refreshPayment(int paymentNo);
 }

@@ -91,4 +91,48 @@
 		order by payment_detail_no asc
 	</select>
 	
+	<!-- 결제 취소 처리 -->
+	<update id="cancelPayment" parameterType="int">
+		update payment
+			set payment_status = '취소'
+			where payment_no = #{paymentNo}
+	</update>
+	<update id="cancelPaymentDetail" parameterType="int">
+		update payment_detail
+			set payment_detail_status = '취소'
+			where payment_no = #{paymentNo}
+	</update>
+	
+	<select id="findPaymentDetailItem" resultType="PaymentDetailDto" 
+																				parameterType="int">
+		select * from payment_detail 
+		where payment_detail_no = #{paymentDetailNo}
+	</select>
+	
+	<!-- 개별 취소 -->
+	<update id="cancelPaymentDetailItem" parameterType="int">
+		update payment_detail
+			set payment_detail_status = '취소'
+			where payment_detail_no = #{paymentDetailNo}
+	</update>
+	
+	<!-- 개별 취소 결과에 따라 전체 결제의 상태를 '취소' 또는 '부분취소'로 변경 -->
+	<update id="refreshPayment" parameterType="int">
+		update payment set payment_status=(
+		    select 
+		        case
+		            when "전체"="취소" then '취소'
+		            when "취소"=0 then '승인'
+		            else '부분취소'
+		        end
+		    from
+		    (
+		        select 
+		            (select count(*) from payment_detail where payment_no = #{paymentNo}) "전체",
+		            (select count(*) from payment_detail where payment_no = #{paymentNo} and payment_detail_status='취소') "취소"
+		        from dual
+		    )
+		)
+	</update>
+	
 </mapper>
