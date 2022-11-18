@@ -70,4 +70,11 @@
 		)
 	</insert>
 	
+	<!-- 로그인한 회원의 결제내역을 조회하는 기능 -->
+	<select id="paymentHistory" resultType="PaymentDto" parameterType="String">
+		select * from payment 
+		where member_id = #{memberId}
+		order by payment_no desc
+	</select>
+	
 </mapper>

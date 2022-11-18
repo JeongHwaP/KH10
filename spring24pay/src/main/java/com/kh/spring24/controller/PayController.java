@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.spring24.entity.MemberDto;
-import com.kh.spring24.entity.PaymentDetailDto;
 import com.kh.spring24.entity.PaymentDto;
 import com.kh.spring24.entity.ProductDto;
 import com.kh.spring24.repository.PaymentDao;
@@ -207,6 +206,15 @@ public class PayController {
 				.builder().tid(tid).build();
 		model.addAttribute("info", kakaoPayService.order(vo));
 		return "detail";
+	}
+	
+	//주문 내역 목록 페이지
+	@GetMapping("/list")
+	public String list(HttpSession session, Model model) {
+		String memberId = (String)session.getAttribute("loginId");
+		List<PaymentDto> list = paymentDao.paymentHistory(memberId);
+		model.addAttribute("list", list);
+		return "list";
 	}
 	
 }

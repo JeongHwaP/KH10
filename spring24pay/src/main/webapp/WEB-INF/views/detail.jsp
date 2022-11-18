@@ -5,6 +5,7 @@
 <h1>결제 상세 정보</h1>
 
 <h2><a href="${pageContext.request.contextPath}">홈</a></h2>
+<h2><a href="list">목록</a></h2>
 
 <ul>
 	<li>거래번호 : ${info.tid}</li>
