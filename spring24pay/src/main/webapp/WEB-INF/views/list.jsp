@@ -5,6 +5,8 @@
 
 <h1>결제 내역 조회</h1>
 
+<h2><a href="${pageContext.request.contextPath}/">홈으로 이동</a></h2>
+
 <c:forEach var="paymentDto" items="${list}">
 <div>
 	상품명 : ${paymentDto.itemName} <br>
