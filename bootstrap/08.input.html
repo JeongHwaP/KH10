@@ -11,6 +11,8 @@
     <!-- Bootswatch CDN -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.0.2/cosmo/bootstrap.min.css">
 
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+
     <title>Bootstrap 예제</title>
   </head>
   <body>
@@ -87,6 +89,52 @@
                 <div class="form-floating">
                     <input type="text" class="form-control rounded" placeholder="Nickname">
                     <label>Nickname</label>
+                </div>
+            </div>
+        </div>
+
+        <!--
+            입력창에 상태 추가
+            - 입력창 뒤에 성공과 실패에 대한 메세지를 각각 준비해둔다
+            - 입력창에 특정 클래스를 붙이면 해당 상태의 메세지가 자동 출력되는 구조
+            - 성공 - .is-valid - .valid-feedback
+            - 실패 - .is-invalid - .invalid-feedback
+        -->
+        <div class="row mt-4">
+            <div class="col-md-10 offset-md-1">
+                <div class="row">
+                    <label class="col-form-label col-md-3">Nickname</label>
+                    <div class="col-md-9">
+                        <input type="text" name="nickname" class="form-control rounded">
+                        <div class="valid-feedback">멋진 닉네임이에요!</div>
+                        <div class="invalid-feedback">닉네임은 한글 또는 숫자 2~10글자로 작성하세요</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-10 offset-md-1">
+                <div class="form-floating">
+                    <input type="text" class="form-control rounded" name="nickname" placeholder="Nickname">
+                    <label>Nickname</label>
+                    <div class="valid-feedback">멋진 닉네임이에요!</div>
+                    <div class="invalid-feedback">닉네임은 한글 또는 숫자 2~10글자로 작성하세요</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-10 offset-md-1">
+                <div class="row">
+                    <label class="col-form-label col-md-3">
+                        자기소개
+                        <i class="fa-solid fa-asterisk text-danger"></i>
+                    </label>
+                    <div class="col-md-9">
+                        <textarea class="form-control rounded" rows="5"></textarea>
+                        <div class="invalid-feedback">필수 입력 항목입니다</div>
+                    </div>
                 </div>
             </div>
         </div>
