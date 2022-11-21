@@ -8,86 +8,74 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <!-- Bootswatch CDN -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.0.2/cosmo/bootstrap.min.css">
-
-    <title>Bootstrap 예제</title>
+    <title>버튼</title>
   </head>
   <body>
-    
-    <div class="container-fluid mb-5">
+    <!--
+        column offset
+        - 컬럼을 일정 간격만큼 띄어서 배치할 때 사용
+    -->
+    <div class="container-fluid">
         
         <div class="row mt-4">
             <div class="col-md-10 offset-md-1 p-4 text-light bg-dark rounded">
-                <h1 class="text-center">입력창 디자인</h1>
-            </div>
-        </div>
-
-        <!--
-            Bootstrap 5에서는 모든 입력창에 .form-control을 붙인다.
-            폭은 100%가 되며 폭을 제어하고 싶다면 column으로 제어한다.
-        -->
-        <div class="row mt-4">
-            <div class="col-md-10 offset-md-1">
-                <input type="text" class="form-control rounded" name="test1" placeholder="아이디 입력">
+                <h1 class="text-center">버튼 예제</h1>
             </div>
         </div>
 
         <div class="row mt-4">
             <div class="col-md-10 offset-md-1">
-                <select name="test2" class="form-select rounded">
-                    <option>apple</option>                    
-                    <option>banana</option>                    
-                    <option>pineapple</option>                    
-                </select>
+                <button type="button" class="btn btn-primary">버튼</button>
+                <button type="button" class="btn btn-secondary">버튼</button>
+                <button type="button" class="btn btn-success">버튼</button>
+                <button type="button" class="btn btn-warning">버튼</button>
+                <button type="button" class="btn btn-danger">버튼</button>
+                <button type="button" class="btn btn-info">버튼</button>
+                <button type="button" class="btn btn-light">버튼</button>
+                <button type="button" class="btn btn-dark">버튼</button>
+                <button type="button" class="btn btn-link">버튼</button>
             </div>
         </div>
 
         <div class="row mt-4">
             <div class="col-md-10 offset-md-1">
-                <textarea name="test3" class="form-control rounded" rows="5"></textarea>
-            </div>
-        </div>
-
-        <div class="row mt-4">
-            <div class="col-md-4 offset-md-1">
-                <select name="test2" class="form-select rounded">
-                    <option>apple</option>                    
-                    <option>banana</option>                    
-                    <option>pineapple</option>                    
-                </select>
+                <a type="button" class="btn btn-primary">버튼</a>
+                <a type="button" class="btn btn-secondary">버튼</a>
+                <a type="button" class="btn btn-success">버튼</a>
+                <a type="button" class="btn btn-warning">버튼</a>
+                <a type="button" class="btn btn-danger">버튼</a>
+                <a type="button" class="btn btn-info">버튼</a>
+                <a type="button" class="btn btn-light">버튼</a>
+                <a type="button" class="btn btn-dark">버튼</a>
+                <a type="button" class="btn btn-link">버튼</a>
             </div>
         </div>
 
         <div class="row mt-4">
             <div class="col-md-10 offset-md-1">
-                <div class="row">
-                    <label class="col-3 col-form-label">ID</label>
-                    <div class="col-9">
-                        <input type="text" name="test5" class="form-control rounded">
-                    </div>
-                </div>
+                <a type="button" class="btn btn-outline-primary">버튼</a>
+                <a type="button" class="btn btn-outline-secondary">버튼</a>
+                <a type="button" class="btn btn-outline-success">버튼</a>
+                <a type="button" class="btn btn-outline-warning">버튼</a>
+                <a type="button" class="btn btn-outline-danger">버튼</a>
+                <a type="button" class="btn btn-outline-info">버튼</a>
+                <a type="button" class="btn btn-outline-light">버튼</a>
+                <a type="button" class="btn btn-outline-dark">버튼</a>
             </div>
         </div>
 
-        <div class="row mt-4">
-            <div class="col-md-6 offset-md-3">
-                <div class="row">
-                    <label class="col-sm-3 col-form-label">ID</label>
-                    <div class="col-sm-9">
-                        <input type="text" name="test6" class="form-control rounded">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- floating label : 반드시 입력창에 placeholder가 있어야 한다 -->
         <div class="row mt-4">
             <div class="col-md-10 offset-md-1">
-                <div class="form-floating">
-                    <input type="text" class="form-control rounded" placeholder="Nickname">
-                    <label>Nickname</label>
-                </div>
+                <a type="button" class="btn btn-primary btn-sm">버튼</a>
+                <a type="button" class="btn btn-primary btn-md">버튼</a>
+                <a type="button" class="btn btn-primary btn-lg">버튼</a>
+                <a type="button" class="btn btn-primary">버튼</a>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-10 offset-md-1">
+                <a type="button" class="btn btn-primary w-100">버튼</a>
             </div>
         </div>
 
