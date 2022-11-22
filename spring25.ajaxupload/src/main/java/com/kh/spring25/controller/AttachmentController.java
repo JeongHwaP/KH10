@@ -44,13 +44,15 @@ public class AttachmentController {
 					.attachmentSize(attach.getSize())
 				.build());
 		
-		//파일저장
+//		파일저장
+		dir.mkdirs();//폴더 생성
+		
 		File target = new File(dir, String.valueOf(attachmentNo));
 		attach.transferTo(target);
 		
 //		return "http://localhost:8888/download/"+attachmentNo;
 		return ServletUriComponentsBuilder.fromCurrentContextPath()
-								.path("/download").path(String.valueOf(attachmentNo))
+								.path("/download/").path(String.valueOf(attachmentNo))
 								.toUriString();
 	}
 	
