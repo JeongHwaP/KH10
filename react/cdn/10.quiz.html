@@ -36,7 +36,7 @@
             return (
                 <>
                     <h1>송금할 금액 입력</h1>
-                    <input type="text" value={money}/>
+                    <input type="text" value={money == 0 ? "" : money} readOnly/>
                     <br/>
                     <button onClick={e=>plus(100)}>백원</button>
                     <button onClick={e=>plus(1000)}>천원</button>

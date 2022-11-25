@@ -38,7 +38,12 @@
             return (
                 <>
                     <h1>입력 이벤트 예제</h1>
-                    {/*value는 출력 onChange는 입력용 속성이므로 동시에 작성을 금지한다*/}
+                    {/*
+                        입력창이 입력용인지 출력용인지 입출력용인지에 따라서 설정이 다르다.
+                        - 입출력창인 경우 value와 onChange를 동시에 설정
+                        - 입력창인 경우 onChange만 설정(초기값을 표시하고 싶다면 defaultValue를 사용)
+                        - 출력창인 경우 value만 설정(readOnly)를 추가해서 
+                    */}
                     <input type="text" onChange={userInput}/>
                     <p>{content}</p>
                     <p>{content.length}</p>
