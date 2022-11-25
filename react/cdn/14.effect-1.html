@@ -43,9 +43,7 @@
                 setTotal(korean+english+math);
             }, [korean, english, math]);
 
-            React.useEffect(()=>{
-                setAverage(total / 3);
-            }, [total]);
+            React.useEffect( () => setAverage(total / 3) , [total] );
 
             return (
                 <>
