@@ -57,32 +57,47 @@
 
             //state로 하지 않는 경우(권장)
             let memberIdValidClass = '';
+            const memberIdValid = memberIdRegex.test(memberId);
             if(memberId.length > 0) {
-                const memberIdValid = memberIdRegex.test(memberId);
                 memberIdValidClass = memberIdValid ? 'is-valid' : 'is-invalid';
             }
 
             let memberPwValidClass = '';
+            const memberPwValid = memberPwRegex.test(memberPw);
             if(memberPw.length > 0) {
-                const memberPwValid = memberPwRegex.test(memberPw);
                 memberPwValidClass = memberPwValid ? 'is-valid' : 'is-invalid';
             }
 
             let memberPwReValidClass = '';
+            const memberPwReValid = memberPw == memberPwRe;
             if(memberPwRe.length > 0) {
-                const memberPwReValid = memberPw == memberPwRe;
                 memberPwReValidClass = memberPwReValid ? 'is-valid' : 'is-invalid';
             }
 
             let memberNickValidClass = '';
+            const memberNickValid = memberNickRegex.test(memberNick);
             if(memberNick.length > 0) {
-                const memberNickValid = memberNickRegex.test(memberNick);
                 memberNickValidClass = memberNickValid ? 'is-valid' : 'is-invalid';
             }
+
+            //(+추가) 가입버튼 비활성화 처리, 폼 전송 방지 처리
+            const allValid = memberIdValid && memberPwValid 
+                                            && memberPwReValid && memberNickValid;
             
+            //폼 전송 이벤트 처리 함수
+            const sendForm = e=>{
+                //e.preventDefault();//차단
+                //e.target.submit();//전송
+                //console.log(memberIdValid, memberPwValid, memberPwReValid, memberNickValid);
+                //console.log(allValid);
+                if(!allValid) {
+                    e.preventDefault();
+                }
+            };
+
             return (
                 <>
-                    <form className="join-form" method="post" autoComplete="off">
+                    <form className="join-form" method="post" autoComplete="off" onSubmit={sendForm}>
 
                         <div className="container-fluid">
 
@@ -155,7 +170,7 @@
 
                             <div className="row mt-4">
                                 <div className="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2">
-                                    <button type="submit" className="btn btn-primary w-100 btn-lg rounded">가입하기</button>
+                                    <button type="submit" className={"btn btn-primary w-100 btn-lg rounded " + (allValid ? '' : 'disabled')}>가입하기</button>
                                 </div>
                             </div>
 
