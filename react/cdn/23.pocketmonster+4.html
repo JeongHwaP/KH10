@@ -28,6 +28,51 @@
     <script src=" https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         //함수 형태로 컴포넌트를 구현한다(functional component)
+        const PocketMonsterInput = props=>{
+            //등록 시 사용자가 입력하는 정보를 저장할 state
+            const [monster, setMonster] = React.useState({
+                no:0, name:'', type:''
+            });
+
+            //입력 이벤트 처리 함수
+            const monsterInputProcessor = e=>{
+                const name = e.target.name;
+                const value = e.target.value;
+                setMonster({
+                    ...monster,
+                    [name]:value//name 변수에 들어있는 값을 이름으로 설정하여 초기화
+                });
+            };
+            //등록 버튼 처리 함수
+            const insertData = e=>{
+                //monster를 서버로 전송(+검사)
+
+                axios({
+                    url:"http://localhost:8888/rest/pocketmon",
+                    method:"post",
+                    data:monster,
+                })
+                .then(respObject=>{
+                    setMonster({no:0, name:'', type:''});//입력 데이터 초기화
+                    props.loadList();//목록 불러오기(main component에 있으므로 빌려와서 실행)
+                })
+                .catch(e=>{})
+                .finally(()=>{});
+            };
+
+            return (
+                <>
+                    번호 : <input name="no" onChange={monsterInputProcessor} value={monster.no}/>
+                    &nbsp;&nbsp;
+                    이름 : <input name="name" onChange={monsterInputProcessor} value={monster.name}/>
+                    &nbsp;&nbsp;
+                    속성 : <input name="type" onChange={monsterInputProcessor} value={monster.type}/>
+                    &nbsp;&nbsp;
+                    <button onClick={insertData}>등록</button>
+                </>
+            );
+        };
+
         const PocketMonster = props=>{
             return (
                 <div>
@@ -65,11 +110,6 @@
             const [monsterList, setMonsterList] = React.useState([]);
             const [loading, setLoading] = React.useState(false);
 
-            //등록 시 사용자가 입력하는 정보를 저장할 state
-            const [monster, setMonster] = React.useState({
-                no:0, name:'', type:''
-            });
-
             //effect
             const loadList = ()=>{
                 setLoading(true);
@@ -92,13 +132,7 @@
                 <>
                     <h1>포켓몬 도감</h1>
                     
-                    번호 : <input name="no" onChange={e=>setMonster({...monster, no:e.target.value})}/>
-                    &nbsp;&nbsp;
-                    이름 : <input name="name" onChange={e=>setMonster({...monster, name:e.target.value})}/>
-                    &nbsp;&nbsp;
-                    속성 : <input name="type" onChange={e=>setMonster({...monster, type:e.target.value})}/>
-                    &nbsp;&nbsp;
-                    <button>등록</button>
+                    <PocketMonsterInput loadList={loadList}/>
 
                     <hr/>
 
