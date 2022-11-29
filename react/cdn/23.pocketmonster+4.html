@@ -111,12 +111,34 @@
                     resultType:"text",
                 })
                 .then(respObject=>{
-                    console.log(respObject.data);
-                    setEdit(false);
-                    //loadList();
+                    //console.log(respObject.data);
+                    //setEdit(false);
+
+                    const success = respObject.data;
+                    setEdit(!success);
+                    if(success){
+                        props.loadList();//목록 갱신
+                    }
                 })
                 .catch(e=>{})
                 .finally(()=>{});
+            };
+
+            //삭제 비동기 처리
+            const deleteData = e=>{
+                const choice = window.confirm("정말 삭제하시겠습니까?");
+                if(choice == false) return;
+
+                axios({
+                    url:"http://localhost:8888/rest/pocketmon/"+props.monster.no,
+                    method:"delete",
+                    responseType:"text"
+                }).then(respObject=>{
+                    const success = respObject.data;
+                    if(success) {
+                        props.loadList();
+                    }
+                }).catch(e=>{}).finally(()=>{});
             };
 
             if(edit) {//수정 상태
@@ -137,6 +159,7 @@
                         이름 : {props.monster.name},
                         속성 : {props.monster.type}
                         <button onClick={()=>setEdit(true)}>변경</button>
+                        <button onClick={deleteData}>삭제</button>
                     </div>
                 );
             }
@@ -159,7 +182,7 @@
             }
             else {//데이터 있음 -> .map()
                 const html = props.list.map(
-                    monster=><PocketMonster key={monster.no} monster={monster}/>
+                    monster=><PocketMonster key={monster.no} monster={monster} loadList={props.loadList}/>
                 );
                 return html;
             }
@@ -196,7 +219,7 @@
 
                     <hr/>
 
-                    <PocketMonsterList list={monsterList} loading={loading}/>
+                    <PocketMonsterList loadList={loadList} list={monsterList} loading={loading}/>
                 </>
             );
         };
