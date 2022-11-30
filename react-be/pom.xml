@@ -8,7 +8,7 @@
 		<version>2.7.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>com.kh</groupId>
 	<artifactId>react-be</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -69,7 +69,6 @@
 		    <artifactId>springdoc-openapi-ui</artifactId>
 		    <version>1.6.12</version>
 		</dependency>
-		
 	</dependencies>
 
 	<build>
