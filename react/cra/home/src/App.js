@@ -16,7 +16,6 @@ const App = ()=>{
       {/* 헤더, 메뉴, 본문, 푸터 등으로 컴포넌트를 분할해야 함 */}
       <MainHeader/>
       <MainMenu/>
-      
       {/* 상황에 맞게 주소에 따른 화면을 보여주도록 라우팅 처리 */}
       <Routes>
         <Route path='/' element={<MainPage/>}></Route>

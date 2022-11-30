@@ -4,21 +4,27 @@ import { useState } from 'react';
 //- 로그인 버튼을 누르면 비동기 통신으로 서버에 아이디와 비밀번호를 전송해야 함
 
 import axios from '../../utilities/AxiosManager';
+import ContextStore from './../../utilities/ContextStore';
+import { useContext } from 'react';
 
 const LoginPage = props=>{
+    //ContextStore 접근
+    //const store = useContext(ContextStore);
+    const {setMember, setToken} = useContext(ContextStore);
+
     //회원 정보
-    const [member, setMember] = useState({
+    const [inputMember, setInputMember] = useState({
         memberId:'',
         memberPw:''
     });
 
-    //객체 업데이트 함수
+    //입력 내용 업데이트 함수
     const changeMemberInfo = e=>{
         const name = e.target.name;
         const value = e.target.value;
 
-        setMember({
-            ...member,
+        setInputMember({
+            ...inputMember,
             [name]:value
         });
     };
@@ -31,10 +37,12 @@ const LoginPage = props=>{
             url:"http://localhost:8888/member/login",
             method:"post",
             //responseType:"json"
-            data:member
+            data:inputMember
         })
         .then(respObject=>{
-            console.log("성공", respObject);
+            //console.log("성공", respObject.data);
+            setMember(respObject.data.member);
+            setToken(respObject.data.token);
         })
         .catch(e=>{
             console.log("실패", e);
