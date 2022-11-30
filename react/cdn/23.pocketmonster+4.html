@@ -108,7 +108,7 @@
                     url:"http://localhost:8888/rest/pocketmon",
                     method:"put",
                     data:monster,//jquery ajax면 JSON.stringify(monster)
-                    resultType:"text",
+                    responseType:"text",
                 })
                 .then(respObject=>{
                     //console.log(respObject.data);
