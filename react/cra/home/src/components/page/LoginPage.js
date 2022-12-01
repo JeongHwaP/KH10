@@ -6,8 +6,12 @@ import { useState } from 'react';
 import axios from '../../utilities/AxiosManager';
 import ContextStore from './../../utilities/ContextStore';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router';
 
 const LoginPage = props=>{
+    //페이지 이동 도구 생성
+    const navigate = useNavigate();
+
     //ContextStore 접근
     //const store = useContext(ContextStore);
     const {setMember, setToken} = useContext(ContextStore);
@@ -32,18 +36,21 @@ const LoginPage = props=>{
     //로그인 함수 - axios를 통해 서버의 로그인 컨트롤러에 member 정보를 전송
     const sendLoginInfo = e=>{
         //검사
-
         axios({
             url:"http://localhost:8888/member/login",
             method:"post",
             //responseType:"json"
             data:inputMember
         })
+        //로그인 성공 - 홈으로 이동
         .then(respObject=>{
             //console.log("성공", respObject.data);
             setMember(respObject.data.member);
             setToken(respObject.data.token);
+            //이동 명령
+            navigate("/");
         })
+        //로그인 실패
         .catch(e=>{
             console.log("실패", e);
         })
