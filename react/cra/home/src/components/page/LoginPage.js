@@ -7,6 +7,7 @@ import axios from '../../utilities/AxiosManager';
 import ContextStore from './../../utilities/ContextStore';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router';
+import StatusMessage from './../fragment/StatusMessage';
 
 const LoginPage = props=>{
     //페이지 이동 도구 생성
@@ -15,6 +16,9 @@ const LoginPage = props=>{
     //ContextStore 접근
     //const store = useContext(ContextStore);
     const {setMember, setToken} = useContext(ContextStore);
+
+    //에러 여부
+    const [error, setError] = useState(0);
 
     //회원 정보
     const [inputMember, setInputMember] = useState({
@@ -45,14 +49,21 @@ const LoginPage = props=>{
         //로그인 성공 - 홈으로 이동
         .then(respObject=>{
             //console.log("성공", respObject.data);
+
+            //ContextStore에 데이터 저장
             setMember(respObject.data.member);
             setToken(respObject.data.token);
+
+            //sessionStorage에 토큰을 저장
+            window.sessionStorage.setItem("token", respObject.data.token);
+
             //이동 명령
             navigate("/");
         })
         //로그인 실패
         .catch(e=>{
             console.log("실패", e);
+            setError(e.response.status);
         })
         .finally(()=>{});
     };
@@ -67,6 +78,10 @@ const LoginPage = props=>{
             <br></br><br></br>
 
             <input type="password" name="memberPw" placeholder="비밀번호" onChange={changeMemberInfo}></input>
+
+            <br></br><br></br>
+
+            <StatusMessage status={error}/>
 
             <br></br><br></br>
 

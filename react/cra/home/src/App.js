@@ -9,6 +9,7 @@ import BoardListPage from './components/page/BoardListPage';
 import NotFound from './components/error/NotFound';
 
 import {Routes, Route} from 'react-router';
+import MyPage from './components/page/MyPage';
 
 const App = ()=>{
   return (
@@ -21,6 +22,7 @@ const App = ()=>{
         <Route path='/' element={<MainPage/>}></Route>
         <Route path='/login' element={<LoginPage/>}></Route>
         <Route path='/board/list' element={<BoardListPage/>}></Route>
+        <Route path='/member/mypage' element={<MyPage/>}></Route>
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>
       <MainFooter/>
