@@ -18,7 +18,15 @@ import com.kh.react.entity.MemberDto;
 import com.kh.react.repository.MemberDao;
 import com.kh.react.vo.MemberLoginVO;
 
-@CrossOrigin
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+//외부에서 ajax로 전송되는 요청의 쿠키를 수신하도록 설정 + 대상 명시
+//(주의) 이 경우 origins에 와일드카드(*) 사용 금지
+@CrossOrigin(
+		origins = "http://localhost:3000", 
+		allowCredentials = "true"
+)
 @RestController
 @RequestMapping("/member")
 public class MemberRestController {
@@ -43,6 +51,9 @@ public class MemberRestController {
 		session.setAttribute("memberId", findDto.getMemberId());
 		session.setAttribute("token", token);
 		
+		log.debug("token = {}", token);
+		log.debug("session id = {}", session.getId());
+		
 		return ResponseEntity.ok(MemberLoginVO.builder()
 															.member(findDto)//DB의 회원정보
 															.token(token)//인증용 토큰
@@ -60,6 +71,8 @@ public class MemberRestController {
 	public ResponseEntity<MemberLoginVO> refresh(
 			@PathVariable String token, HttpSession session) {
 		String serverToken = (String)session.getAttribute("token");
+		log.debug("token = {}, serverToken = {}", token, serverToken);
+		log.debug("session id = {}", session.getId());
 		if(!token.equals(serverToken)) {
 			return ResponseEntity.notFound().build();//404
 		}
