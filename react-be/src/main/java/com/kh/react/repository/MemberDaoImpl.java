@@ -25,5 +25,10 @@ public class MemberDaoImpl implements MemberDao{
 		}
 		return null;
 	}
+
+	@Override
+	public MemberDto get(String memberId) {
+		return sqlSession.selectOne("member.get",memberId);
+	}
 	
 }
