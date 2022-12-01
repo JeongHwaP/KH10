@@ -4,4 +4,5 @@ import com.kh.react.entity.MemberDto;
 
 public interface MemberDao {
 	MemberDto login(MemberDto memberDto);
+	MemberDto get(String memberId);
 }
