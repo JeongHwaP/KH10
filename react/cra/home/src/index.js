@@ -4,18 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
-import ContextStore, { ContextCustomProvider } from './utilities/ContextStore';
+import { ContextCustomProvider } from './utilities/ContextStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      {/*context api의 사용 범위를 지정*/}
-      <ContextCustomProvider>
+  <BrowserRouter>
+    {/*context api의 사용 범위를 지정*/}
+    <ContextCustomProvider>
       <App />
-      </ContextCustomProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+    </ContextCustomProvider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

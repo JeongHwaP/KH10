@@ -3,5 +3,6 @@
 import axios from 'axios';
 
 //axios에 대한 설정 추가(필요하다면)
+axios.defaults.withCredentials = true;
 
 export default axios;
