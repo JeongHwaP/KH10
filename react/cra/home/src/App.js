@@ -14,6 +14,8 @@ import { useEffect } from 'react';
 import axios from './utilities/AxiosManager';
 import { useContext } from 'react';
 import ContextStore from './utilities/ContextStore';
+import PublicRoute from './components/route/PublicRoute';
+import MemberRoute from './components/route/MemberRoute';
 
 const App = ()=>{
   const {setMember, setToken} = useContext(ContextStore);
@@ -49,11 +51,37 @@ const App = ()=>{
       <MainMenu/>
       {/* 상황에 맞게 주소에 따른 화면을 보여주도록 라우팅 처리 */}
       <Routes>
-        <Route path='/' element={<MainPage/>}></Route>
-        <Route path='/login' element={<LoginPage/>}></Route>
-        <Route path='/board/list' element={<BoardListPage/>}></Route>
-        <Route path='/member/mypage' element={<MyPage/>}></Route>
-        <Route path='*' element={<NotFound/>}></Route>
+
+        <Route path='/' element={
+          <PublicRoute>
+            <MainPage/>
+          </PublicRoute>
+        }></Route>
+
+        <Route path='/login' element={
+          <PublicRoute>
+            <LoginPage/>
+          </PublicRoute>
+        }></Route>
+
+        <Route path='/board/list' element={
+          <PublicRoute>
+            <BoardListPage/>
+          </PublicRoute>
+        }></Route>
+
+        <Route path='/member/mypage' element={
+          <MemberRoute>
+            <MyPage/>
+          </MemberRoute>
+        }></Route>
+
+        <Route path='*' element={
+          <PublicRoute>
+            <NotFound/>
+          </PublicRoute>
+        }></Route>
+
       </Routes>
       <MainFooter/>
     </>
